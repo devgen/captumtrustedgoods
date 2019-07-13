@@ -32,15 +32,9 @@
 						<Text text="{PackageID}"/>
 						<ObjectStatus state="{IncidentStatus}" icon="{= ${IncidentStatus} === 'Success' ? 'sap-icon://sys-enter' : 'sap-icon://sys-cancel' }"
 							visible="true"/>
-						<!-- 	 <Text text="{IncidentStatus}" />
-							<ObjectStatus text="{IncidentStatus}" state="{IncidentStatus}" icon="{ 
-							 path: 'IncidentStatus',
-							 formatter: '.formatter.statusText'}" 
-							 visible="true"/> 
-							 							-->
 						<Text text="{RoseType}"/>
-						<Text text="{OwnerNam}"/>
-						<Text text=" {path: 'CurrentLongitude'}, {path: 'CurrentLongitude'}"/>
+						<Text text="{CurrentOwnerID}"/>
+						<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>
 					</cells>
 				</ColumnListItem>
 			</items>

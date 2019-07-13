@@ -64,7 +64,7 @@ xmlns:core="sap.ui.core">
 							 							-->
 								<Text text="{RoseType}"/>
 									<Text text="{OwnerNam}"/>
-										<Text text="{CurrentLatitude}"/>
+										<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

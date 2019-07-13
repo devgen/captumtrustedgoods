@@ -87,8 +87,8 @@
 													<Text text="{MaxTemperature}"/>
 													<Text text="{MaxHumidity}"/>
 													<Text text="
-										{path: 'CurrentLatitude'};
-										{path: 'CurrentLongitude'};0"/>
+										{path: 'CurrentLongitude'};
+										{path: 'CurrentLatitude'};0"/>
 												</cells>
 											</ColumnListItem>
 										</items>
