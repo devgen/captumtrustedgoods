@@ -1,0 +1,62 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData"
+	xmlns:ux="http://www.sap.com/Protocols/OData4SAP/UX" xmlns:gp="http://www.sap.com/Protocols/SAPData/GenericPlayer" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml"><edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/></edmx:Reference>
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="RoseTrackerDataService">
+			<EntityType Name="IncidentBC">
+				<Key><PropertyRef Name="PackageID"/><PropertyRef Name="TimeStamp"/></Key><Property Name="PackageID" Type="Edm.String" Nullable="false"/><Property Name="TimeStamp" Type="Edm.DateTimeOffset" Nullable="false"/><Property Name="CurrentLatitude" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="CurrentLongitude" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MinTemperature" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MaxTemperature" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MinHumidity" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MaxHumidity" Type="Edm.Decimal" Precision="8" Scale="4"/></EntityType>
+			<EntityType Name="OwnerBC">
+				<Key><PropertyRef Name="PackageID"/><PropertyRef Name="TimeStamp"/></Key><Property Name="PackageID" Type="Edm.String" Nullable="false"/><Property Name="TimeStamp" Type="Edm.DateTimeOffset" Nullable="false"/><Property Name="OwnerID" Type="Edm.String"/><Property Name="CurrentLatitude" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="CurrentLongitude" Type="Edm.Decimal" Precision="8" Scale="4"/></EntityType>
+			<EntityType Name="PackageData">
+				<Key><PropertyRef Name="PackageID"/></Key><Property Name="PackageID" Type="Edm.String" Nullable="false"/><Property Name="RoseType" Type="Edm.String"/><Property Name="OwnerNam" Type="Edm.String"/><Property Name="ReceipientID" Type="Edm.String"/><Property Name="IncidentStatus" Type="Edm.String"/><Property Name="ActiveStatus" Type="Edm.Boolean"/><Property Name="OpenSpeed" Type="Edm.Int32"/><Property Name="Vaselife" Type="Edm.Int32"/><Property Name="Color" Type="Edm.String"/><Property Name="Fragrantcy" Type="Edm.String"/><Property Name="MinTemperature" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MaxTemperature" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MinHumidity" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MaxHumidity" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="CurrentLatitude" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="CurrentLongitude" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="CurrentOwnerID" Type="Edm.String"/><Property Name="OwnerLatitude" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="OwnerLongitude" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="OwnerTimestamp" Type="Edm.DateTimeOffset"/></EntityType>
+			<EntityType Name="Tracking">
+				<Key><PropertyRef Name="PackageID"/><PropertyRef Name="TimeStamp"/></Key><Property Name="PackageID" Type="Edm.String" Nullable="false"/><Property Name="TimeStamp" Type="Edm.DateTimeOffset" Nullable="false"/><Property Name="MinTemp" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MaxTemp" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MinHumidity" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="MaxHumidity" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="CurrentLat" Type="Edm.Decimal" Precision="8" Scale="4"/><Property Name="CurrentLong" Type="Edm.Decimal" Precision="8" Scale="4"/></EntityType>
+			<EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true"><EntitySet Name="IncidentBC" EntityType="RoseTrackerDataService.IncidentBC"/><EntitySet Name="OwnerBC" EntityType="RoseTrackerDataService.OwnerBC"/><EntitySet Name="PackageData" EntityType="RoseTrackerDataService.PackageData"/><EntitySet Name="Tracking" EntityType="RoseTrackerDataService.Tracking"/></EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="RoseTrackerDataService.EntityContainer/IncidentBC">
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.DeleteRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.DeleteRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Deletable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.InsertRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.InsertRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Insertable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.UpdateRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.UpdateRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Updatable" Bool="false"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="RoseTrackerDataService.EntityContainer/OwnerBC">
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.DeleteRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.DeleteRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Deletable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.InsertRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.InsertRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Insertable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.UpdateRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.UpdateRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Updatable" Bool="false"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="RoseTrackerDataService.EntityContainer/PackageData">
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.DeleteRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.DeleteRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Deletable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.InsertRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.InsertRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Insertable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.UpdateRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.UpdateRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Updatable" Bool="false"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="RoseTrackerDataService.EntityContainer/Tracking">
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.DeleteRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.DeleteRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Deletable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.InsertRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.InsertRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Insertable" Bool="false"/></Record>
+				</Annotation>
+				<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Capabilities.UpdateRestrictions">
+					<Record xmlns="http://docs.oasis-open.org/odata/ns/edm" Type="Capabilities.UpdateRestrictionsType"><PropertyValue xmlns="http://docs.oasis-open.org/odata/ns/edm" Property="Updatable" Bool="false"/></Record>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

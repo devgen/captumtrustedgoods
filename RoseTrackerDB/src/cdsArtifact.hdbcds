@@ -1,0 +1,14 @@
+namespace RoseTracker.RoseTrackerDB;
+
+context cdsArtifact {
+
+	entity Test {
+		
+		key id: String(100);
+		secString : String(100);
+	
+	}
+	
+	
+
+}
