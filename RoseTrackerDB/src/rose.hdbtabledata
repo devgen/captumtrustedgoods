@@ -1,0 +1,21 @@
+{
+
+"format_version": 1,
+
+"imports":
+
+[ {
+
+"target_table" : "RoseTracker.RoseTrackerDB::cdsArtifact.rose",
+
+"source_data" : { "data_type" : "CSV", "file_name" : "RoseTracker.RoseTrackerDB::rose.csv", "has_header" : false },
+
+"import_settings" : { "import_columns" : ["ID_ROSETYPE","TYPE","OPENING_TIME","HEAD_SHAPE","COLOR","FRAGRANCE","VASE_LIFE","MAX_TEMP","MIN_TEMP","MAX_HUMID","MIN_HUMID"] },
+
+"column_mappings" : {"ID_ROSETYPE" : 1, "TYPE" : 2, "OPENING_TIME" : 3, "HEAD_SHAPE" : 4, "COLOR" : 5, "FRAGRANCE" : 6, "VASE_LIFE" : 7, "MAX_TEMP" : 8, "MIN_TEMP" : 9, "MAX_HUMID" : 10, "MIN_HUMID" : 11}
+
+}
+
+]
+
+}

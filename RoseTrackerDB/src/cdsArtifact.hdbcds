@@ -2,13 +2,81 @@ namespace RoseTracker.RoseTrackerDB;
 
 context cdsArtifact {
 
-	entity Test {
-		
-		key id: String(100);
-		secString : String(100);
-	
-	}
-	
-	
+    entity owner {
+        key ID_OWNER : String(8) not null;
+            NAME     : String(20);
+            CITY     : String(20);
+            COUNTRY  : String(20);
+            ROLE     : String(20);
+            owner_roseowner : association[1, 0..*] to cdsArtifact.rose_owner on owner_roseowner.ID_OWNER = ID_OWNER;
+            owner_storage : association[1, 0..*] to cdsArtifact.storage on owner_storage.ID_OWNER = ID_OWNER;
+            owner_package : association[1, 0..*] to cdsArtifact.package on owner_package.ID_RECIPIENT = ID_OWNER;
+    };
 
-}
+    entity rose {
+        key ID_ROSETYPE  : String(8) not null;
+            TYPE         : String(20);
+            OPENING_TIME	 : String(20);
+            HEAD_SHAPE   : String(20);
+            COLOR        : String(20);
+            FRAGRANCE    : Boolean;
+            VASE_LIFE    : String(20);
+            MAX_TEMP	 : Double;
+            MIN_TEMP	 : Double;
+            MAX_HUMID	 : Double;
+            MIN_HUMID	 : Double;
+            rose_roseowner : association[1, 0..*] to cdsArtifact.rose_owner on rose_roseowner.ID_ROSETYPE = ID_ROSETYPE;
+            rose_package : association[1, 0..*] to cdsArtifact.package on rose_package.ID_ROSETYPE = ID_ROSETYPE;
+    };
+    
+    entity rose_owner {
+    	key ID_ROSETYPE : String(8) not null;
+    	key ID_OWNER : String(8) not null;
+    };
+    
+	entity storage {
+		key ID_STORAGE	: String(8) not null;
+			ID_OWNER	: String(8) not null;
+			STORAGE_TYPE	: String(20);
+			storage_storagehistory : association[1, 0..*] to cdsArtifact.storage_history on storage_storagehistory.ID_STORAGE = ID_STORAGE;
+			storage_sensorinput : association[1, 0..*] to cdsArtifact.sensor_input on storage_sensorinput.ID_STORAGE = ID_STORAGE;
+	};
+	
+	entity package {
+		key ID_PACKAGE	: String(8) not null;
+			ID_RECIPIENT	: String(8);
+			ID_ROSETYPE 	: String(8);
+			DELIVERY_ACTIVE 	: Boolean;
+			package_storagehistory : association[1, 0..*] to cdsArtifact.storage_history on package_storagehistory.ID_PACKAGE = ID_PACKAGE;
+			package_sensorpackage : association[1, 0..*] to cdsArtifact.sensor_package on package_sensorpackage.ID_PACKAGE = ID_PACKAGE;
+	};
+
+	entity storage_history {
+		key ID_STORAGE	: String(8) not null;
+		key ID_PACKAGE	: String(8) not null;
+			TIMESTAMP_	: UTCDateTime;
+	};
+	
+	entity sensor_input {
+		key ID_DELIVERY	: String(8) not null;
+			ID_STORAGE	: String(8);
+		key	START_TIME	: UTCDateTime not null;
+			END_TIME	: UTCDateTime;
+			LATITUDE	: Decimal(8,4);
+			LONGITUDE	: Decimal(8,4);
+			MAX_TEMP	: Double; 
+			MIN_TEMP	: Double;
+			AVG_TEMP	: Double;
+			MAX_HUMID	: Double;
+			MIN_HUMID	: Double;
+			AVG_HUMID	: Double;
+			INCIDENT_STATUS 	: String(10);
+			sensorinput_sensorpackage : association[1, 0..*] to cdsArtifact.sensor_package on sensorinput_sensorpackage.ID_DELIVERY = ID_DELIVERY;
+	};
+	
+	entity sensor_package {
+		key ID_DELIVERY	: String(8) not null;
+		key ID_PACKAGE	: String(8) not null;
+	};
+	
+};

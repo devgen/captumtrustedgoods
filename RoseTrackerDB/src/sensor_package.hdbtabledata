@@ -1,0 +1,21 @@
+{
+
+"format_version": 1,
+
+"imports":
+
+[ {
+
+"target_table" : "RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package",
+
+"source_data" : { "data_type" : "CSV", "file_name" : "RoseTracker.RoseTrackerDB::sensor_package.csv", "has_header" : false },
+
+"import_settings" : { "import_columns" : ["ID_DELIVERY","ID_PACKAGE"] },
+
+"column_mappings" : {"ID_DELIVERY" : 1 ,"ID_PACKAGE" : 2}
+
+}
+
+]
+
+}

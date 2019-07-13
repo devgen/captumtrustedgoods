@@ -1,0 +1,21 @@
+{
+
+"format_version": 1,
+
+"imports":
+
+[ {
+
+"target_table" : "RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input",
+
+"source_data" : { "data_type" : "CSV", "file_name" : "RoseTracker.RoseTrackerDB::sensor_input.csv", "has_header" : false },
+
+"import_settings" : { "import_columns" : ["ID_DELIVERY","ID_STORAGE","START_TIME","END_TIME","LATITUDE","LONGITUDE","MAX_TEMP","MIN_TEMP","AVG_TEMP","MAX_HUMID","MIN_HUMID","AVG_HUMID","INCIDENT_STATUS"] },
+
+"column_mappings" : {"ID_DELIVERY" : 1, "ID_STORAGE" : 2, "START_TIME" : 3, "END_TIME" : 4, "LATITUDE" : 5, "LONGITUDE" : 6, "MAX_TEMP" : 7, "MIN_TEMP" : 8 , "AVG_TEMP" : 9, "MAX_HUMID" : 10, "MIN_HUMID" : 11, "AVG_HUMID" : 12, "INCIDENT_STATUS" : 13}
+
+}
+
+]
+
+}

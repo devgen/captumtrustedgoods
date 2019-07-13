@@ -1,0 +1,21 @@
+{
+
+"format_version": 1,
+
+"imports":
+
+[ {
+
+"target_table" : "RoseTracker.RoseTrackerDB::cdsArtifact.storage_history",
+
+"source_data" : { "data_type" : "CSV", "file_name" : "RoseTracker.RoseTrackerDB::storage_history.csv", "has_header" : false },
+
+"import_settings" : { "import_columns" : ["ID_STORAGE","ID_PACKAGE","TIMESTAMP_"] },
+
+"column_mappings" : {"ID_STORAGE" : 1,"ID_PACKAGE" : 2, "TIMESTAMP_" : 3}
+
+}
+
+]
+
+}

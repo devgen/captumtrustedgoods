@@ -1,0 +1,21 @@
+{
+
+"format_version": 1,
+
+"imports":
+
+[ {
+
+"target_table" : "RoseTracker.RoseTrackerDB::cdsArtifact.owner",
+
+"source_data" : { "data_type" : "CSV", "file_name" : "RoseTracker.RoseTrackerDB::owner.csv", "has_header" : false },
+
+"import_settings" : { "import_columns" : ["ID_OWNER","NAME","CITY","COUNTRY","ROLE" ] },
+
+"column_mappings" : {"ID_OWNER" : 1,"NAME" : 2,"CITY" : 3,"COUNTRY" : 4,"ROLE" : 5}
+
+}
+
+]
+
+}
