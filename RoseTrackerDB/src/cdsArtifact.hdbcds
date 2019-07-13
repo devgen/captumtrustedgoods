@@ -82,5 +82,12 @@ context cdsArtifact {
 		key ID_DELIVERY	: String(8) not null;
 		key ID_PACKAGE	: String(8) not null;
 	};
-	
+
+	view SensorPosition as select from cdsArtifact.sensor_input
+	{
+		sensorinput_sensorpackage.ID_PACKAGE,
+		LATITUDE,
+		LONGITUDE,
+		START_TIME
+	}	ORDER BY START_TIME desc;
 };
