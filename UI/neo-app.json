@@ -1,0 +1,48 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/odata/v2/RoseTrackerDataService",
+      "target": {
+        "type": "destination",
+        "name": "RoseTrackerBC"
+      },
+      "description": "RoseTrackerBC"
+    },
+    {
+      "path": "/odata/v2/",
+      "target": {
+        "type": "destination",
+        "name": "RoseTrackerDataService"
+      },
+      "description": "RoseTrackerData"
+    },
+    {
+      "path": "/RoseTrackerDummyDataV2",
+      "target": {
+        "type": "destination",
+        "name": "RoseTrackerDummyDataV2"
+      },
+      "description": "RoseTrackerDummyDataV2"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

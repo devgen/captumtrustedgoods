@@ -1,0 +1,53 @@
+
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="OwnershipForm"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Ownership Change"
+			labelSpanXL="4"
+			labelSpanL="3"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="4"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				
+			<!--Those data should be loaded once the barcode is scanned and the packageID is known -->
+				<core:Title text="Current Ownership" />
+				<Label text="PackageID" />
+				<Text id="PackageIDForm" text="{PackageID}" />
+				<Label text="Current Owner" />
+				<Text id="CurrentOwnerIDForm" text="{CurrentOwnerID}" />
+				<Label text="Rose Type" />
+				<Text id="RoseTypeForm" text="{RoseType}" />
+					<Label text="Color" />
+				<Text id="ColorForm" text="{Color}" />
+				
+			
+				<!--filled by barcode scan-->
+				<core:Title text="Accepting Ownership" />
+				<Label text="PackageID" />
+				<Text id="PackageIDChange" text="" />
+				<Label text="OwnerID" required="true" />
+					<Input id="OwnerChange" onChange="validateOwner" value="" />
+			<!--	<Text id="OwnerIDChange" text="" /> -->
+				<Label text="Location" />
+				<Text id="LocationChange"  text="" />
+				<Label text="Timestamp" />
+				<Text id="TimestampChange" text="" />
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>
