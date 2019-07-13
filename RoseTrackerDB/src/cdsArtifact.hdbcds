@@ -10,7 +10,8 @@ context cdsArtifact {
             ROLE     : String(20);
             owner_roseowner : association[1, 0..*] to cdsArtifact.rose_owner on owner_roseowner.ID_OWNER = ID_OWNER;
             owner_storage : association[1, 0..*] to cdsArtifact.storage on owner_storage.ID_OWNER = ID_OWNER;
-            owner_package : association[1, 0..*] to cdsArtifact.package on owner_package.ID_RECIPIENT = ID_OWNER;
+            owner_packagerecipient : association[1, 1..*] to cdsArtifact.package on owner_packagerecipient.ID_RECIPIENT = ID_OWNER;
+            owner_packageowner : association[1, 1..*] to cdsArtifact.package on owner_packageowner.ID_CURRENT_OWNER = ID_OWNER;
     };
 
     entity rose {
@@ -46,6 +47,10 @@ context cdsArtifact {
 		key ID_PACKAGE	: String(8) not null;
 			ID_RECIPIENT	: String(8);
 			ID_ROSETYPE 	: String(8);
+			ID_CURRENT_OWNER	 : String(8);
+			CURRENT_LAT	 : Decimal(8,4);
+			CURRENT_LONG	 : Decimal(8,4);
+			INCIDENT_STATUS 	: String(10);
 			DELIVERY_ACTIVE 	: Boolean;
 			package_storagehistory : association[1, 0..*] to cdsArtifact.storage_history on package_storagehistory.ID_PACKAGE = ID_PACKAGE;
 			package_sensorpackage : association[1, 0..*] to cdsArtifact.sensor_package on package_sensorpackage.ID_PACKAGE = ID_PACKAGE;
@@ -70,7 +75,6 @@ context cdsArtifact {
 			MAX_HUMID	: Double;
 			MIN_HUMID	: Double;
 			AVG_HUMID	: Double;
-			INCIDENT_STATUS 	: String(10);
 			sensorinput_sensorpackage : association[1, 0..*] to cdsArtifact.sensor_package on sensorinput_sensorpackage.ID_DELIVERY = ID_DELIVERY;
 	};
 	

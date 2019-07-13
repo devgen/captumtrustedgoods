@@ -18,6 +18,8 @@
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
     <viewAttributes>
       <viewAttribute id="ID_PACKAGE"/>
+    
+      <viewAttribute id="INCIDENT_STATUS"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="RoseTracker.RoseTrackerDB::cdsArtifact.package"/>
@@ -26,10 +28,12 @@
     <viewAttributes>
       <viewAttribute id="ID_PACKAGE"/>
       <viewAttribute id="ID_DELIVERY"/>
+      <viewAttribute id="INCIDENT_STATUS"/>
       <viewAttribute hidden="true" id="JOIN$ID_PACKAGE$ID_PACKAGE"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_PACKAGE$ID_PACKAGE" source="ID_PACKAGE"/>
     </input>
     <input node="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package">
@@ -49,11 +53,13 @@
       <viewAttribute id="MAX_HUMID"/>
       <viewAttribute id="LATITUDE"/>
       <viewAttribute id="LONGITUDE"/>
+      <viewAttribute id="INCIDENT_STATUS"/>
       <viewAttribute hidden="true" id="JOIN$ID_DELIVERY$ID_DELIVERY"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_DELIVERY$ID_DELIVERY" source="ID_DELIVERY"/>
     </input>
     <input node="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input">
@@ -102,6 +108,11 @@
     <attribute id="LONGITUDE" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LONGITUDE"/>
       <keyMapping columnObjectName="Join_2" columnName="LONGITUDE"/>
+    </attribute>
+  
+    <attribute id="INCIDENT_STATUS" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INCIDENT_STATUS"/>
+      <keyMapping columnObjectName="Join_2" columnName="INCIDENT_STATUS"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
