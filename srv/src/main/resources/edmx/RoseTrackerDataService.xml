@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="RoseTrackerDataService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="IncidentBC" EntityType="RoseTrackerDataService.IncidentBC"/>
+        <EntitySet Name="OrderData" EntityType="RoseTrackerDataService.OrderData"/>
+        <EntitySet Name="OwnerBC" EntityType="RoseTrackerDataService.OwnerBC"/>
+        <EntitySet Name="PackageData" EntityType="RoseTrackerDataService.PackageData"/>
+        <EntitySet Name="Tracking" EntityType="RoseTrackerDataService.Tracking"/>
+      </EntityContainer>
+      <EntityType Name="IncidentBC">
+        <Key>
+          <PropertyRef Name="PackageID"/>
+          <PropertyRef Name="TimeStamp"/>
+        </Key>
+        <Property Name="PackageID" Type="Edm.String" Nullable="false"/>
+        <Property Name="TimeStamp" Type="Edm.DateTimeOffset" Nullable="false"/>
+        <Property Name="CurrentLatitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLongitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MinTemperature" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxTemperature" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MinHumidity" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxHumidity" Type="Edm.Decimal" Scale="4" Precision="8"/>
+      </EntityType>
+      <EntityType Name="OrderData">
+        <Key>
+          <PropertyRef Name="CustomerID"/>
+          <PropertyRef Name="Status"/>
+        </Key>
+        <Property Name="CustomerID" Type="Edm.String" Nullable="false"/>
+        <Property Name="Status" Type="Edm.String" Nullable="false"/>
+        <Property Name="openCount" Type="Edm.Int32"/>
+        <Property Name="closedCount" Type="Edm.Int32"/>
+      </EntityType>
+      <EntityType Name="OwnerBC">
+        <Key>
+          <PropertyRef Name="PackageID"/>
+          <PropertyRef Name="TimeStamp"/>
+        </Key>
+        <Property Name="PackageID" Type="Edm.String" Nullable="false"/>
+        <Property Name="TimeStamp" Type="Edm.DateTimeOffset" Nullable="false"/>
+        <Property Name="OwnerID" Type="Edm.String"/>
+        <Property Name="CurrentLatitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLongitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="RouteToNextOwner" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="PackageData">
+        <Key>
+          <PropertyRef Name="PackageID"/>
+        </Key>
+        <Property Name="PackageID" Type="Edm.String" Nullable="false"/>
+        <Property Name="RoseType" Type="Edm.String"/>
+        <Property Name="OwnerName" Type="Edm.String"/>
+        <Property Name="ReceipientID" Type="Edm.String"/>
+        <Property Name="IncidentStatus" Type="Edm.String"/>
+        <Property Name="ActiveStatus" Type="Edm.Boolean"/>
+        <Property Name="OpenSpeed" Type="Edm.Int32"/>
+        <Property Name="Vaselife" Type="Edm.Int32"/>
+        <Property Name="Color" Type="Edm.String"/>
+        <Property Name="Fragrantcy" Type="Edm.String"/>
+        <Property Name="MinTemperature" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxTemperature" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MinHumidity" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxHumidity" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLatitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLongitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentOwnerID" Type="Edm.String"/>
+        <Property Name="OwnerLatitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="OwnerLongitude" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="OwnerTimestamp" Type="Edm.DateTimeOffset"/>
+      </EntityType>
+      <EntityType Name="Tracking">
+        <Key>
+          <PropertyRef Name="PackageID"/>
+          <PropertyRef Name="TimeStamp"/>
+        </Key>
+        <Property Name="PackageID" Type="Edm.String" Nullable="false"/>
+        <Property Name="TimeStamp" Type="Edm.DateTimeOffset" Nullable="false"/>
+        <Property Name="MinTemp" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxTemp" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MinHumidity" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxHumidity" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLat" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLong" Type="Edm.Decimal" Scale="4" Precision="8"/>
+      </EntityType>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

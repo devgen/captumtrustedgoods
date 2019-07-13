@@ -1,0 +1,599 @@
+{
+  "definitions": {
+    "RoseTrackerDataService": {
+      "kind": "service"
+    },
+    "RoseTrackerDataService.IncidentBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_INCIDENTBC",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.IncidentBC"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.OrderData": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_ORDERDATA",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.OrderData"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "CustomerID": {
+          "@cds.persistence.name": "CUSTOMERID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "Status": {
+          "@cds.persistence.name": "STATUS",
+          "key": true,
+          "type": "cds.String"
+        },
+        "openCount": {
+          "@cds.persistence.name": "OPENCOUNT",
+          "type": "cds.Integer"
+        },
+        "closedCount": {
+          "@cds.persistence.name": "CLOSEDCOUNT",
+          "type": "cds.Integer"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.OwnerBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_OWNERBC",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.OwnerBC"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "OwnerID": {
+          "@cds.persistence.name": "OWNERID",
+          "type": "cds.String"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "RouteToNextOwner": {
+          "@cds.persistence.name": "ROUTETONEXTOWNER",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.PackageData": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_PACKAGEDATA",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.PackageData"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "RoseType": {
+          "@cds.persistence.name": "ROSETYPE",
+          "type": "cds.String"
+        },
+        "OwnerName": {
+          "@cds.persistence.name": "OWNERNAME",
+          "type": "cds.String"
+        },
+        "ReceipientID": {
+          "@cds.persistence.name": "RECEIPIENTID",
+          "type": "cds.String"
+        },
+        "IncidentStatus": {
+          "@cds.persistence.name": "INCIDENTSTATUS",
+          "type": "cds.String"
+        },
+        "ActiveStatus": {
+          "@cds.persistence.name": "ACTIVESTATUS",
+          "type": "cds.Boolean"
+        },
+        "OpenSpeed": {
+          "@cds.persistence.name": "OPENSPEED",
+          "type": "cds.Integer"
+        },
+        "Vaselife": {
+          "@cds.persistence.name": "VASELIFE",
+          "type": "cds.Integer"
+        },
+        "Color": {
+          "@cds.persistence.name": "COLOR",
+          "type": "cds.String"
+        },
+        "Fragrantcy": {
+          "@cds.persistence.name": "FRAGRANTCY",
+          "type": "cds.String"
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentOwnerID": {
+          "@cds.persistence.name": "CURRENTOWNERID",
+          "type": "cds.String"
+        },
+        "OwnerLatitude": {
+          "@cds.persistence.name": "OWNERLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerLongitude": {
+          "@cds.persistence.name": "OWNERLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerTimestamp": {
+          "@cds.persistence.name": "OWNERTIMESTAMP",
+          "type": "cds.DateTime"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.Tracking": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_TRACKING",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.Tracking"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "MinTemp": {
+          "@cds.persistence.name": "MINTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemp": {
+          "@cds.persistence.name": "MAXTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLat": {
+          "@cds.persistence.name": "CURRENTLAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLong": {
+          "@cds.persistence.name": "CURRENTLONG",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        }
+      },
+      "$syntax": "projection"
+    },
+    "rosetracker.database.IncidentBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_INCIDENTBC",
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        }
+      }
+    },
+    "rosetracker.database.OrderData": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_ORDERDATA",
+      "elements": {
+        "CustomerID": {
+          "@cds.persistence.name": "CUSTOMERID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "Status": {
+          "@cds.persistence.name": "STATUS",
+          "key": true,
+          "type": "cds.String"
+        },
+        "openCount": {
+          "@cds.persistence.name": "OPENCOUNT",
+          "type": "cds.Integer"
+        },
+        "closedCount": {
+          "@cds.persistence.name": "CLOSEDCOUNT",
+          "type": "cds.Integer"
+        }
+      }
+    },
+    "rosetracker.database.OwnerBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_OWNERBC",
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "OwnerID": {
+          "@cds.persistence.name": "OWNERID",
+          "type": "cds.String"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "RouteToNextOwner": {
+          "@cds.persistence.name": "ROUTETONEXTOWNER",
+          "type": "cds.String"
+        }
+      }
+    },
+    "rosetracker.database.PackageData": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_PACKAGEDATA",
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "RoseType": {
+          "@cds.persistence.name": "ROSETYPE",
+          "type": "cds.String"
+        },
+        "OwnerName": {
+          "@cds.persistence.name": "OWNERNAME",
+          "type": "cds.String"
+        },
+        "ReceipientID": {
+          "@cds.persistence.name": "RECEIPIENTID",
+          "type": "cds.String"
+        },
+        "IncidentStatus": {
+          "@cds.persistence.name": "INCIDENTSTATUS",
+          "type": "cds.String"
+        },
+        "ActiveStatus": {
+          "@cds.persistence.name": "ACTIVESTATUS",
+          "type": "cds.Boolean"
+        },
+        "OpenSpeed": {
+          "@cds.persistence.name": "OPENSPEED",
+          "type": "cds.Integer"
+        },
+        "Vaselife": {
+          "@cds.persistence.name": "VASELIFE",
+          "type": "cds.Integer"
+        },
+        "Color": {
+          "@cds.persistence.name": "COLOR",
+          "type": "cds.String"
+        },
+        "Fragrantcy": {
+          "@cds.persistence.name": "FRAGRANTCY",
+          "type": "cds.String"
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentOwnerID": {
+          "@cds.persistence.name": "CURRENTOWNERID",
+          "type": "cds.String"
+        },
+        "OwnerLatitude": {
+          "@cds.persistence.name": "OWNERLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerLongitude": {
+          "@cds.persistence.name": "OWNERLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerTimestamp": {
+          "@cds.persistence.name": "OWNERTIMESTAMP",
+          "type": "cds.DateTime"
+        }
+      }
+    },
+    "rosetracker.database.Tracking": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_TRACKING",
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "MinTemp": {
+          "@cds.persistence.name": "MINTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemp": {
+          "@cds.persistence.name": "MAXTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLat": {
+          "@cds.persistence.name": "CURRENTLAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLong": {
+          "@cds.persistence.name": "CURRENTLONG",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        }
+      }
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.15.0"
+  },
+  "$version": "1.0",
+  "@sql_mapping": "plain"
+}

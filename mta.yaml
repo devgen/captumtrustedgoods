@@ -23,6 +23,13 @@ modules:
          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
             {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
 
+
+ - name: testdb
+   type: hdb
+   path: testdb
+   requires:
+    - name: hdi_testdb
+
 resources:
  - name: hdi_RoseTrackerDB
    properties:
@@ -32,5 +39,11 @@ resources:
  - name: hdi_RoseTrackerDB_2
    properties:
       hdi-container-name_2: ${service-name}
+   type: com.sap.xs.hdi-container
+
+
+ - name: hdi_testdb
+   properties:
+      hdi-container-name_3: ${service-name}
    type: com.sap.xs.hdi-container
 

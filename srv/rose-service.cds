@@ -1,4 +1,4 @@
-using RoseTracker.RoseTrackerDB as database from '../RoseTrackerDB/src/cdsArtifact.hdbcds';
+using rosetracker.database as database from '../testdb/data-model';
 
 
 service RoseTrackerDataService {
