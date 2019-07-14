@@ -1,5 +1,4 @@
-using rosetracker.database as database from '../testdb/data-model';
-
+using rosetracker.database as database from '../RoseTrackerDB/data-model';
 
 service RoseTrackerDataService {
 
@@ -8,5 +7,6 @@ service RoseTrackerDataService {
     entity OwnerBC as projection on database.OwnerBC;
     entity Tracking as projection on database.Tracking;
     entity OrderData as projection on database.OrderData;
+    
     
 }

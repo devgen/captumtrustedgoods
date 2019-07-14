@@ -1,4 +1,5 @@
 {
+  "namespace": "rosetracker.database",
   "definitions": {
     "RoseTrackerDataService": {
       "kind": "service"

@@ -2,6 +2,14 @@ namespace rosetracker.database;
 
 // entities 1 to 1 from service, since no currenlty no views
 
+
+entity OrderData {
+	key CustomerID : String;
+	key Status : String;
+	openCount : Integer; 
+	closedCount : Integer;
+}
+
 entity PackageData {
 	key PackageID : String;
 	RoseType : String;
@@ -54,11 +62,4 @@ entity Tracking {
 	MaxHumidity : Decimal(8,4);
 	CurrentLat : Decimal(8,4);
 	CurrentLong : Decimal(8,4);
-}
-
-entity OrderData {
-	key CustomerID : String;
-	key Status : String;
-	openCount : Integer; 
-	closedCount : Integer;
 }

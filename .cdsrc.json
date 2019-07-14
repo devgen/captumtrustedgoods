@@ -1,0 +1,27 @@
+{
+    "build": {
+        "target": ".",
+        "tasks": [
+            {
+                "for": "hana",
+                "src": "RoseTrackerDB",
+                "options": {
+                    "model": [
+                        "RoseTrackerDB",
+                        "srv"
+                    ]
+                }
+            },
+            {
+                "for": "java-cf",
+                "src": "srv",
+                "options": {
+                    "model": [
+                        "RoseTrackerDB",
+                        "srv"
+                    ]
+                }
+            }
+        ]
+    }
+}

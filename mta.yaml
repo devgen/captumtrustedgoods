@@ -1,13 +1,12 @@
 ID: RoseTracker
 _schema-version: '2.1'
 version: 0.0.1
-
 modules:
  - name: RoseTrackerDB
    type: hdb
    path: RoseTrackerDB
    requires:
-    - name: hdi_RoseTrackerDB_2
+    - name: hdi_RoseTrackerDB
  - name: srv
    type: java
    path: srv
@@ -22,28 +21,9 @@ modules:
       properties:
          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
             {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
-
-
- - name: testdb
-   type: hdb
-   path: testdb
-   requires:
-    - name: hdi_testdb
-
 resources:
  - name: hdi_RoseTrackerDB
    properties:
       hdi-container-name: ${service-name}
-   type: com.sap.xs.hdi-container
-
- - name: hdi_RoseTrackerDB_2
-   properties:
-      hdi-container-name_2: ${service-name}
-   type: com.sap.xs.hdi-container
-
-
- - name: hdi_testdb
-   properties:
-      hdi-container-name_3: ${service-name}
    type: com.sap.xs.hdi-container
 

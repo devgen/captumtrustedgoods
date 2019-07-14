@@ -11,14 +11,3 @@ RoseTrackerDB/src/gen/ROSETRACKER_DATABASE_PACKAGEDATA.hdbcds
 RoseTrackerDB/src/gen/ROSETRACKER_DATABASE_TRACKING.hdbcds
 srv/src/main/resources/edmx/RoseTrackerDataService.xml
 srv/src/main/resources/edmx/csn.json
-testdb/src/gen/.hdinamespace
-testdb/src/gen/ROSETRACKERDATASERVICE_INCIDENTBC.hdbcds
-testdb/src/gen/ROSETRACKERDATASERVICE_ORDERDATA.hdbcds
-testdb/src/gen/ROSETRACKERDATASERVICE_OWNERBC.hdbcds
-testdb/src/gen/ROSETRACKERDATASERVICE_PACKAGEDATA.hdbcds
-testdb/src/gen/ROSETRACKERDATASERVICE_TRACKING.hdbcds
-testdb/src/gen/ROSETRACKER_DATABASE_INCIDENTBC.hdbcds
-testdb/src/gen/ROSETRACKER_DATABASE_ORDERDATA.hdbcds
-testdb/src/gen/ROSETRACKER_DATABASE_OWNERBC.hdbcds
-testdb/src/gen/ROSETRACKER_DATABASE_PACKAGEDATA.hdbcds
-testdb/src/gen/ROSETRACKER_DATABASE_TRACKING.hdbcds

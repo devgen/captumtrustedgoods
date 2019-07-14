@@ -81,10 +81,7 @@ public class OwnerBCCustomHandler {
 	 * Read : DONE
 	 * Update : DONE (maybe futher testing necessary)
  	 * Delete : DONE
-	 *
-	 * TODO DO SAME FOR INCIDENT
-	 * - Svenjas 2nd request: Add a descriptive String to the incident: ex "The Temperature was 3.2C too high"
-	 *
+ 	 *
 	 * TODO: If database is ready:
 	 *	- create entry in PackageTable if create or update commit with a unknown Package ID
 	 *	- @AfterQuery add database call to get all PackageIDs
