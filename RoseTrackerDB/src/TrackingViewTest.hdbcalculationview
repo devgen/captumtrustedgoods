@@ -4,9 +4,6 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.package">
-    <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.package</resourceUri>
-  </DataSource>
   <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package">
     <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package</resourceUri>
   </DataSource>
@@ -17,53 +14,31 @@
 <calculationViews>
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
     <viewAttributes>
-      <viewAttribute id="ID_PACKAGE"/>
-    
-      <viewAttribute id="INCIDENT_STATUS"/>
-    </viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.package"/>
-  </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="inner">
-    <viewAttributes>
-      <viewAttribute id="ID_PACKAGE"/>
       <viewAttribute id="ID_DELIVERY"/>
-      <viewAttribute id="INCIDENT_STATUS"/>
-      <viewAttribute hidden="true" id="JOIN$ID_PACKAGE$ID_PACKAGE"/>
+      <viewAttribute id="ID_PACKAGE"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Projection_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_PACKAGE$ID_PACKAGE" source="ID_PACKAGE"/>
-    </input>
-    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_DELIVERY" source="ID_DELIVERY"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_PACKAGE$ID_PACKAGE" source="ID_PACKAGE"/>
-    </input>
-    <joinAttribute name="JOIN$ID_PACKAGE$ID_PACKAGE"/>
+    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
     <viewAttributes>
       <viewAttribute id="ID_PACKAGE"/>
-      <viewAttribute id="START_TIME"/>
+      <viewAttribute id="TIMESTAMP"/>
       <viewAttribute id="MIN_TEMP"/>
       <viewAttribute id="MAX_TEMP"/>
       <viewAttribute id="MIN_HUMID"/>
       <viewAttribute id="MAX_HUMID"/>
       <viewAttribute id="LATITUDE"/>
       <viewAttribute id="LONGITUDE"/>
-      <viewAttribute id="INCIDENT_STATUS"/>
       <viewAttribute hidden="true" id="JOIN$ID_DELIVERY$ID_DELIVERY"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Join_1">
+    <input node="Projection_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_DELIVERY$ID_DELIVERY" source="ID_DELIVERY"/>
     </input>
     <input node="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input">
-      <mapping xsi:type="Calculation:AttributeMapping" target="START_TIME" source="START_TIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TIMESTAMP" source="START_TIME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MIN_TEMP" source="MIN_TEMP"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MAX_TEMP" source="MAX_TEMP"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MIN_HUMID" source="MIN_HUMID"/>
@@ -75,44 +50,39 @@
     <joinAttribute name="JOIN$ID_DELIVERY$ID_DELIVERY"/>
   </calculationView>
 </calculationViews>
-<logicalModel id="Join_2">
+<logicalModel id="Join_1">
   <attributes>
     <attribute id="ID_PACKAGE" key="true" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ID_PACKAGE"/>
-      <keyMapping columnObjectName="Join_2" columnName="ID_PACKAGE"/>
+      <keyMapping columnObjectName="Join_1" columnName="ID_PACKAGE"/>
     </attribute>
-    <attribute id="START_TIME" key="true" order="2" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TIMESTAMP" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="START_TIME"/>
-      <keyMapping columnObjectName="Join_2" columnName="START_TIME"/>
+      <keyMapping columnObjectName="Join_1" columnName="TIMESTAMP"/>
     </attribute>
     <attribute id="MIN_TEMP" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MIN_TEMP"/>
-      <keyMapping columnObjectName="Join_2" columnName="MIN_TEMP"/>
+      <keyMapping columnObjectName="Join_1" columnName="MIN_TEMP"/>
     </attribute>
     <attribute id="MAX_TEMP" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MAX_TEMP"/>
-      <keyMapping columnObjectName="Join_2" columnName="MAX_TEMP"/>
+      <keyMapping columnObjectName="Join_1" columnName="MAX_TEMP"/>
     </attribute>
     <attribute id="MIN_HUMID" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MIN_HUMID"/>
-      <keyMapping columnObjectName="Join_2" columnName="MIN_HUMID"/>
+      <keyMapping columnObjectName="Join_1" columnName="MIN_HUMID"/>
     </attribute>
     <attribute id="MAX_HUMID" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MAX_HUMID"/>
-      <keyMapping columnObjectName="Join_2" columnName="MAX_HUMID"/>
+      <keyMapping columnObjectName="Join_1" columnName="MAX_HUMID"/>
     </attribute>
     <attribute id="LATITUDE" order="7" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LATITUDE"/>
-      <keyMapping columnObjectName="Join_2" columnName="LATITUDE"/>
+      <keyMapping columnObjectName="Join_1" columnName="LATITUDE"/>
     </attribute>
     <attribute id="LONGITUDE" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="LONGITUDE"/>
-      <keyMapping columnObjectName="Join_2" columnName="LONGITUDE"/>
-    </attribute>
-  
-    <attribute id="INCIDENT_STATUS" order="9" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="INCIDENT_STATUS"/>
-      <keyMapping columnObjectName="Join_2" columnName="INCIDENT_STATUS"/>
+      <keyMapping columnObjectName="Join_1" columnName="LONGITUDE"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -127,30 +97,19 @@
     </shape>
   
     <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="514"/>
+      <upperLeftCorner x="100" y="297"/>
       <rectangleSize height="30" width="160"/>
     </shape>
+  
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="376"/>
+      <upperLeftCorner x="100" y="213"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="150"/>
-    </shape>
-    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="396"/>
-    </shape>
-    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="220"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
-    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="151"/>
     </shape>
-    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="375"/>
     </shape>

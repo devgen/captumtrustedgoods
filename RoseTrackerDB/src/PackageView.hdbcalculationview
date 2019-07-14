@@ -4,83 +4,84 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package">
-    <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package</resourceUri>
-  </DataSource>
-  <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input">
-    <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input</resourceUri>
-  </DataSource>
-  <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.package">
-    <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.package</resourceUri>
+  <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.storage_history">
+    <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.storage_history</resourceUri>
   </DataSource>
   <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.owner">
     <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.owner</resourceUri>
+  </DataSource>
+  <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.package">
+    <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.package</resourceUri>
   </DataSource>
   <DataSource id="RoseTracker.RoseTrackerDB::cdsArtifact.rose">
     <resourceUri>RoseTracker.RoseTrackerDB::cdsArtifact.rose</resourceUri>
   </DataSource>
 </dataSources>
 <calculationViews>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
-    <viewAttributes>
-      <viewAttribute id="ID_PACKAGE"/>
-      <viewAttribute id="START_TIME"/>
-      <viewAttribute id="LATITUDE"/>
-      <viewAttribute id="LONGITUDE"/>
-      <viewAttribute hidden="true" id="JOIN$ID_DELIVERY$ID_DELIVERY"/>
-    </viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_DELIVERY$ID_DELIVERY" source="ID_DELIVERY"/>
-    </input>
-    <input node="Projection_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="START_TIME" source="START_TIME"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="LATITUDE" source="LATITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="LONGITUDE" source="LONGITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_DELIVERY$ID_DELIVERY" source="ID_DELIVERY"/>
-    </input>
-    <joinAttribute name="JOIN$ID_DELIVERY$ID_DELIVERY"/>
-  </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
     <viewAttributes>
-      <viewAttribute id="ID_DELIVERY"/>
-      <viewAttribute id="START_TIME"/>
-      <viewAttribute id="LATITUDE"/>
-      <viewAttribute id="LONGITUDE"/>
+      <viewAttribute id="ID_PACKAGE"/>
+      <viewAttribute id="ID_OWNER"/>
+      <viewAttribute id="INCIDENT_STATUS"/>
+      <viewAttribute id="CHANGE_LAT"/>
+      <viewAttribute id="CHANGE_LONG"/>
+      <viewAttribute id="CHANGE_TIME"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_input"/>
+    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.storage_history"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID_PACKAGE"/>
+      <viewAttribute id="OWNERNAME"/>
+      <viewAttribute id="INCIDENT_STATUS"/>
+      <viewAttribute id="ID_OWNER"/>
+      <viewAttribute id="CHANGE_LAT"/>
+      <viewAttribute id="CHANGE_LONG"/>
+      <viewAttribute id="CHANGE_TIME"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_OWNER" source="ID_OWNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_LAT" source="CHANGE_LAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_LONG" source="CHANGE_LONG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_TIME" source="CHANGE_TIME"/>
+    </input>
+    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.owner">
+      <mapping xsi:type="Calculation:AttributeMapping" target="OWNERNAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_OWNER" source="ID_OWNER"/>
+    </input>
+    <joinAttribute name="ID_OWNER"/>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="inner">
     <viewAttributes>
       <viewAttribute id="ID_PACKAGE"/>
       <viewAttribute id="ID_ROSETYPE"/>
-      <viewAttribute id="ID_CURRENT_OWNER"/>
-      <viewAttribute id="ID_RECIPIENT"/>
+      <viewAttribute id="OWNERNAME"/>
       <viewAttribute id="INCIDENT_STATUS"/>
       <viewAttribute id="DELIVERY_ACTIVE"/>
-      <viewAttribute id="CURRENT_LATITUDE"/>
-      <viewAttribute id="CURRENT_LONGITUDE"/>
-      <viewAttribute id="OWNER_LATITUDE"/>
-      <viewAttribute id="OWNER_LONGITUDE"/>
-      <viewAttribute id="TIMESTAMP"/>
+      <viewAttribute id="ID_OWNER"/>
+      <viewAttribute id="CHANGE_LAT"/>
+      <viewAttribute id="CHANGE_LONG"/>
+      <viewAttribute id="CHANGE_TIME"/>
+      <viewAttribute id="ID_RECIPIENT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENT_LATITUDE" source="LATITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENT_LONGITUDE" source="LONGITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="TIMESTAMP" source="START_TIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OWNERNAME" source="OWNERNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_OWNER" source="ID_OWNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_LAT" source="CHANGE_LAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_LONG" source="CHANGE_LONG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_TIME" source="CHANGE_TIME"/>
     </input>
     <input node="RoseTracker.RoseTrackerDB::cdsArtifact.package">
       <mapping xsi:type="Calculation:AttributeMapping" target="ID_ROSETYPE" source="ID_ROSETYPE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_CURRENT_OWNER" source="ID_CURRENT_OWNER"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_RECIPIENT" source="ID_RECIPIENT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY_ACTIVE" source="DELIVERY_ACTIVE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_LATITUDE" source="CURRENT_LAT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_LONGITUDE" source="CURRENT_LONG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_RECIPIENT" source="ID_RECIPIENT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
     </input>
     <joinAttribute name="ID_PACKAGE"/>
@@ -88,43 +89,8 @@
   <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_1" joinType="inner">
     <viewAttributes>
       <viewAttribute id="ID_PACKAGE"/>
-      <viewAttribute id="ID_ROSETYPE"/>
-      <viewAttribute id="OWNER_NAME"/>
-      <viewAttribute id="ID_RECIPIENT"/>
-      <viewAttribute id="INCIDENT_STATUS"/>
-      <viewAttribute id="DELIVERY_ACTIVE"/>
-      <viewAttribute id="CURRENT_LATITUDE"/>
-      <viewAttribute id="CURRENT_LONGITUDE"/>
-      <viewAttribute id="ID_CURRENT_OWNER"/>
-      <viewAttribute id="OWNER_LATITUDE"/>
-      <viewAttribute id="OWNER_LONGITUDE"/>
-      <viewAttribute id="TIMESTAMP"/>
-    </viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="Join_2">
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_ROSETYPE" source="ID_ROSETYPE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_RECIPIENT" source="ID_RECIPIENT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY_ACTIVE" source="DELIVERY_ACTIVE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENT_LATITUDE" source="CURRENT_LATITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENT_LONGITUDE" source="CURRENT_LONGITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_CURRENT_OWNER" source="ID_CURRENT_OWNER"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_LATITUDE" source="OWNER_LATITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_LONGITUDE" source="OWNER_LONGITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="TIMESTAMP" source="TIMESTAMP"/>
-    </input>
-    <input node="RoseTracker.RoseTrackerDB::cdsArtifact.owner">
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_NAME" source="NAME"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_CURRENT_OWNER" source="ID_OWNER"/>
-    </input>
-    <joinAttribute name="ID_CURRENT_OWNER"/>
-  </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_1" joinType="inner">
-    <viewAttributes>
-      <viewAttribute id="ID_PACKAGE"/>
       <viewAttribute id="ROSETYPE"/>
-      <viewAttribute id="OWNER_NAME"/>
+      <viewAttribute id="OWNERNAME"/>
       <viewAttribute id="ID_RECIPIENT"/>
       <viewAttribute id="INCIDENT_STATUS"/>
       <viewAttribute id="DELIVERY_ACTIVE"/>
@@ -136,27 +102,23 @@
       <viewAttribute id="MAX_TEMP"/>
       <viewAttribute id="MIN_HUMID"/>
       <viewAttribute id="MAX_HUMID"/>
-      <viewAttribute id="CURRENT_LATITUDE"/>
-      <viewAttribute id="CURRENT_LONGITUDE"/>
-      <viewAttribute id="ID_CURRENT_OWNER"/>
-      <viewAttribute id="OWNER_LATITUDE"/>
-      <viewAttribute id="OWNER_LONGITUDE"/>
-      <viewAttribute id="TIMESTAMP"/>
+      <viewAttribute id="ID_OWNER"/>
+      <viewAttribute id="CHANGE_LAT"/>
+      <viewAttribute id="CHANGE_LONG"/>
+      <viewAttribute id="CHANGE_TIME"/>
       <viewAttribute hidden="true" id="JOIN$ID_ROSETYPE$ID_ROSETYPE"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Join_3">
+    <input node="Join_2">
       <mapping xsi:type="Calculation:AttributeMapping" target="ID_PACKAGE" source="ID_PACKAGE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_NAME" source="OWNER_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OWNERNAME" source="OWNERNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ID_RECIPIENT" source="ID_RECIPIENT"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="INCIDENT_STATUS" source="INCIDENT_STATUS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY_ACTIVE" source="DELIVERY_ACTIVE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENT_LATITUDE" source="CURRENT_LATITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENT_LONGITUDE" source="CURRENT_LONGITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ID_CURRENT_OWNER" source="ID_CURRENT_OWNER"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_LATITUDE" source="OWNER_LATITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="OWNER_LONGITUDE" source="OWNER_LONGITUDE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="TIMESTAMP" source="TIMESTAMP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_OWNER" source="ID_OWNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_LAT" source="CHANGE_LAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_LONG" source="CHANGE_LONG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CHANGE_TIME" source="CHANGE_TIME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_ROSETYPE$ID_ROSETYPE" source="ID_ROSETYPE"/>
     </input>
     <input node="RoseTracker.RoseTrackerDB::cdsArtifact.rose">
@@ -174,87 +136,79 @@
     <joinAttribute name="JOIN$ID_ROSETYPE$ID_ROSETYPE"/>
   </calculationView>
 </calculationViews>
-<logicalModel id="Join_4">
+<logicalModel id="Join_3">
   <attributes>
     <attribute id="ID_PACKAGE" key="true" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ID_PACKAGE"/>
-      <keyMapping columnObjectName="Join_4" columnName="ID_PACKAGE"/>
+      <keyMapping columnObjectName="Join_3" columnName="ID_PACKAGE"/>
     </attribute>
     <attribute id="ROSETYPE" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="TYPE"/>
-      <keyMapping columnObjectName="Join_4" columnName="ROSETYPE"/>
+      <keyMapping columnObjectName="Join_3" columnName="ROSETYPE"/>
     </attribute>
-    <attribute id="OWNER_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="NAME"/>
-      <keyMapping columnObjectName="Join_4" columnName="OWNER_NAME"/>
+    <attribute id="OWNERNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OWNERNAME"/>
+      <keyMapping columnObjectName="Join_3" columnName="OWNERNAME"/>
     </attribute>
     <attribute id="ID_RECIPIENT" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ID_RECIPIENT"/>
-      <keyMapping columnObjectName="Join_4" columnName="ID_RECIPIENT"/>
+      <keyMapping columnObjectName="Join_3" columnName="ID_RECIPIENT"/>
     </attribute>
     <attribute id="INCIDENT_STATUS" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="INCIDENT_STATUS"/>
-      <keyMapping columnObjectName="Join_4" columnName="INCIDENT_STATUS"/>
+      <keyMapping columnObjectName="Join_3" columnName="INCIDENT_STATUS"/>
     </attribute>
     <attribute id="DELIVERY_ACTIVE" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="DELIVERY_ACTIVE"/>
-      <keyMapping columnObjectName="Join_4" columnName="DELIVERY_ACTIVE"/>
+      <keyMapping columnObjectName="Join_3" columnName="DELIVERY_ACTIVE"/>
     </attribute>
     <attribute id="OPENING_TIME" order="7" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="OPENING_TIME"/>
-      <keyMapping columnObjectName="Join_4" columnName="OPENING_TIME"/>
+      <keyMapping columnObjectName="Join_3" columnName="OPENING_TIME"/>
     </attribute>
     <attribute id="VASE_LIFE" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="VASE_LIFE"/>
-      <keyMapping columnObjectName="Join_4" columnName="VASE_LIFE"/>
+      <keyMapping columnObjectName="Join_3" columnName="VASE_LIFE"/>
     </attribute>
     <attribute id="COLOR" order="9" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="COLOR"/>
-      <keyMapping columnObjectName="Join_4" columnName="COLOR"/>
+      <keyMapping columnObjectName="Join_3" columnName="COLOR"/>
     </attribute>
     <attribute id="FRAGRANCE" order="10" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="FRAGRANCE"/>
-      <keyMapping columnObjectName="Join_4" columnName="FRAGRANCE"/>
+      <keyMapping columnObjectName="Join_3" columnName="FRAGRANCE"/>
     </attribute>
     <attribute id="MIN_TEMP" order="11" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MIN_TEMP"/>
-      <keyMapping columnObjectName="Join_4" columnName="MIN_TEMP"/>
+      <keyMapping columnObjectName="Join_3" columnName="MIN_TEMP"/>
     </attribute>
     <attribute id="MAX_TEMP" order="12" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MAX_TEMP"/>
-      <keyMapping columnObjectName="Join_4" columnName="MAX_TEMP"/>
+      <keyMapping columnObjectName="Join_3" columnName="MAX_TEMP"/>
     </attribute>
     <attribute id="MIN_HUMID" order="13" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MIN_HUMID"/>
-      <keyMapping columnObjectName="Join_4" columnName="MIN_HUMID"/>
+      <keyMapping columnObjectName="Join_3" columnName="MIN_HUMID"/>
     </attribute>
     <attribute id="MAX_HUMID" order="14" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MAX_HUMID"/>
-      <keyMapping columnObjectName="Join_4" columnName="MAX_HUMID"/>
+      <keyMapping columnObjectName="Join_3" columnName="MAX_HUMID"/>
     </attribute>
-    <attribute id="CURRENT_LATITUDE" order="15" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="LATITUDE"/>
-      <keyMapping columnObjectName="Join_4" columnName="CURRENT_LATITUDE"/>
+    <attribute id="ID_OWNER" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID_OWNER"/>
+      <keyMapping columnObjectName="Join_3" columnName="ID_OWNER"/>
     </attribute>
-    <attribute id="CURRENT_LONGITUDE" order="16" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="LONGITUDE"/>
-      <keyMapping columnObjectName="Join_4" columnName="CURRENT_LONGITUDE"/>
+    <attribute id="CHANGE_LAT" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CHANGE_LAT"/>
+      <keyMapping columnObjectName="Join_3" columnName="CHANGE_LAT"/>
     </attribute>
-    <attribute id="ID_CURRENT_OWNER" order="17" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="ID_CURRENT_OWNER"/>
-      <keyMapping columnObjectName="Join_4" columnName="ID_CURRENT_OWNER"/>
+    <attribute id="CHANGE_LONG" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CHANGE_LONG"/>
+      <keyMapping columnObjectName="Join_3" columnName="CHANGE_LONG"/>
     </attribute>
-    <attribute id="OWNER_LATITUDE" order="18" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="CURRENT_LAT"/>
-      <keyMapping columnObjectName="Join_4" columnName="OWNER_LATITUDE"/>
-    </attribute>
-    <attribute id="OWNER_LONGITUDE" order="19" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="CURRENT_LONG"/>
-      <keyMapping columnObjectName="Join_4" columnName="OWNER_LONGITUDE"/>
-    </attribute>
-    <attribute id="TIMESTAMP" order="20" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="START_TIME"/>
-      <keyMapping columnObjectName="Join_4" columnName="TIMESTAMP"/>
+    <attribute id="CHANGE_TIME" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CHANGE_TIME"/>
+      <keyMapping columnObjectName="Join_3" columnName="CHANGE_TIME"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -265,57 +219,50 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="40" y="85"/>
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
     </shape>
-    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="101" y="479"/>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="512"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.sensor_package" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="230" y="5"/>
-      <rectangleSize width="396"/>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="389"/>
+      <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="-1" y="-4"/>
-      <rectangleSize width="151"/>
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="175"/>
     </shape>
-    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="589"/>
-      <rectangleSize height="30" width="160"/>
+    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.owner" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="336"/>
     </shape>
+  
     <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="100" y="367"/>
+      <upperLeftCorner x="100" y="280"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="150"/>
+      <rectangleSize width="175"/>
     </shape>
     <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.package" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="349"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="101" y="258"/>
+      <upperLeftCorner x="100" y="174"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="3" y="3"/>
-      <rectangleSize width="196"/>
-    </shape>
-    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.owner" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="336"/>
-    </shape>
-    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="101" y="178"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
-    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="196"/>
+      <rectangleSize width="250"/>
     </shape>
-    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.rose" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="RoseTracker.RoseTrackerDB::cdsArtifact.rose" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="326"/>
     </shape>

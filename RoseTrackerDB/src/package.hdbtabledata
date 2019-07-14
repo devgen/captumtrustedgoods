@@ -10,9 +10,9 @@
 
 "source_data" : { "data_type" : "CSV", "file_name" : "RoseTracker.RoseTrackerDB::package.csv", "has_header" : false },
 
-"import_settings" : { "import_columns" : ["ID_PACKAGE","ID_RECIPIENT","ID_ROSETYPE","ID_CURRENT_OWNER","CURRENT_LAT","CURRENT_LONG","INCIDENT_STATUS","DELIVERY_ACTIVE"] },
+"import_settings" : { "import_columns" : ["ID_PACKAGE","ID_RECIPIENT","ID_ROSETYPE","DELIVERY_ACTIVE"] },
 
-"column_mappings" : {"ID_PACKAGE" : 1, "ID_RECIPIENT" : 2, "ID_ROSETYPE" : 3, "ID_CURRENT_OWNER" : 4, "CURRENT_LAT" : 5, "CURRENT_LONG" : 6, "INCIDENT_STATUS" : 7, "DELIVERY_ACTIVE" : 8}
+"column_mappings" : {"ID_PACKAGE" : 1, "ID_RECIPIENT" : 2, "ID_ROSETYPE" : 3, "DELIVERY_ACTIVE" : 4}
 
 }
 
