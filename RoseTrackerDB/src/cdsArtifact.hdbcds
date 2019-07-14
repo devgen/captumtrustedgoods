@@ -81,6 +81,17 @@ context cdsArtifact {
 		key ID_DELIVERY	: String(8) not null;
 		key ID_PACKAGE	: String(8) not null;
 	};
+	
+	view OrderView as select from package as p
+	{
+		p.ID_RECIPIENT,
+		p.package_storagehistory.INCIDENT_STATUS as INCIDENT,
+		//(select from package join storage_history on package.ID_PACKAGE = storage_history.ID_PACKAGE {count(distinct ID_RECIPIENT) as somecount1} where ID_RECIPIENT = p.ID_RECIPIENT and INCIDENT_STATUS = p.INCIDENT and DELIVERY_ACTIVE = TRUE) as openCount,
+		(select from package {count(ID_PACKAGE) as somecount1} where ID_RECIPIENT = p.ID_RECIPIENT and DELIVERY_ACTIVE = TRUE) as openCount,
+		(select from package {count(ID_PACKAGE) as somecount2} where ID_RECIPIENT = p.ID_RECIPIENT and DELIVERY_ACTIVE = FALSE) as closedCount
+	}	group by	ID_RECIPIENT,
+					p.package_storagehistory.INCIDENT_STATUS;
+
 
 	view SensorPosition as select from cdsArtifact.sensor_input
 	{
