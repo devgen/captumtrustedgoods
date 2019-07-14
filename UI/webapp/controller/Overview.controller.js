@@ -5,9 +5,10 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/FilterType",
 	"sap/ui/core/routing/History",
-	"../model/formatter"
+	"../model/formatter",
+	"../model/reverseGeocoding"
 
-], function (Controller, MessageBox, Utilities, History, formatter, Filter, FilterType) {
+], function (Controller, MessageBox, Utilities, History, formatter, Filter, FilterType, reverseGeocoding) {
 	"use strict";
 
 	return Controller.extend("rosetracker.RoseTracker.controller.Overview", {
@@ -33,7 +34,7 @@ sap.ui.define([
 				//filter value: TODO GET AS VARIABLE FROM USER MANAGEMENT OR SET WHEN SWITCHING ROLES
 				value1: user
 			});
-			
+
 			//FILTER FOR THE CURRENT / OPEN PACKAGES
 			var ofilterCurrent = new sap.ui.model.Filter({
 				//binding path
@@ -43,7 +44,7 @@ sap.ui.define([
 				value1: true
 			});
 
-				// FILTER FOR THE CLOSED / PAST PACKAGES
+			// FILTER FOR THE CLOSED / PAST PACKAGES
 			var ofilterPast = new sap.ui.model.Filter({
 				//binding path
 				path: "ActiveStatus",
@@ -118,9 +119,31 @@ sap.ui.define([
 			}
 		},
 
-		onInit: function () {
+		convertCoordinatesToAddress: function (latInput, lngInput) {
+
+			// reverseGeocoding.geocodeLatLng(latInput, lngInput)
+			// 	.then((result) => {
+			// 		console.log(result)
+			// 		return result;
+			// 	})
+			// 	.catch((error)=>{
+			// 		return "München"; 
+			// 	});
+			
+			return new Promise((resolve, reject) => {
+						resolve(reverseGeocoding.geocodeLatLng(latInput, lngInput));
+				// .then((result) => {
+				// 	console.log(result)
+				// 	return result;
+				// })
+				// .catch((error)=>{
+				// 	return "München"; 
+				// });
+			})
 
 		},
+
+		onInit: function () {},
 
 		//Navigation to Details
 		handleListItemPress: function (oEvent) {

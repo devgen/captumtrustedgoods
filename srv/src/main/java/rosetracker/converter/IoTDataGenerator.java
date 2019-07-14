@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.sql.Timestamp;
 
 import org.json.JSONObject;
+import rosetracker.dataclasses.BCIncident;
 
 public class IoTDataGenerator {
 
@@ -287,7 +288,7 @@ public class IoTDataGenerator {
 	}
 
 	public static void generateTimestamps() {
-		// wir generieren für jeden Eintrag in der Route einen Timestamp --> 5*6=30
+		// wir generieren fuer jeden Eintrag in der Route einen Timestamp --> 5*6=30
 
 		long start = 1557871200000L; // 15.05.201
 		long interval = 32400000L; // 9hours

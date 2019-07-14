@@ -18,7 +18,7 @@ public class BCIncident {
 	public double MaxTemperature = 0.0;
 	public double MinHumidity = 0.0;
 	public double MaxHumidity = 0.0;
-	public String Description = "";
+	public String incidentDescription = "";
 	
 	public String getPackageID(){
 		return this.PackageID;
@@ -36,7 +36,7 @@ public class BCIncident {
 		back.put("MaxTemperature", MaxTemperature);
 		back.put("MinHumidity", MinHumidity);
 		back.put("MaxHumidity", MaxHumidity);
-		back.put("Description", Description);
+		back.put("incidentDescription", incidentDescription);
 		
 		return back;
 	}
@@ -53,7 +53,7 @@ public class BCIncident {
 		back.add("MaxTemperature");
 		back.add("MinHumidity");
 		back.add("MaxHumidity");
-		back.add("Description");
+		back.add("incidentDescription");
 		
 		return back;
 		

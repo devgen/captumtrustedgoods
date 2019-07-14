@@ -6,7 +6,7 @@
   },
   "routes": [
     {
-      "source": "^/RoseTrackerDummyDataV2/(.*)$",
+      "source": "^/RoseTracker/(.*)$",
       "target": "$1",
       "authenticationType": "none",
       "destination": "RoseTrackerDummyDataV2",
