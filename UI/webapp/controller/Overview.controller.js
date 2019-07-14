@@ -17,22 +17,13 @@ sap.ui.define([
 		onBeforeRendering: function () {
 
 			//dummy customer receipient 1
-			var user = "ReceipientID 1";
+			var user = "cust2";
 			var userrole = "nocustomer";
 
 			//DEFINE OVIEW TO ACCESS THE OVERVIEW VIEW
 			var oView;
 			oView = this.getView();
 
-			//GENERATE FILTER FOR recipientid (USER) -- to apply for customers only / wholesaler should see all -- 
-			var ofilterUser = new sap.ui.model.Filter({
-				//binding path
-				path: "ReceipientID",
-				//filter operation
-				operator: sap.ui.model.FilterOperator.EQ,
-				//filter value: TODO GET AS VARIABLE FROM USER MANAGEMENT OR SET WHEN SWITCHING ROLES
-				value1: user
-			});
 			
 			//FILTER FOR THE CURRENT / OPEN PACKAGES
 			var ofilterCurrent = new sap.ui.model.Filter({
@@ -51,6 +42,8 @@ sap.ui.define([
 				operator: sap.ui.model.FilterOperator.EQ,
 				value1: false
 			});
+			
+			
 
 			//binding the items in the controller: current and past packages
 			var currentPackages = oView.byId("currentPackages");
@@ -72,6 +65,24 @@ sap.ui.define([
 				sorter: oSorter,
 				filters: [ofilterPast]
 			});
+
+
+			
+			//Make sure that the donut chart gets the values for all packages
+			var ofilterCust = new sap.ui.model.Filter({
+						//binding path
+						path: "CustomerID",
+						//filter operation
+						operator: sap.ui.model.FilterOperator.EQ,
+						value1: 'all'
+					});
+			
+			//Apply the filter to the
+			oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCust);
+
+
+
+
 
 			// only filter if logged in user is from type customer 
 			if (userrole === 'customer') {
@@ -114,7 +125,18 @@ sap.ui.define([
 				});
 
 				pastPackages.getBinding("items").filter(pastuser);
-
+			
+	//if a user is set also the donut chart should display the relevant values
+				var ofilterCustU = new sap.ui.model.Filter({
+				//binding path
+				path: "CustomerID",
+				//filter operation
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: user
+			});
+			
+			//Apply the filter to the
+			oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCustU);
 			}
 		},
 

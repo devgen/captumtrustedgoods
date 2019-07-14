@@ -33,7 +33,7 @@
 									<l:sideContent>
 										<Title text="Status Summary Open Deliveries" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
 										<viz:VizFrame xmlns="sap.viz" id="idDonutChart" vizType="donut" width="100%" height="300px"
-											vizProperties="{plotArea: { colorPalette : ['green','orange','red' ] },title:{ text:' '}}">
+											vizProperties="{plotArea: { colorPalette : ['red','green','orange' ] },title:{ text:' '}}">
 											<viz:dataset>
 												<vizData:FlattenedDataset data="{/OrderData}">
 													<vizData:dimensions>

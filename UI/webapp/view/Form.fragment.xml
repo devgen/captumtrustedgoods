@@ -37,7 +37,7 @@
 				
 			
 				<!--filled by barcode scan-->
-				<core:Title text="Accepting Ownership" />
+				<core:Title text="Acepting Ownership" />
 				<Label text="PackageID" />
 				<Text id="PackageIDChange" text="" />
 				<Label text="OwnerID" required="true" />

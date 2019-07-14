@@ -135,14 +135,14 @@ sap.ui.define([
 				// read data 
 				oModel.read("/OwnerBC", {
 					urlParameters: {
-						"$filter": "PackageID eq 'PckID01'",
+						"$filter": "PackageID eq '"+PackageIDInput+"'",
 						"$orderby": "TimeStamp desc",
 						"$top": 1,
 						"$select": "CurrentLongitude, CurrentLatitude"
 					},
 					success: function (oData, oResponse) {
-						//	console.log(oData.results[0].CurrentLongitude);
-						//	console.log(oData.results[0].CurrentLatitude);
+							console.log(oData.results[0].CurrentLongitude);
+							console.log(oData.results[0].CurrentLatitude);
 						lastLong = oData.results[0].CurrentLongitude;
 						lastLat = oData.results[0].CurrentLatitude;
 
