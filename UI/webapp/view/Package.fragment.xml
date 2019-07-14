@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<Panel expandable="false">
 		<!-- table current packages -->
-		<Table noDataText="No data" id="currentPackages" items="{ path : '/PackageData', sorter: { path: 'ActiveStatus', group: true } }">
+		<Table noDataText="{i18n>nodata}" id="currentPackages" items="{ path : '/PackageData' }">
 			<headerToolbar>
 				<Toolbar>
 					<Title text=""/>
@@ -30,6 +30,7 @@
 				<ColumnListItem type="Navigation" press="handleListItemPress">
 					<cells>
 						<Text text="{PackageID}"/>
+							<!-- 1.2 Conditional icon will we displayed -->
 						<ObjectStatus state="{IncidentStatus}" icon="{= ${IncidentStatus} === 'Success' ? 'sap-icon://sys-enter' : 'sap-icon://sys-cancel' }"
 							visible="true"/>
 						<Text text="{RoseType}"/>
