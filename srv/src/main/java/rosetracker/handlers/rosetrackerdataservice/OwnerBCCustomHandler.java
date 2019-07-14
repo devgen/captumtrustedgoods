@@ -15,6 +15,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.sap.cloud.sdk.hana.connectivity.cds.CDSQuery;
+import com.sap.cloud.sdk.hana.connectivity.cds.CDSSelectQueryBuilder;
+import com.sap.cloud.sdk.hana.connectivity.cds.CDSSelectQueryResult;
+import com.sap.cloud.sdk.hana.connectivity.cds.ConditionBuilder;
+import com.sap.cloud.sdk.hana.connectivity.handler.CDSDataSourceHandler;
+import com.sap.cloud.sdk.hana.connectivity.handler.DataSourceHandlerFactory;
 import com.sap.cloud.sdk.odatav2.connectivity.FilterExpression;
 import com.sap.cloud.sdk.service.prov.api.DataSourceHandler;
 import com.sap.cloud.sdk.service.prov.api.EntityData;
@@ -43,10 +49,12 @@ import com.sap.cloud.sdk.service.prov.api.response.QueryResponseAccessor;
 import com.sap.cloud.sdk.service.prov.api.response.QueryResponseBuilder;
 import com.sap.cloud.sdk.service.prov.api.response.ReadResponse;
 import com.sap.cloud.sdk.service.prov.api.response.UpdateResponse;
+import com.sap.cloud.sdk.service.prov.rt.cds.CDSHandler;
 
 import org.json.JSONObject;
 
 import rosetracker.api.blockchain.ProofOfHistoryAPI;
+import rosetracker.api.database.DatabaseAPI;
 import rosetracker.comparators.BCOwnerChangeComparator;
 import rosetracker.converter.JsonConverter;
 import rosetracker.converter.OwnerChangeExpressionConverter;
@@ -83,8 +91,7 @@ public class OwnerBCCustomHandler {
  	 * Delete : DONE
  	 *
 	 * TODO: If database is ready:
-	 *	- create entry in PackageTable if create or update commit with a unknown Package ID
-	 *	- @AfterQuery add database call to get all PackageIDs
+	 *	- create entry in PackageTable if create or update commit with a unknown Package ID --> ??
 	 */
 
 
@@ -99,48 +106,14 @@ public class OwnerBCCustomHandler {
 		try {
 			
 			WriteToConsole("CUSTOM AFTER QUERY start");
+			
+			// --- get the data from the Blockchain
 
-			List<String> pckIDs = new LinkedList<String>();
+			// get all IDs that exist
+			List<String> pckIDs = DatabaseAPI.GetPackageIDsFromDB(h);
 			
-			DataSourceHandler dshandler = h.getHandler();
 			
-			//EntityManager man;
-			
-			// maybe? 
-			// https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/fc7a5106d39342f6bb28bbf8d2bf5e12.html
-			// 
-			// CDSDataSourceHandler dsHandler = 
-			//		DataSourceHandlerFactory.getInstance()
-			//								.getCDSHandler(getConnection(), 
-			//										queryRequest.getEntityMetadata().getNamespace());
-			// 
-			// private Connection getConnection() {
-			// 	Connection conn = null;
-			// 	Context ctx;
-			// 	try {
-			// 		ctx = new InitialContext();
-			// 		conn = ((DataSource) ctx.lookup("java:comp/env/jdbc/java-hdi-container")).getConnection();
-			// 	} catch (Exception e) {
-			// 		e.printStackTrace();
-			// 	}
-			// 	return conn;
-			// }
-			
-			// TODO Get Package IDs from Package Data Table
-			
-			// -- dummy
-			
-			pckIDs.add("700");
-			pckIDs.add("705");
-			pckIDs.add("706");
-			pckIDs.add("707");
-			pckIDs.add("708");
-			
-			// !-- dummy
-			
-			// TODO handle empty List --> no packages in db
-			
-	
+			// get BCOwnerChangeData based on the retreived IDs
 			List<BCOwnerChange> data = new LinkedList<BCOwnerChange>();
 	
 			for(String id : pckIDs) {
@@ -151,14 +124,10 @@ public class OwnerBCCustomHandler {
 				data.addAll(con.GetBCOwnerChangesFromJSONString(jsonString));
 	
 			}
-			
-			/*
-				Svenjas Request: Add further field: RouteToNextOwner
-					"X;Y;0; X;Y;0"
-			 */
 			 
-			 for(int i = 0; i < data.size(); i++) {
-			 	
+			// --- calculate RouteToNextOwner for the UI
+			for(int i = 0; i < data.size(); i++) {
+				 	
 				BCOwnerChange change = data.get(i);
 				
 				// add own Coordinates
@@ -188,6 +157,8 @@ public class OwnerBCCustomHandler {
 			 	
 			}
 			
+			// -- apply the OData functions
+			
 			
 			// count ( --> isCountCall() - boolean ) --> only return number of entries
 			
@@ -199,11 +170,11 @@ public class OwnerBCCustomHandler {
 				
 			} 
 			
-			// Apply top, skip, orderBy and filter
+			// top, skip, orderBy and filter
 			data = applyQueryArguments(req, data);
 	
 	
-			// build response
+			// --- build response
 			List<EntityData> responseData = new LinkedList<EntityData>();
 			
 			for(BCOwnerChange change : data) {

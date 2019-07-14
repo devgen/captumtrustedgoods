@@ -34,6 +34,7 @@ import com.sap.cloud.sdk.service.prov.api.response.UpdateResponse;
 import org.json.JSONObject;
 
 import rosetracker.api.blockchain.ProofOfHistoryAPI;
+import rosetracker.api.database.DatabaseAPI;
 import rosetracker.comparators.BCIncidentComparator;
 import rosetracker.converter.IncidentExpressionConverter;
 import rosetracker.converter.JsonConverter;
@@ -53,21 +54,7 @@ public class IncidentBCCustomHandler {
 			
 			WriteToConsole("CUSTOM AFTER QUERY start");
 
-			List<String> pckIDs = new LinkedList<String>();
-			
-			// TODO Get Package IDs from Package Data Table
-			
-			// -- dummy
-			
-			pckIDs.add("700");
-			pckIDs.add("705");
-			pckIDs.add("706");
-			pckIDs.add("707");
-			pckIDs.add("708");
-			
-			// !-- dummy
-			
-			// TODO handle empty List --> no packages in db
+			List<String> pckIDs = DatabaseAPI.GetPackageIDsFromDB(h);
 			
 	
 			List<BCIncident> data = new LinkedList<BCIncident>();
