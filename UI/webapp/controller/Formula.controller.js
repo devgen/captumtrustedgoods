@@ -20,6 +20,7 @@ sap.ui.define([
 
 		onInit: function () {},
 
+		//3.1. OnGeoSuccess
 		//if geolocation is sucessfully loaded.
 		onGeoSuccess: function (position) {
 			// todo translate geocode 
@@ -34,6 +35,7 @@ sap.ui.define([
 			console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 		},
 
+		// 3.2. OnPress
 		//FUNCTION FOR CLICKING THE SCAN BUTTON
 		onPress: function (oEvent) {
 
@@ -81,18 +83,8 @@ sap.ui.define([
 			)
 		},
 
-		//navigate back in browserhistory or to overview
-		onBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				oRouter.navTo("Overview", true);
-			}
-		},
-
+	
+		//3.3. OnPressSubmit
 		//PRESS THE SUBMIT BUTTON
 		onPressSubmit: function (oEvent) {
 
@@ -182,11 +174,21 @@ sap.ui.define([
 						OwnerLongitude: long,
 						OwnerTimestamp: new Date()
 					}
-			
-
 			}
 
-		}
+		},
+		//3.4. OnBack
+			//navigate back in browserhistory or to overview
+		onBack: function () {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("Overview", true);
+			}
+		},
 
 	});
 
