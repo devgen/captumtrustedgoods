@@ -182,15 +182,7 @@ sap.ui.define([
 						OwnerLongitude: long,
 						OwnerTimestamp: new Date()
 					}
-					// Update the corresponding entry for the scanned PackageID in the PackageData Table
-					/*		oModel.update("/PackageData('" + PackageIDInput + "')", oData, {
-								success: function () {
-									sap.m.MessageToast.show('Success: ' + PackageIDInput + ' was updated');
-								},
-								error: function () {
-									sap.m.MessageToast.show('Error: Ownershipchange did not succeed');
-								}
-							}); */
+			
 
 			}
 
