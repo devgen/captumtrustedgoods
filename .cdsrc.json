@@ -4,10 +4,10 @@
         "tasks": [
             {
                 "for": "hana",
-                "src": "RoseTrackerDB",
+                "src": "db",
                 "options": {
                     "model": [
-                        "RoseTrackerDB",
+                        "db",
                         "srv"
                     ]
                 }
@@ -17,7 +17,7 @@
                 "src": "srv",
                 "options": {
                     "model": [
-                        "RoseTrackerDB",
+                        "db",
                         "srv"
                     ]
                 }

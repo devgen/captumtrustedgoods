@@ -1,38 +1,19 @@
 package rosetracker.handlers.rosetrackerdataservice;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Predicate;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
-import com.sap.cloud.sdk.hana.connectivity.cds.CDSQuery;
-import com.sap.cloud.sdk.hana.connectivity.cds.CDSSelectQueryBuilder;
-import com.sap.cloud.sdk.hana.connectivity.cds.CDSSelectQueryResult;
-import com.sap.cloud.sdk.hana.connectivity.cds.ConditionBuilder;
-import com.sap.cloud.sdk.hana.connectivity.handler.CDSDataSourceHandler;
-import com.sap.cloud.sdk.hana.connectivity.handler.DataSourceHandlerFactory;
-import com.sap.cloud.sdk.odatav2.connectivity.FilterExpression;
-import com.sap.cloud.sdk.service.prov.api.DataSourceHandler;
 import com.sap.cloud.sdk.service.prov.api.EntityData;
 import com.sap.cloud.sdk.service.prov.api.ExtensionHelper;
 import com.sap.cloud.sdk.service.prov.api.annotations.AfterQuery;
-import com.sap.cloud.sdk.service.prov.api.filter.BinaryExpressionNode;
 import com.sap.cloud.sdk.service.prov.api.filter.Expression;
 import com.sap.cloud.sdk.service.prov.api.filter.ExpressionNode;
-import com.sap.cloud.sdk.service.prov.api.filter.ExpressionOperatorTypes.OPERATOR;
 import com.sap.cloud.sdk.service.prov.api.operations.Create;
 import com.sap.cloud.sdk.service.prov.api.operations.Delete;
-import com.sap.cloud.sdk.service.prov.api.operations.Query;
 import com.sap.cloud.sdk.service.prov.api.operations.Read;
 import com.sap.cloud.sdk.service.prov.api.operations.Update;
 import com.sap.cloud.sdk.service.prov.api.request.CreateRequest;
@@ -46,11 +27,8 @@ import com.sap.cloud.sdk.service.prov.api.response.DeleteResponse;
 import com.sap.cloud.sdk.service.prov.api.response.ErrorResponse;
 import com.sap.cloud.sdk.service.prov.api.response.QueryResponse;
 import com.sap.cloud.sdk.service.prov.api.response.QueryResponseAccessor;
-import com.sap.cloud.sdk.service.prov.api.response.QueryResponseBuilder;
 import com.sap.cloud.sdk.service.prov.api.response.ReadResponse;
 import com.sap.cloud.sdk.service.prov.api.response.UpdateResponse;
-import com.sap.cloud.sdk.service.prov.rt.cds.CDSHandler;
-
 import org.json.JSONObject;
 
 import rosetracker.api.blockchain.ProofOfHistoryAPI;
@@ -79,7 +57,7 @@ public class OwnerBCCustomHandler {
 	 * Query : implement operations
 					- skip: ready for testing
 					- top: ready for testing
-					- inlineCount: ready for testing
+					- inlineCount: after merge to mta, the request has no method anymore. Why? TODO
 					- count: TODO How?
 					- filter: comparatos & AND & OR DONE, TODO contains? how? 
 					- custom query: TODO

@@ -8,7 +8,7 @@
         "node": "^8.9"
     },
     "files": [
-        "RoseTrackerDB",
+        "db",
         "srv"
     ],
     "dependencies": {
@@ -24,10 +24,10 @@
     },
     "cds": {
         "requires": {
-            "RoseTrackerDB": {
+            "db": {
                 "kind": "hana",
                 "model": [
-                    "RoseTrackerDB",
+                    "db",
                     "srv"
                 ]
             }

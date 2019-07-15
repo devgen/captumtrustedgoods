@@ -27,7 +27,6 @@ import com.sap.cloud.sdk.service.prov.api.response.DeleteResponse;
 import com.sap.cloud.sdk.service.prov.api.response.ErrorResponse;
 import com.sap.cloud.sdk.service.prov.api.response.QueryResponse;
 import com.sap.cloud.sdk.service.prov.api.response.QueryResponseAccessor;
-import com.sap.cloud.sdk.service.prov.api.response.QueryResponseBuilder;
 import com.sap.cloud.sdk.service.prov.api.response.ReadResponse;
 import com.sap.cloud.sdk.service.prov.api.response.UpdateResponse;
 
@@ -254,8 +253,6 @@ public class IncidentBCCustomHandler {
 			// Filter Data from Parser after timestamp
 	
 			BCIncident match = null;
-			
-			int matchIndex = -1;
 	
 			for(int i = 0; i < data.size(); i++) {
 	
@@ -263,7 +260,6 @@ public class IncidentBCCustomHandler {
 	
 				if(change.TimeStamp.getTime() == timestamp.getTimeInMillis()) {
 					match = change;
-					matchIndex = i;
 					break;
 				}
 			}
