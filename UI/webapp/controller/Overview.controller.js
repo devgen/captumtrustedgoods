@@ -152,6 +152,28 @@ sap.ui.define([
 				sQuery = oEvent.getParameter("query"),
 				// retrieve list control
 				oList = this.getView().byId("currentPackages"),
+			
+				//currentPackages
+				// get binding for aggregation 'items'
+				oBinding = oList.getBinding("items");
+
+			if (sQuery) {
+				aFilter.push(new sap.ui.model.Filter("PackageID", sap.ui.model.FilterOperator.Contains, sQuery));
+			}
+
+			// apply filter. an empty filter array simply removes the filter
+			// which will make all entries visible again
+			oBinding.filter(aFilter);
+
+		},
+			onFilterPackagesPast        : function (oEvent) {
+
+			// build filter array
+			var aFilter = [],
+				sQuery = oEvent.getParameter("query"),
+				// retrieve list control
+				oList = this.getView().byId("pastPackages"),
+			
 				//currentPackages
 				// get binding for aggregation 'items'
 				oBinding = oList.getBinding("items");

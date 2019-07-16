@@ -73,10 +73,16 @@
 												<Text text="TimeStamp"/>
 											</Column>
 											<Column minScreenWidth="Desktop" demandPopin="true">
-												<Text text="Temperature"/>
+												<Text text="MinTemperature"/>
+												</Column>
+													<Column minScreenWidth="Desktop" demandPopin="true">
+												<Text text="MaxTemperature"/>
 											</Column>
 											<Column minScreenWidth="Desktop" demandPopin="true">
-												<Text text="Humidity"/>
+												<Text text="MinHumidity"/>
+												</Column>
+													<Column minScreenWidth="Desktop" demandPopin="true">
+												<Text text="MaxHumidity"/>
 											</Column>
 											<Column minScreenWidth="Desktop" demandPopin="true">
 												<Text text="Location"/>
@@ -87,7 +93,10 @@
 												<cells>
 													<Text text="{PackageID}"/>
 													<Text text="{TimeStamp}"/>
+														<ObjectStatus state="{= ${MinTemperature} > 3.0000 ? 'Success' : 'Error'}" text="{MinTemperature}"		visible="true" />
+						
 													<Text text="{MaxTemperature}"/>
+														<Text text="{MaxHumidity}"/>
 													<Text text="{MaxHumidity}"/>
 													<Text text="
 										{path: 'CurrentLongitude'};

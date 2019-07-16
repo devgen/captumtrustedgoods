@@ -5,7 +5,8 @@
 			<headerToolbar>
 				<Toolbar>
 					<Title text=""/>
-					<ToolbarSpacer/>
+	<ToolbarSpacer/>
+					<SearchField id="searchfield2" width="50%" search="onFilterPackagesPast"/>
 				</Toolbar>
 			</headerToolbar>
 			<columns>
@@ -29,7 +30,8 @@
 				<ColumnListItem type="Navigation" press="handleListItemPress">
 					<cells>
 						<Text text="{PackageID}"/>
-						<Text text="{IncidentStatus}"/>
+					<ObjectStatus state="{IncidentStatus}" icon="{= ${IncidentStatus} === 'Success' ? 'sap-icon://sys-enter' : 'sap-icon://sys-cancel' }"
+							visible="true"/>
 						<Text text="{RoseType}"/>
 						<Text text="{OwnerNam}"/>
 						<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>
