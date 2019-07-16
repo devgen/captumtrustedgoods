@@ -1,0 +1,2085 @@
+{
+  "namespace": "rosetracker.database.dummyentities",
+  "definitions": {
+    "RoseTrackerDataService": {
+      "kind": "service"
+    },
+    "RoseTrackerDataService.IncidentBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_INCIDENTBC",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.dummyentities.IncidentBC"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "IncidentDesc": {
+          "@cds.persistence.name": "INCIDENTDESC",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.OrderDataView": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_ORDERDATAVIEW",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.OrderDataView"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "recipentID": {
+          "@cds.persistence.name": "RECIPENTID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "Status": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "STATUS",
+          "key": true,
+          "type": "cds.String"
+        },
+        "openCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "OPENCOUNT",
+          "type": "cds.Integer"
+        },
+        "closedCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "CLOSEDCOUNT",
+          "type": "cds.Integer"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.Owner": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_OWNER",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.entities.Owner"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "id_owner": {
+          "@cds.persistence.name": "ID_OWNER",
+          "key": true,
+          "type": "cds.String"
+        },
+        "ownername": {
+          "@cds.persistence.name": "OWNERNAME",
+          "type": "cds.String"
+        },
+        "city": {
+          "@cds.persistence.name": "CITY",
+          "type": "cds.String"
+        },
+        "country": {
+          "@cds.persistence.name": "COUNTRY",
+          "type": "cds.String"
+        },
+        "role": {
+          "@cds.persistence.name": "ROLE",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.OwnerBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_OWNERBC",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.dummyentities.OwnerBC"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "OwnerID": {
+          "@cds.persistence.name": "OWNERID",
+          "type": "cds.String"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "RouteToNextOwner": {
+          "@cds.persistence.name": "ROUTETONEXTOWNER",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.Package": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_PACKAGE",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.entities.Package"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "id_recipent": {
+          "@cds.persistence.name": "ID_RECIPENT",
+          "type": "cds.String"
+        },
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "type": "cds.String"
+        },
+        "id_currentOwner": {
+          "@cds.persistence.name": "ID_CURRENTOWNER",
+          "type": "cds.String"
+        },
+        "lastOwnerChangeLat": {
+          "@cds.persistence.name": "LASTOWNERCHANGELAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeLon": {
+          "@cds.persistence.name": "LASTOWNERCHANGELON",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeTime": {
+          "@cds.persistence.name": "LASTOWNERCHANGETIME",
+          "type": "cds.DateTime"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.PackageView": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_PACKAGEVIEW",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.PackageView"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "RoseType": {
+          "@cds.persistence.name": "ROSETYPE",
+          "type": "cds.String"
+        },
+        "OwnerName": {
+          "@cds.persistence.name": "OWNERNAME",
+          "type": "cds.String"
+        },
+        "ReceipientID": {
+          "@cds.persistence.name": "RECEIPIENTID",
+          "type": "cds.String"
+        },
+        "IncidentStatus": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "INCIDENTSTATUS",
+          "type": "cds.String"
+        },
+        "ActiveStatus": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "ACTIVESTATUS",
+          "type": "cds.Boolean"
+        },
+        "OpenSpeed": {
+          "@cds.persistence.name": "OPENSPEED",
+          "type": "cds.String"
+        },
+        "Vaselife": {
+          "@cds.persistence.name": "VASELIFE",
+          "type": "cds.String"
+        },
+        "Color": {
+          "@cds.persistence.name": "COLOR",
+          "type": "cds.String"
+        },
+        "Fragrantcy": {
+          "@cds.persistence.name": "FRAGRANTCY",
+          "type": "cds.Boolean"
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerID": {
+          "@cds.persistence.name": "OWNERID",
+          "type": "cds.String"
+        },
+        "OwnerLatitude": {
+          "@cds.persistence.name": "OWNERLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerLongitude": {
+          "@cds.persistence.name": "OWNERLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerTimestamp": {
+          "@cds.persistence.name": "OWNERTIMESTAMP",
+          "type": "cds.DateTime"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.Rose": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_ROSE",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.entities.Rose"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "rosetype": {
+          "@cds.persistence.name": "ROSETYPE",
+          "type": "cds.String"
+        },
+        "opening_time": {
+          "@cds.persistence.name": "OPENING_TIME",
+          "type": "cds.String"
+        },
+        "head_shape": {
+          "@cds.persistence.name": "HEAD_SHAPE",
+          "type": "cds.String"
+        },
+        "color": {
+          "@cds.persistence.name": "COLOR",
+          "type": "cds.String"
+        },
+        "fragrance": {
+          "@cds.persistence.name": "FRAGRANCE",
+          "type": "cds.Boolean"
+        },
+        "vase_life": {
+          "@cds.persistence.name": "VASE_LIFE",
+          "type": "cds.String"
+        },
+        "max_temp": {
+          "@cds.persistence.name": "MAX_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_temp": {
+          "@cds.persistence.name": "MIN_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "max_humid": {
+          "@cds.persistence.name": "MAX_HUMID",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_humid": {
+          "@cds.persistence.name": "MIN_HUMID",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.Rose_owner": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_ROSE_OWNER",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.entities.Rose_owner"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "id_owner": {
+          "@cds.persistence.name": "ID_OWNER",
+          "key": true,
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.SensorInput": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_SENSORINPUT",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.entities.SensorInput"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "start_time": {
+          "@cds.persistence.name": "START_TIME",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "end_time": {
+          "@cds.persistence.name": "END_TIME",
+          "type": "cds.DateTime"
+        },
+        "latitude": {
+          "@cds.persistence.name": "LATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "longitude": {
+          "@cds.persistence.name": "LONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "max_temp": {
+          "@cds.persistence.name": "MAX_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_temp": {
+          "@cds.persistence.name": "MIN_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "avg_temp": {
+          "@cds.persistence.name": "AVG_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "max_humi": {
+          "@cds.persistence.name": "MAX_HUMI",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_humi": {
+          "@cds.persistence.name": "MIN_HUMI",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "avg_humi": {
+          "@cds.persistence.name": "AVG_HUMI",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "incident": {
+          "@cds.persistence.name": "INCIDENT",
+          "type": "cds.Boolean"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "RoseTrackerDataService.TrackingView": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_TRACKINGVIEW",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.TrackingView"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "MinTemp": {
+          "@cds.persistence.name": "MINTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemp": {
+          "@cds.persistence.name": "MAXTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHum": {
+          "@cds.persistence.name": "MINHUM",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHum": {
+          "@cds.persistence.name": "MAXHUM",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLat": {
+          "@cds.persistence.name": "CURRENTLAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLong": {
+          "@cds.persistence.name": "CURRENTLONG",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "Incident": {
+          "@cds.persistence.name": "INCIDENT",
+          "type": "cds.Boolean"
+        }
+      },
+      "$syntax": "projection"
+    },
+    "rosetracker.database.dummyentities.IncidentBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_DUMMYENTITIES_INCIDENTBC",
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "IncidentDesc": {
+          "@cds.persistence.name": "INCIDENTDESC",
+          "type": "cds.String"
+        }
+      }
+    },
+    "rosetracker.database.dummyentities.OwnerBC": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_DUMMYENTITIES_OWNERBC",
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "OwnerID": {
+          "@cds.persistence.name": "OWNERID",
+          "type": "cds.String"
+        },
+        "CurrentLatitude": {
+          "@cds.persistence.name": "CURRENTLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLongitude": {
+          "@cds.persistence.name": "CURRENTLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "RouteToNextOwner": {
+          "@cds.persistence.name": "ROUTETONEXTOWNER",
+          "type": "cds.String"
+        }
+      }
+    },
+    "rosetracker.database.entities.Owner": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_ENTITIES_OWNER",
+      "elements": {
+        "id_owner": {
+          "@cds.persistence.name": "ID_OWNER",
+          "key": true,
+          "type": "cds.String"
+        },
+        "ownername": {
+          "@cds.persistence.name": "OWNERNAME",
+          "type": "cds.String"
+        },
+        "city": {
+          "@cds.persistence.name": "CITY",
+          "type": "cds.String"
+        },
+        "country": {
+          "@cds.persistence.name": "COUNTRY",
+          "type": "cds.String"
+        },
+        "role": {
+          "@cds.persistence.name": "ROLE",
+          "type": "cds.String"
+        }
+      }
+    },
+    "rosetracker.database.entities.Package": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_ENTITIES_PACKAGE",
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "id_recipent": {
+          "@cds.persistence.name": "ID_RECIPENT",
+          "type": "cds.String"
+        },
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "type": "cds.String"
+        },
+        "id_currentOwner": {
+          "@cds.persistence.name": "ID_CURRENTOWNER",
+          "type": "cds.String"
+        },
+        "lastOwnerChangeLat": {
+          "@cds.persistence.name": "LASTOWNERCHANGELAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeLon": {
+          "@cds.persistence.name": "LASTOWNERCHANGELON",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeTime": {
+          "@cds.persistence.name": "LASTOWNERCHANGETIME",
+          "type": "cds.DateTime"
+        }
+      }
+    },
+    "rosetracker.database.entities.Rose": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_ENTITIES_ROSE",
+      "elements": {
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "rosetype": {
+          "@cds.persistence.name": "ROSETYPE",
+          "type": "cds.String"
+        },
+        "opening_time": {
+          "@cds.persistence.name": "OPENING_TIME",
+          "type": "cds.String"
+        },
+        "head_shape": {
+          "@cds.persistence.name": "HEAD_SHAPE",
+          "type": "cds.String"
+        },
+        "color": {
+          "@cds.persistence.name": "COLOR",
+          "type": "cds.String"
+        },
+        "fragrance": {
+          "@cds.persistence.name": "FRAGRANCE",
+          "type": "cds.Boolean"
+        },
+        "vase_life": {
+          "@cds.persistence.name": "VASE_LIFE",
+          "type": "cds.String"
+        },
+        "max_temp": {
+          "@cds.persistence.name": "MAX_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_temp": {
+          "@cds.persistence.name": "MIN_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "max_humid": {
+          "@cds.persistence.name": "MAX_HUMID",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_humid": {
+          "@cds.persistence.name": "MIN_HUMID",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        }
+      }
+    },
+    "rosetracker.database.entities.Rose_owner": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_ENTITIES_ROSE_OWNER",
+      "elements": {
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "id_owner": {
+          "@cds.persistence.name": "ID_OWNER",
+          "key": true,
+          "type": "cds.String"
+        }
+      }
+    },
+    "rosetracker.database.entities.SensorInput": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_ENTITIES_SENSORINPUT",
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "start_time": {
+          "@cds.persistence.name": "START_TIME",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "end_time": {
+          "@cds.persistence.name": "END_TIME",
+          "type": "cds.DateTime"
+        },
+        "latitude": {
+          "@cds.persistence.name": "LATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "longitude": {
+          "@cds.persistence.name": "LONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "max_temp": {
+          "@cds.persistence.name": "MAX_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_temp": {
+          "@cds.persistence.name": "MIN_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "avg_temp": {
+          "@cds.persistence.name": "AVG_TEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "max_humi": {
+          "@cds.persistence.name": "MAX_HUMI",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "min_humi": {
+          "@cds.persistence.name": "MIN_HUMI",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "avg_humi": {
+          "@cds.persistence.name": "AVG_HUMI",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "incident": {
+          "@cds.persistence.name": "INCIDENT",
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "rosetracker.database.views.OrderDataView": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_ORDERDATAVIEW",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.packagewithinicdentstatus"
+            ]
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "id_recipent"
+              ],
+              "as": "recipentID"
+            },
+            {
+              "key": true,
+              "ref": [
+                "incident_status"
+              ],
+              "as": "Status"
+            },
+            {
+              "SELECT": {
+                "from": {
+                  "ref": [
+                    "rosetracker.database.views.packagewithinicdentstatus"
+                  ],
+                  "as": "innerpack"
+                },
+                "columns": [
+                  {
+                    "func": "count",
+                    "args": [
+                      {
+                        "ref": [
+                          "id_package"
+                        ]
+                      }
+                    ],
+                    "as": "count"
+                  }
+                ],
+                "where": [
+                  {
+                    "ref": [
+                      "id_recipent"
+                    ]
+                  },
+                  "=",
+                  {
+                    "ref": [
+                      "innerpack",
+                      "id_recipent"
+                    ]
+                  },
+                  "and",
+                  {
+                    "ref": [
+                      "delivery_active"
+                    ]
+                  },
+                  "=",
+                  {
+                    "val": true
+                  }
+                ]
+              },
+              "as": "openCount",
+              "cast": {
+                "type": "cds.Integer"
+              }
+            },
+            {
+              "SELECT": {
+                "from": {
+                  "ref": [
+                    "rosetracker.database.views.packagewithinicdentstatus"
+                  ],
+                  "as": "innerpack"
+                },
+                "columns": [
+                  {
+                    "func": "count",
+                    "args": [
+                      {
+                        "ref": [
+                          "id_package"
+                        ]
+                      }
+                    ],
+                    "as": "count"
+                  }
+                ],
+                "where": [
+                  {
+                    "ref": [
+                      "id_recipent"
+                    ]
+                  },
+                  "=",
+                  {
+                    "ref": [
+                      "innerpack",
+                      "id_recipent"
+                    ]
+                  },
+                  "and",
+                  {
+                    "ref": [
+                      "delivery_active"
+                    ]
+                  },
+                  "=",
+                  {
+                    "val": false
+                  }
+                ]
+              },
+              "as": "closedCount",
+              "cast": {
+                "type": "cds.Integer"
+              }
+            }
+          ],
+          "groupBy": [
+            {
+              "ref": [
+                "packagewithinicdentstatus",
+                "id_recipent"
+              ]
+            },
+            {
+              "ref": [
+                "packagewithinicdentstatus",
+                "incident_status"
+              ]
+            }
+          ]
+        }
+      },
+      "elements": {
+        "recipentID": {
+          "@cds.persistence.name": "RECIPENTID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "Status": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "STATUS",
+          "key": true,
+          "type": "cds.String"
+        },
+        "openCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "OPENCOUNT",
+          "type": "cds.Integer"
+        },
+        "closedCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "CLOSEDCOUNT",
+          "type": "cds.Integer"
+        }
+      },
+      "$syntax": "view"
+    },
+    "rosetracker.database.views.PackageDeliveryStatus": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_PACKAGEDELIVERYSTATUS",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.entities.Package"
+            ],
+            "as": "pack"
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "pack",
+                "id_package"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_recipent"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_rosetype"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_currentOwner"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLat"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLon"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeTime"
+              ]
+            },
+            {
+              "xpr": [
+                "case",
+                "when",
+                {
+                  "ref": [
+                    "id_recipent"
+                  ]
+                },
+                "=",
+                {
+                  "ref": [
+                    "id_currentOwner"
+                  ]
+                },
+                "then",
+                {
+                  "val": true
+                },
+                "else",
+                {
+                  "val": false
+                },
+                "end"
+              ],
+              "as": "delivery_active",
+              "cast": {
+                "type": "cds.Boolean"
+              }
+            }
+          ]
+        }
+      },
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "id_recipent": {
+          "@cds.persistence.name": "ID_RECIPENT",
+          "type": "cds.String"
+        },
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "type": "cds.String"
+        },
+        "id_currentOwner": {
+          "@cds.persistence.name": "ID_CURRENTOWNER",
+          "type": "cds.String"
+        },
+        "lastOwnerChangeLat": {
+          "@cds.persistence.name": "LASTOWNERCHANGELAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeLon": {
+          "@cds.persistence.name": "LASTOWNERCHANGELON",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeTime": {
+          "@cds.persistence.name": "LASTOWNERCHANGETIME",
+          "type": "cds.DateTime"
+        },
+        "delivery_active": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "DELIVERY_ACTIVE",
+          "type": "cds.Boolean"
+        }
+      },
+      "$syntax": "view"
+    },
+    "rosetracker.database.views.PackageView": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_PACKAGEVIEW",
+      "query": {
+        "SELECT": {
+          "from": {
+            "join": "inner",
+            "args": [
+              {
+                "ref": [
+                  "rosetracker.database.views.packOwner"
+                ],
+                "as": "paOW"
+              },
+              {
+                "ref": [
+                  "rosetracker.database.entities.Rose"
+                ],
+                "as": "rose"
+              }
+            ],
+            "on": [
+              {
+                "ref": [
+                  "paOW",
+                  "id_rosetype"
+                ]
+              },
+              "=",
+              {
+                "ref": [
+                  "rose",
+                  "id_rosetype"
+                ]
+              }
+            ]
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "paOW",
+                "id_package"
+              ],
+              "as": "PackageID"
+            },
+            {
+              "ref": [
+                "rose",
+                "rosetype"
+              ],
+              "as": "RoseType"
+            },
+            {
+              "ref": [
+                "paOW",
+                "ownername"
+              ],
+              "as": "OwnerName"
+            },
+            {
+              "ref": [
+                "paOW",
+                "id_recipent"
+              ],
+              "as": "ReceipientID"
+            },
+            {
+              "ref": [
+                "paOW",
+                "incident_status"
+              ],
+              "as": "IncidentStatus"
+            },
+            {
+              "ref": [
+                "paOW",
+                "delivery_active"
+              ],
+              "as": "ActiveStatus"
+            },
+            {
+              "ref": [
+                "rose",
+                "opening_time"
+              ],
+              "as": "OpenSpeed"
+            },
+            {
+              "ref": [
+                "rose",
+                "vase_life"
+              ],
+              "as": "Vaselife"
+            },
+            {
+              "ref": [
+                "rose",
+                "color"
+              ],
+              "as": "Color"
+            },
+            {
+              "ref": [
+                "rose",
+                "fragrance"
+              ],
+              "as": "Fragrantcy"
+            },
+            {
+              "ref": [
+                "rose",
+                "min_temp"
+              ],
+              "as": "MinTemperature"
+            },
+            {
+              "ref": [
+                "rose",
+                "max_temp"
+              ],
+              "as": "MaxTemperature"
+            },
+            {
+              "ref": [
+                "rose",
+                "min_humid"
+              ],
+              "as": "MinHumidity"
+            },
+            {
+              "ref": [
+                "rose",
+                "max_humid"
+              ],
+              "as": "MaxHumidity"
+            },
+            {
+              "ref": [
+                "paOW",
+                "id_recipent"
+              ],
+              "as": "OwnerID"
+            },
+            {
+              "ref": [
+                "paOW",
+                "lastOwnerChangeLat"
+              ],
+              "as": "OwnerLatitude"
+            },
+            {
+              "ref": [
+                "paOW",
+                "lastOwnerChangeLon"
+              ],
+              "as": "OwnerLongitude"
+            },
+            {
+              "ref": [
+                "paOW",
+                "lastOwnerChangeTime"
+              ],
+              "as": "OwnerTimestamp"
+            }
+          ]
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "RoseType": {
+          "@cds.persistence.name": "ROSETYPE",
+          "type": "cds.String"
+        },
+        "OwnerName": {
+          "@cds.persistence.name": "OWNERNAME",
+          "type": "cds.String"
+        },
+        "ReceipientID": {
+          "@cds.persistence.name": "RECEIPIENTID",
+          "type": "cds.String"
+        },
+        "IncidentStatus": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "INCIDENTSTATUS",
+          "type": "cds.String"
+        },
+        "ActiveStatus": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "ACTIVESTATUS",
+          "type": "cds.Boolean"
+        },
+        "OpenSpeed": {
+          "@cds.persistence.name": "OPENSPEED",
+          "type": "cds.String"
+        },
+        "Vaselife": {
+          "@cds.persistence.name": "VASELIFE",
+          "type": "cds.String"
+        },
+        "Color": {
+          "@cds.persistence.name": "COLOR",
+          "type": "cds.String"
+        },
+        "Fragrantcy": {
+          "@cds.persistence.name": "FRAGRANTCY",
+          "type": "cds.Boolean"
+        },
+        "MinTemperature": {
+          "@cds.persistence.name": "MINTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemperature": {
+          "@cds.persistence.name": "MAXTEMPERATURE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHumidity": {
+          "@cds.persistence.name": "MINHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHumidity": {
+          "@cds.persistence.name": "MAXHUMIDITY",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerID": {
+          "@cds.persistence.name": "OWNERID",
+          "type": "cds.String"
+        },
+        "OwnerLatitude": {
+          "@cds.persistence.name": "OWNERLATITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerLongitude": {
+          "@cds.persistence.name": "OWNERLONGITUDE",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "OwnerTimestamp": {
+          "@cds.persistence.name": "OWNERTIMESTAMP",
+          "type": "cds.DateTime"
+        }
+      },
+      "$syntax": "view"
+    },
+    "rosetracker.database.views.TrackingView": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_TRACKINGVIEW",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.entities.SensorInput"
+            ],
+            "as": "sinp"
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "sinp",
+                "id_package"
+              ],
+              "as": "PackageID"
+            },
+            {
+              "key": true,
+              "ref": [
+                "sinp",
+                "start_time"
+              ],
+              "as": "TimeStamp"
+            },
+            {
+              "ref": [
+                "sinp",
+                "min_temp"
+              ],
+              "as": "MinTemp"
+            },
+            {
+              "ref": [
+                "sinp",
+                "max_temp"
+              ],
+              "as": "MaxTemp"
+            },
+            {
+              "ref": [
+                "sinp",
+                "min_humi"
+              ],
+              "as": "MinHum"
+            },
+            {
+              "ref": [
+                "sinp",
+                "max_humi"
+              ],
+              "as": "MaxHum"
+            },
+            {
+              "ref": [
+                "sinp",
+                "latitude"
+              ],
+              "as": "CurrentLat"
+            },
+            {
+              "ref": [
+                "sinp",
+                "longitude"
+              ],
+              "as": "CurrentLong"
+            },
+            {
+              "ref": [
+                "sinp",
+                "incident"
+              ],
+              "as": "Incident"
+            }
+          ]
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "MinTemp": {
+          "@cds.persistence.name": "MINTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemp": {
+          "@cds.persistence.name": "MAXTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHum": {
+          "@cds.persistence.name": "MINHUM",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHum": {
+          "@cds.persistence.name": "MAXHUM",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLat": {
+          "@cds.persistence.name": "CURRENTLAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLong": {
+          "@cds.persistence.name": "CURRENTLONG",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "Incident": {
+          "@cds.persistence.name": "INCIDENT",
+          "type": "cds.Boolean"
+        }
+      },
+      "$syntax": "view"
+    },
+    "rosetracker.database.views.packOwner": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_PACKOWNER",
+      "query": {
+        "SELECT": {
+          "from": {
+            "join": "inner",
+            "args": [
+              {
+                "ref": [
+                  "rosetracker.database.views.packagewithinicdentstatus"
+                ],
+                "as": "pack"
+              },
+              {
+                "ref": [
+                  "rosetracker.database.entities.Owner"
+                ],
+                "as": "owner"
+              }
+            ],
+            "on": [
+              {
+                "ref": [
+                  "pack",
+                  "id_currentOwner"
+                ]
+              },
+              "=",
+              {
+                "ref": [
+                  "owner",
+                  "ownername"
+                ]
+              }
+            ]
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "pack",
+                "id_package"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_recipent"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_rosetype"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_currentOwner"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLat"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLon"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeTime"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "delivery_active"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "incident_status"
+              ]
+            },
+            {
+              "ref": [
+                "owner",
+                "ownername"
+              ]
+            }
+          ]
+        }
+      },
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "key": true,
+          "type": "cds.String"
+        },
+        "id_recipent": {
+          "@cds.persistence.name": "ID_RECIPENT",
+          "type": "cds.String"
+        },
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "type": "cds.String"
+        },
+        "id_currentOwner": {
+          "@cds.persistence.name": "ID_CURRENTOWNER",
+          "type": "cds.String"
+        },
+        "lastOwnerChangeLat": {
+          "@cds.persistence.name": "LASTOWNERCHANGELAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeLon": {
+          "@cds.persistence.name": "LASTOWNERCHANGELON",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeTime": {
+          "@cds.persistence.name": "LASTOWNERCHANGETIME",
+          "type": "cds.DateTime"
+        },
+        "delivery_active": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "DELIVERY_ACTIVE",
+          "type": "cds.Boolean"
+        },
+        "incident_status": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "INCIDENT_STATUS",
+          "type": "cds.String"
+        },
+        "ownername": {
+          "@cds.persistence.name": "OWNERNAME",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "view"
+    },
+    "rosetracker.database.views.packagewithinicdentstatus": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_PACKAGEWITHINICDENTSTATUS",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.tracpack"
+            ]
+          },
+          "columns": [
+            {
+              "ref": [
+                "id_package"
+              ]
+            },
+            {
+              "ref": [
+                "id_recipent"
+              ]
+            },
+            {
+              "ref": [
+                "id_rosetype"
+              ]
+            },
+            {
+              "ref": [
+                "id_currentOwner"
+              ]
+            },
+            {
+              "ref": [
+                "lastOwnerChangeLat"
+              ]
+            },
+            {
+              "ref": [
+                "lastOwnerChangeLon"
+              ]
+            },
+            {
+              "ref": [
+                "lastOwnerChangeTime"
+              ]
+            },
+            {
+              "ref": [
+                "delivery_active"
+              ]
+            },
+            {
+              "xpr": [
+                "case",
+                "when",
+                {
+                  "ref": [
+                    "incidentCount"
+                  ]
+                },
+                "=",
+                {
+                  "val": 0
+                },
+                "then",
+                {
+                  "val": "Success"
+                },
+                "when",
+                {
+                  "ref": [
+                    "incidentCount"
+                  ]
+                },
+                "=",
+                {
+                  "val": 1
+                },
+                "then",
+                {
+                  "val": "Warning"
+                },
+                "else",
+                {
+                  "val": "Error"
+                },
+                "end"
+              ],
+              "as": "incident_status",
+              "cast": {
+                "type": "cds.String"
+              }
+            }
+          ]
+        }
+      },
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "type": "cds.String"
+        },
+        "id_recipent": {
+          "@cds.persistence.name": "ID_RECIPENT",
+          "type": "cds.String"
+        },
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "type": "cds.String"
+        },
+        "id_currentOwner": {
+          "@cds.persistence.name": "ID_CURRENTOWNER",
+          "type": "cds.String"
+        },
+        "lastOwnerChangeLat": {
+          "@cds.persistence.name": "LASTOWNERCHANGELAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeLon": {
+          "@cds.persistence.name": "LASTOWNERCHANGELON",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeTime": {
+          "@cds.persistence.name": "LASTOWNERCHANGETIME",
+          "type": "cds.DateTime"
+        },
+        "delivery_active": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "DELIVERY_ACTIVE",
+          "type": "cds.Boolean"
+        },
+        "incident_status": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "INCIDENT_STATUS",
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "view"
+    },
+    "rosetracker.database.views.tracpack": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_TRACPACK",
+      "query": {
+        "SELECT": {
+          "from": {
+            "join": "inner",
+            "args": [
+              {
+                "ref": [
+                  "rosetracker.database.views.TrackingView"
+                ],
+                "as": "trac"
+              },
+              {
+                "ref": [
+                  "rosetracker.database.views.PackageDeliveryStatus"
+                ],
+                "as": "pack"
+              }
+            ],
+            "on": [
+              {
+                "ref": [
+                  "trac",
+                  "PackageID"
+                ]
+              },
+              "=",
+              {
+                "ref": [
+                  "pack",
+                  "id_package"
+                ]
+              }
+            ]
+          },
+          "columns": [
+            {
+              "ref": [
+                "pack",
+                "id_package"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_recipent"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_rosetype"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_currentOwner"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLat"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLon"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeTime"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "delivery_active"
+              ]
+            },
+            {
+              "func": "count",
+              "args": [
+                {
+                  "ref": [
+                    "trac",
+                    "Incident"
+                  ]
+                }
+              ],
+              "as": "incidentCount"
+            }
+          ],
+          "groupBy": [
+            {
+              "ref": [
+                "pack",
+                "id_package"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_recipent"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_rosetype"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "id_currentOwner"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLat"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeLon"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "lastOwnerChangeTime"
+              ]
+            },
+            {
+              "ref": [
+                "pack",
+                "delivery_active"
+              ]
+            }
+          ]
+        }
+      },
+      "elements": {
+        "id_package": {
+          "@cds.persistence.name": "ID_PACKAGE",
+          "type": "cds.String"
+        },
+        "id_recipent": {
+          "@cds.persistence.name": "ID_RECIPENT",
+          "type": "cds.String"
+        },
+        "id_rosetype": {
+          "@cds.persistence.name": "ID_ROSETYPE",
+          "type": "cds.String"
+        },
+        "id_currentOwner": {
+          "@cds.persistence.name": "ID_CURRENTOWNER",
+          "type": "cds.String"
+        },
+        "lastOwnerChangeLat": {
+          "@cds.persistence.name": "LASTOWNERCHANGELAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeLon": {
+          "@cds.persistence.name": "LASTOWNERCHANGELON",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "lastOwnerChangeTime": {
+          "@cds.persistence.name": "LASTOWNERCHANGETIME",
+          "type": "cds.DateTime"
+        },
+        "delivery_active": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "DELIVERY_ACTIVE",
+          "type": "cds.Boolean"
+        },
+        "incidentCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "INCIDENTCOUNT"
+        }
+      },
+      "$syntax": "view"
+    }
+  },
+  "version": {
+    "csn": "1.0"
+  },
+  "meta": {
+    "creator": "CDS Compiler v1.15.0"
+  },
+  "$version": "1.0",
+  "@sql_mapping": "plain"
+}

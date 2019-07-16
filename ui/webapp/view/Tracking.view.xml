@@ -1,0 +1,57 @@
+
+	<mvc:View
+		controllerName="rosetracker.RoseTracker.controller.Tracking"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:mc="sap.suite.ui.microchart"
+		xmlns:layout="sap.ui.layout"
+		height="100%">
+
+	
+	
+
+	<Panel
+			headerText="Multiple lines">
+		<layout:Grid
+				defaultSpan="XL6 L6 M6 S12"
+				content="{/multiline}">
+			<layout:VerticalLayout class="sapUiTinyMargin">
+				<Text text="{description}" width="17rem"/>
+				<mc:LineMicroChart
+						color="{color}"
+						showPoints="{showPoints}"
+						size="{/size}"
+						threshold="{threshold}"
+						showThresholdLine="{showThresholdLine}"
+						leftTopLabel="{leftTopLabel}"
+						leftBottomLabel="{leftBottomLabel}"
+						rightTopLabel="{rightTopLabel}"
+						rightBottomLabel="{rightBottomLabel}"
+						showTopLabels="{showTopLabels}"
+						showBottomLabels="{showBottomLabels}"
+						press="press"
+						class="sapUiTinyMarginTop"
+						lines="{
+							path: 'lines',
+							templateShareable: true
+						}">
+					<mc:lines>
+						<mc:LineMicroChartLine
+								points="{
+								path: 'points',
+								templateShareable: true
+							}"
+								color="{color}"
+								showPoints="{showPoints}"
+								type="{type}"
+								>
+							<mc:LineMicroChartPoint x="{x}" y="{y}"/>
+						</mc:LineMicroChartLine>
+					</mc:lines>
+				</mc:LineMicroChart>
+			</layout:VerticalLayout>
+		</layout:Grid>
+	</Panel>
+
+
+</mvc:View>

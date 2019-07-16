@@ -1,0 +1,36 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/RoseTrackerDummyDataV2/(.*)$",
+      "target": "$1",
+      "authenticationType": "none",
+      "destination": "RoseTrackerDummyDataV2",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/RoseTrackerBC/(.*)$",
+      "target": "$1",
+      "authenticationType": "none",
+      "destination": "RoseTrackerBC",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/RoseTrackerDataService/(.*)$",
+      "target": "$1",
+      "authenticationType": "none",
+      "destination": "RoseTrackerDataService",
+      "csrfProtection": false
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

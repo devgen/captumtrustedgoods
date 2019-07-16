@@ -1,0 +1,90 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:chart="sap.chart"
+	xmlns:data="sap.chart.data" xmlns:viz="sap.viz.ui5.controls" xmlns:f="sap.f" xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:vizData="sap.viz.ui5.data" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="rosetracker.RoseTracker.controller.Overview">
+	<App id="overview">
+		<pages>
+			<Page showHeader="true" title="{i18n>homePageTitle}" showFooter="true" showNavButton="false">
+				<content>
+					<OverflowToolbar width="auto" height="46px" design="Auto" visible="true" enabled="true">
+						<content> 
+							<Title text="Delivery Overview" titleStyle="H2" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+							<ToolbarSpacer width=""/>
+							<OverflowToolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+								<content>
+									<ToolbarSpacer width=""/>
+									<OverflowToolbarButton text="give over package" type="Default" icon="sap-icon://collaborate" iconFirst="true" width="40px" enabled="true"
+										visible="true" tooltip="Add or give over package" iconDensityAware="false" press="onPressOwnership"/>
+								</content>
+							</OverflowToolbar>
+						</content>
+					</OverflowToolbar>
+					<!-- Icontabbar starts here -->
+					<IconTabBar id="idTopLevelIconTabBar" selectedKey="db" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter id="current" text="{i18n>current}">
+								<!-- left upper side-->
+								<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding" sideContentFallDown="BelowM"
+									containerQuery="true" breakpointChanged="updateToggleButtonState">
+									<l:mainContent>
+										<Title text="{i18n>current}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+										<!-- Table as Fragent -->
+										<core:Fragment fragmentName="rosetracker.RoseTracker.view.Package" type="XML"/>
+									</l:mainContent>
+									<l:sideContent>
+										<Title text="Status Summary Open Deliveries" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+										<viz:VizFrame xmlns="sap.viz" id="idDonutChart" vizType="donut" width="100%" height="300px"
+											vizProperties="{plotArea: { colorPalette : ['green','orange','red' ] },title:{ text:' '}}">
+											<viz:dataset>
+												<vizData:FlattenedDataset data="{/OrderData}">
+													<vizData:dimensions>
+														<vizData:DimensionDefinition name="Status" value="{Status}"/>
+													</vizData:dimensions>
+													<vizData:measures>
+														<vizData:MeasureDefinition name="Count" value="{openCount}"/>
+													</vizData:measures>
+												</vizData:FlattenedDataset>
+											</viz:dataset>
+											<viz:feeds>
+												<vizFeeds:FeedItem uid="size" type="Measure" values="Count"/>
+												<vizFeeds:FeedItem uid="color" type="Dimension" values="Status"/>
+											</viz:feeds>
+										</viz:VizFrame>
+									</l:sideContent>
+								</l:DynamicSideContent>
+							</IconTabFilter>
+							<IconTabFilter id="closed" text="{i18n>closed}">
+								<l:DynamicSideContent id="DynamicSideContent2" class="sapUiDSCExplored sapUiContentPadding" sideContentFallDown="BelowM"
+									containerQuery="true" breakpointChanged="updateToggleButtonState">
+									<l:mainContent>
+										<Title text="{i18n>closed}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+										<core:Fragment fragmentName="rosetracker.RoseTracker.view.PackagePast" type="XML"/>
+									</l:mainContent>
+									<l:sideContent>
+										<Title text="Status Summary Closed Deliveries" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+										<viz:VizFrame xmlns="sap.viz" id="idDonutChart2" vizType="donut" width="100%" height="300px"
+											vizProperties="{plotArea: { colorPalette : ['green','orange','red' ] },title:{ text:' '}}">
+											<viz:dataset>
+												<vizData:FlattenedDataset data="{/OrderData}">
+													<vizData:dimensions>
+														<vizData:DimensionDefinition name="Status" value="{Status}"/>
+													</vizData:dimensions>
+													<vizData:measures>
+														<vizData:MeasureDefinition name="Count" value="{closedCount}"/>
+													</vizData:measures>
+												</vizData:FlattenedDataset>
+											</viz:dataset>
+											<viz:feeds>
+												<vizFeeds:FeedItem uid="size" type="Measure" values="Count"/>
+												<vizFeeds:FeedItem uid="color" type="Dimension" values="Status"/>
+											</viz:feeds>
+										</viz:VizFrame>
+									</l:sideContent>
+								</l:DynamicSideContent>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
