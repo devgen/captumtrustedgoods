@@ -95,10 +95,9 @@
 													<Text text="{TimeStamp}"/>
 														<ObjectStatus state="{=  2.0000 > ${MinTemperature} ? 'Error' : 'Success'}" text="{MinTemperature}"		visible="true" />
 														<ObjectStatus state="{= ${MaxTemperature} >  8.0000 ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
-						<ObjectStatus state="{= 45.0000 >  ${MinHumidity} ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
-						<ObjectStatus state="{= ${MaxHumidity} >  90.0000 ?'Error' : 'Success'}" text="{MaxHumidity}"		visible="true" />
-						
-									
+														<ObjectStatus state="{= 45.0000 >  ${MinHumidity} ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
+														<ObjectStatus state="{= ${MaxHumidity} >  90.0000 ?'Error' : 'Success'}" text="{MaxHumidity}"		visible="true" />
+	
 																			<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
 										<!--			<Text text="
 										{path: 'CurrentLongitude'};
