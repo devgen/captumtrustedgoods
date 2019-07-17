@@ -92,13 +92,12 @@
 											<ColumnListItem>
 												<cells>
 													<Text text="{PackageID}"/>
-													<Text text="{TimeStamp}"/>
+													<Text text="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 														<ObjectStatus state="{=  2.0000 > ${MinTemperature} ? 'Error' : 'Success'}" text="{MinTemperature}"		visible="true" />
 														<ObjectStatus state="{= ${MaxTemperature} >  8.0000 ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
 														<ObjectStatus state="{= 45.0000 >  ${MinHumidity} ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
 														<ObjectStatus state="{= ${MaxHumidity} >  90.0000 ?'Error' : 'Success'}" text="{MaxHumidity}"		visible="true" />
-	
-																			<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
+												<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
 										<!--			<Text text="
 										{path: 'CurrentLongitude'};
 										{path: 'CurrentLatitude'};0"/> -->
@@ -131,17 +130,17 @@
 												items="{ path : '/IncidentBC' }">
 													<vbm:Spot 
 													id="incidents" 
-													position="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0" 
+													labelType="Warning" 
+													position="{path: 'CurrentLongitude'};{path: 'CurrentLatitude'};0" 
 													tooltip="" 
-													labelType="Error" 
-													labelText="{path: 'TimeStamp'}"
+													labelText="Incident"
 													></vbm:Spot>
 														</vbm:Spots>
 												<vbm:Spots id="ownerSpots"
 												items="{ path : '/OwnerBC' }">
 													<vbm:Spot 
 													id="ownerchanges" 
-													position="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0" 
+													position="{path: 'CurrentLongitude'};{path: 'CurrentLatitude'};0" 
 													tooltip="" 
 													labelType="Default" 
 													labelText="{path: 'OwnerID'}"

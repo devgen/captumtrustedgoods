@@ -146,6 +146,8 @@ sap.ui.define([
 							CurrentLatitude: lat,
 							CurrentLongitude: long,
 							RouteToNextOwner: lastLong + ";" + lastLat + ";0; " + long + ";" + lat + ";0"
+							//Testroute
+					//	RouteToNextOwner: 	"2.3522219;48.856614;0; -74.0059731;40.7143528;0"
 						}
 
 						//create a new entry in the OwnerBC Odata Table --> Blockchain
@@ -158,6 +160,8 @@ sap.ui.define([
 								sap.m.MessageToast.show('Error: Ownershipchange did not succeed');
 							}
 						});
+						
+						
 
 					},
 					error: function () {
@@ -174,6 +178,18 @@ sap.ui.define([
 						OwnerLongitude: long,
 						OwnerTimestamp: new Date()
 					}
+					
+					
+					// Update the corresponding entry for the scanned PackageID in the PackageData Table
+							oModel.update("/PackageData('" + PackageIDInput + "')", oData, {
+								success: function () {
+									sap.m.MessageToast.show('Success: ' + PackageIDInput + ' was updated');
+								},
+								error: function () {
+									sap.m.MessageToast.show('Error: Ownershipchange did not succeed');
+								}
+							}); 
+
 			}
 
 		},

@@ -59,7 +59,8 @@ sap.ui.define([
 			incidentSpots.getBinding("items").filter(ofilter);
 				var ownerSpots = oView.byId("ownerSpots");
 			ownerSpots.getBinding("items").filter(ofilter);
-			
+					var routes = oView.byId("routes");
+			routes.getBinding("items").filter(ofilter);
 			//FILTER MAP BY PACKAGES
 			 oView.byId("routes").getBinding("items").filter(ofilter);
 			 	 oView.byId("incidentSpots").getBinding("items").filter(ofilter);
