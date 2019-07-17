@@ -4,23 +4,23 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/model/FilterOperator",
 	'sap/m/MessageToast'
-	
+
 ], function (Controller, History, FilterOperator) {
 	"use strict";
 
 	let location = 'no value';
-	let	latitude = '19.99';
-	let	longitude = '50.99';
+	let latitude = '';
+	let longitude = '';
 
 	return Controller.extend("rosetracker.RoseTracker.controller.Formula", {
 
 		onBeforeRendering: function () {
+
 		},
 
-		onInit: function () {
-		},
-		
+		onInit: function () {},
 
+		//3.1. OnGeoSuccess
 		//if geolocation is sucessfully loaded.
 		onGeoSuccess: function (position) {
 			// todo translate geocode 
@@ -35,8 +35,10 @@ sap.ui.define([
 			console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 		},
 
+		// 3.2. OnPress
 		//FUNCTION FOR CLICKING THE SCAN BUTTON
 		onPress: function (oEvent) {
+
 			//TO GET THE RIGHT CONTEXT AND ACCESS ELEMENTS IN THE VIEW
 			var that = this;
 			// USE NAVIGATOR TO ACCESS THE CURRENT GEOLOCATION AND CALL THE CORRESPONDING METHOD
@@ -45,18 +47,15 @@ sap.ui.define([
 			});
 			// USE NDC DEVICE NATIVE CAMERA TO SCAN THE QR CODE
 			sap.ndc.BarcodeScanner.scan(
-				
-			
+
 				// IF SCAN WAS SUCESSFULL; APPLY THE FOLLOWING LOGIC TO THE RESULT
 				function (mResult) {
-						
 
 					//FILL IN THE FORM WITH THE RELEVANT DATA
-					var	packageID = mResult.text;
+					var packageID = mResult.text;
 
 					//Create Ownership time
 					var today = new Date();
-		
 
 					//SET THE VALUES IN THE VIEW ELEMENTS
 					that.byId('PackageIDChange').setText(packageID);
@@ -84,40 +83,25 @@ sap.ui.define([
 			)
 		},
 
-		//navigate back in browserhistory or to overview
-		onBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				oRouter.navTo("Overview", true);
-			}
-		},
-		
-		validateOwner: function(oEvent){
-		
-  
-		},
-		
+	
+		//3.3. OnPressSubmit
 		//PRESS THE SUBMIT BUTTON
 		onPressSubmit: function (oEvent) {
-		
+
 			var PackageIDInput = this.getView().byId("PackageIDChange").getText();
 			console.log(PackageIDInput)
 			var OwnerInput = this.getView().byId("OwnerChange").getValue();
 			var LocationInput = this.getView().byId("LocationChange").getText();
 			var TimeStampInput = this.getView().byId("TimestampChange").getText();
-			
-			console.log(PackageIDInput+'  '+ OwnerInput+' '+LocationInput+' '+TimeStampInput)
+
+			console.log(PackageIDInput + '  ' + OwnerInput + ' ' + LocationInput + ' ' + TimeStampInput)
 
 			var empty = false;
 			//CHECK IF VALUES ARE NOT FILLED AND SET A FLAG
 			if (PackageIDInput === "") {
 				empty = true;
 			}
-			if (OwnerInput  === "") {
+			if (OwnerInput === "") {
 				empty = true;
 				var OwnerLabel = this.getView().byId("OwnerChange");
 				//REMIND THE USER IN CASE HE DID NOT ENTER HIS OWNER ID FOR THE OWNERSHIP CHANGE
@@ -131,64 +115,96 @@ sap.ui.define([
 			}
 			// ONCE ALL FIELDS ARE FILLED; SEND THE NEW OWNERSHIP TO THE ODATA SEVICE
 			if (!empty) {
-				
-				
-					//Render the Odata Service
-			//var oModel = new  sap.ui.model.odata.v2.ODataModel("https://fon6pom573dmdpz1kerdummyodata-srv.cfapps.eu10.hana.ondemand.com/odata/v2/RoseTrackerDataService/");
-			var oModel = this.getView().getModel();
-			console.log(oModel)
-			
-			
-			var lat = latitude.toFixed(4);
+
+				//Render the Odata Service
+				var oModel = this.getView().getModel();
+				//	console.log(oModel)
+				var lastLong = '';
+				var lastLat = '';
+				var lat = latitude.toFixed(4);
 				var long = longitude.toFixed(4);
 
-		
-		var oData = {
-			PackageID: PackageIDInput,
-			TimeStamp: new Date(), 
-			OwnerID: OwnerInput, 
-			CurrentLatitude: lat,
-			CurrentLongitude: long
- 
-		}
-		
-			//Give feedback to the user by showing a message
-			var msg = 'no message' ;
-		
-		
-		oModel.create("/OwnerBC", oData, {
-			success:  function() {
-	  sap.m.MessageToast.show('Success: '+PackageIDInput+' was handed over to '+OwnerInput);  
-	},
-    error: function() {
-	  sap.m.MessageToast.show('Error: Ownershipchange did not succeed');  }
-		});
-	
-		
-		// Update Current Owner in PackageData
-		//First define the values that you want to submit
-			var oData = {
-			PackageID: PackageIDInput,
-			CurrentOwnerID: OwnerInput,
-			OwnerLatitude: lat,
-			OwnerLongitude: long,
-			OwnerTimestamp: new Date()
-		}
-		// Update the corresponding entry for the scanned PackageID in the PackageData Table
-		oModel.update("/PackageData('"+PackageIDInput+"')", oData, {
-			success:  function() {
-	  sap.m.MessageToast.show('Success: '+PackageIDInput+' was handed over to '+OwnerInput);  
-	},
-    error: function() {
-	  sap.m.MessageToast.show('Error: Ownershipchange did not succeed');  }
-		});
-		
-		
+				// read data 
+				oModel.read("/OwnerBC", {
+					urlParameters: {
+						"$filter": "PackageID eq '"+PackageIDInput+"'",
+						"$orderby": "TimeStamp desc",
+						"$top": 1,
+						"$select": "CurrentLongitude, CurrentLatitude"
+					},
+					success: function (oData, oResponse) {
+							console.log(oData.results[0].CurrentLongitude);
+							console.log(oData.results[0].CurrentLatitude);
+						lastLong = oData.results[0].CurrentLongitude;
+						lastLat = oData.results[0].CurrentLatitude;
 
+						// build the Data Object		
+						var oData = {
+							PackageID: PackageIDInput,
+							TimeStamp: new Date(),
+							OwnerID: OwnerInput,
+							CurrentLatitude: lat,
+							CurrentLongitude: long,
+							RouteToNextOwner: lastLong + ";" + lastLat + ";0; " + long + ";" + lat + ";0"
+							//Testroute
+					//	RouteToNextOwner: 	"2.3522219;48.856614;0; -74.0059731;40.7143528;0"
+						}
+
+						//create a new entry in the OwnerBC Odata Table --> Blockchain
+						oModel.create("/OwnerBC", oData, {
+							success: function (oData) {
+								sap.m.MessageToast.show('Success: ' + PackageIDInput + ' was handed over to ' + OwnerInput);
+								console.log(oData)
+							},
+							error: function () {
+								sap.m.MessageToast.show('Error: Ownershipchange did not succeed');
+							}
+						});
+						
+						
+
+					},
+					error: function () {
+						console.log('read error');
+					}
+				});
+
+				// Update Current Owner in PackageData --> SAP Hana
+				// First define the values that you want to submit
+				var oData = {
+						PackageID: PackageIDInput,
+						CurrentOwnerID: OwnerInput,
+						OwnerLatitude: lat,
+						OwnerLongitude: long,
+						OwnerTimestamp: new Date()
+					}
+					
+					
+					// Update the corresponding entry for the scanned PackageID in the PackageData Table
+							oModel.update("/PackageData('" + PackageIDInput + "')", oData, {
+								success: function () {
+									sap.m.MessageToast.show('Success: ' + PackageIDInput + ' was updated');
+								},
+								error: function () {
+									sap.m.MessageToast.show('Error: Ownershipchange did not succeed');
+								}
+							}); 
 
 			}
-		
-		}
+
+		},
+		//3.4. OnBack
+			//navigate back in browserhistory or to overview
+		onBack: function () {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("Overview", true);
+			}
+		},
 
 	});
 

@@ -1,73 +1,44 @@
-<core:FragmentDefinition
-xmlns="sap.m"
-xmlns:core="sap.ui.core"> 
-		<Panel expandable="false"  >
-                           	
-                         		<!-- table past packages -->
-                           	<Table noDataText="No data" id="pastPackages" 
-                           	items="{	path : '/PackageData'
-                         
-                           	}">
-                          
-                                 	<headerToolbar>
-                           			<Toolbar>
-                           				<Title text=""/>
-                           				<ToolbarSpacer/>
-                           			
-                           			</Toolbar>
-                           		</headerToolbar> 
-				<columns>
-					<Column
-					id="PackageIdPast"
-			>
-						<Text text="PackageID"/>
-					</Column>
-					<Column
-					id="StatusPast"
-					minScreenWidth="Tablet"
-						demandPopin="true">
-						<Text text="Status"/>
-					</Column> 
-					<Column
-					id="RoseTypePast"
-					minScreenWidth="Desktop"
-				demandPopin="false">
-						<Text text="Rose Type"/>
-					</Column>
-					<Column 
-					id="CurrenOwnerPast"
-					minScreenWidth="Desktop"
-				demandPopin="true">
-						<Text text="Owner"/>
-					</Column>
-					<Column 
-					id="LocationPast"
-					minScreenWidth="Desktop"
-						demandPopin="true">
-						<Text text="Location"/>
-					</Column>
-	
-				</columns>
-				<items>
-					<ColumnListItem type="Navigation"  press="handleListItemPress">
-						<cells>
-				
-					 <Text text="{PackageID}"/>
-					 <Text text="{IncidentStatus}" />
-					<!-- 					<ObjectStatus state="{IncidentStatus}" icon="{= ${IncidentStatus} === 'Success' ? 'sap-icon://sys-enter' : 'sap-icon://sys-cancel' }" 
-							 visible="true"/> 
-
-							<ObjectStatus text="{IncidentStatus}" state="{IncidentStatus}" icon="{ 
-							 path: 'IncidentStatus',
-							 formatter: '.formatter.statusText'}" 
-							 visible="true"/> 
-							 							-->
-								<Text text="{RoseType}"/>
-									<Text text="{OwnerNam}"/>
-										<Text text="{CurrentLatitude}"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-            </Panel>                            
-	</core:FragmentDefinition>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Panel expandable="false">
+		<!-- table past packages -->
+		<Table noDataText="{i18n>nodata}" id="pastPackages" items="{ path : '/PackageData' }">
+			<headerToolbar>
+				<Toolbar>
+					<Title text=""/>
+	<ToolbarSpacer/>
+					<SearchField id="searchfield2" width="50%" search="onFilterPackagesPast"/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column id="PackageIdPast">
+					<Text text="PackageID"/>
+				</Column>
+				<Column id="StatusPast" minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Status"/>
+				</Column>
+				<Column id="RoseTypePast" minScreenWidth="Desktop" demandPopin="false">
+					<Text text="Rose Type"/>
+				</Column>
+				<Column id="CurrenOwnerPast" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="Owner"/>
+				</Column>
+				<Column id="LocationPast" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="Location"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="handleListItemPress">
+					<cells>
+						<Text text="{PackageID}"/>
+					<ObjectStatus state="{IncidentStatus}" icon="{= ${IncidentStatus} === 'Success' ? 'sap-icon://sys-enter' : 'sap-icon://sys-cancel' }"
+							visible="true"/>
+						<Text text="{RoseType}"/>
+						<Text text="{OwnerNam}"/>
+						<!--<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/> -->
+								<Text text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</Panel>
+</core:FragmentDefinition>

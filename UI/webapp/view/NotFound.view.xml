@@ -1,18 +1,5 @@
-<mvc:View xmlns:core="sap.ui.core" 
-xmlns:mvc="sap.ui.core.mvc" 
-xmlns="sap.m" 
-controllerName="rosetracker.RoseTracker.controller.NotFound"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="rosetracker.RoseTracker.controller.NotFound"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	
-		
-			
-	<MessagePage
-      title="{i18n>NotFound}"
-      text="{i18n>NotFoundtext}"
-      description="{i18n>NotFounddescription}"
-      showNavButton="true"
+	<MessagePage title="{i18n>NotFound}" text="{i18n>NotFoundtext}" description="{i18n>NotFounddescription}" showNavButton="true"
 		navButtonPress="onBack"/>
-					
-		
-	
 </mvc:View>
