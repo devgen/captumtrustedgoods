@@ -79,11 +79,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -99,35 +97,20 @@
 					"target": "NotFound"
 				}
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "Overview",
-					"target": [
-						"Overview"
-					]
-				},
-				{
-					"name": "formula",
-					"pattern": "formula",
-					"target": "formula"
-				},
-				{
-					"name": "details",
-					"pattern": "details/{packageID}",
-					"target": "details",
-					"titleTarget": ""
-				},
-				{
-					"name": "Login",
-					"pattern": "login",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"Login"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "Overview",
+				"target": ["Overview"]
+			}, {
+				"name": "formula",
+				"pattern": "formula",
+				"target": "formula"
+			}, {
+				"name": "details",
+				"pattern": "details/{packageID}",
+				"target": "details",
+				"titleTarget": ""
+			}],
 			"targets": {
 				"Overview": {
 					"viewType": "XML",
@@ -146,10 +129,6 @@
 					"viewType": "XML",
 					"viewName": "NotFound",
 					"transition": "show"
-				},
-				"Login": {
-					"viewType": "XML",
-					"viewName": "Login"
 				}
 			}
 		}
