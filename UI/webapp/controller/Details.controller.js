@@ -4,9 +4,10 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/Device",
-	"sap/ui/vbm/AnalyticMap"
+	"sap/ui/vbm/AnalyticMap",
+		"../model/reverseGeocoding"
 
-], function (Controller, JSONModel, Device, History, FilterOperator, AnalyticMap) {
+], function (Controller, JSONModel, Device, History, FilterOperator, AnalyticMap, reverseGeocoding) {
 	"use strict";
 
 	//AnalyticMap.GeoJSONURL  =  "test-resources/sap/ui/vbm/demokit/media/analyticmap/L0.json";
@@ -18,6 +19,22 @@ sap.ui.define([
 			oRouter.getRoute("details").attachPatternMatched(this._onRouteMatched, this);
 
 		},
+		
+			convertCoordinatesToAddress: function (latInput, lngInput) {
+
+
+			
+			return new Promise((resolve, reject) => {
+						resolve(reverseGeocoding.geocodeLatLng(latInput, lngInput));
+			
+			})
+
+		},
+		
+		
+		
+		
+		
 		//2.2. _onRouteMatched
 			_onRouteMatched: function (oEvent) {
 			var oArgs, oView;

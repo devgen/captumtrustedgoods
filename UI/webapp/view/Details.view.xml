@@ -98,12 +98,11 @@
 						<ObjectStatus state="{= 45.0000 >  ${MinHumidity} ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
 						<ObjectStatus state="{= ${MaxHumidity} >  90.0000 ?'Error' : 'Success'}" text="{MaxHumidity}"		visible="true" />
 						
-										
-														<Text text="{MinHumidity}"/>
-													<Text text="{MaxHumidity}"/>
-													<Text text="
+									
+																			<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
+										<!--			<Text text="
 										{path: 'CurrentLongitude'};
-										{path: 'CurrentLatitude'};0"/>
+										{path: 'CurrentLatitude'};0"/> -->
 												</cells>
 											</ColumnListItem>
 										</items>
@@ -179,7 +178,8 @@
 												<cells>
 													<Text text="{PackageID}"/>
 													<Text text="{OwnerID}"/>
-													<Text text="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0"/>
+														<Text  text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
+											<!--		<Text text="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0"/> -->
 													<Text text="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 												</cells>
 											</ColumnListItem>

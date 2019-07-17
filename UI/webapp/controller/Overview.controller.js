@@ -5,13 +5,14 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/FilterType",
 	"sap/ui/core/routing/History",
-	"../model/formatter"
+	"../model/formatter",
+	"../model/reverseGeocoding"
 
-], function (Controller, MessageBox, Utilities, History, formatter, Filter, FilterType) {
+], function (Controller, MessageBox, Utilities, History, formatter, Filter, FilterType, reverseGeocoding) {
 	"use strict";
 
 	return Controller.extend("rosetracker.RoseTracker.controller.Overview", {
-		formatter: formatter,
+	//	formatter: formatter,
 
 		//1.1 onBeforeRendering
 		//LOAD AND FILTER DATA BEFORE RENDERING 
@@ -67,8 +68,7 @@ sap.ui.define([
 				sorter: oSorter,
 				filters: [ofilterPast]
 			});
-
-
+			
 			//1.1.4. Prepare the Filter for the Donut Chart
 			//Make sure that the donut chart gets the values for all packages
 			var ofilterCust = new sap.ui.model.Filter({
@@ -138,6 +138,33 @@ sap.ui.define([
 			oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCustU);
 			}
 		},
+		
+		
+		
+		convertCoordinatesToAddress: function (latInput, lngInput) {
+
+			// reverseGeocoding.geocodeLatLng(latInput, lngInput)
+			// 	.then((result) => {
+			// 		console.log(result)
+			// 		return result;
+			// 	})
+			// 	.catch((error)=>{
+			// 		return "München"; 
+			// 	});
+			
+			return new Promise((resolve, reject) => {
+						resolve(reverseGeocoding.geocodeLatLng(latInput, lngInput));
+				// .then((result) => {
+				// 	console.log(result)
+				// 	return result;
+				// })
+				// .catch((error)=>{
+				// 	return "München"; 
+				// });
+			})
+
+		},
+		
 		
 		//1.2 OnInit
 		onInit: function () {

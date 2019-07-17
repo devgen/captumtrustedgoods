@@ -34,7 +34,8 @@
 							visible="true"/>
 						<Text text="{RoseType}"/>
 						<Text text="{OwnerNam}"/>
-						<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>
+						<!--<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/> -->
+								<Text text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
 					</cells>
 				</ColumnListItem>
 			</items>
