@@ -70,25 +70,28 @@ sap.ui.define([
 			//BIND AND FILTER LINE GRAPH
 			// GET THE LINE CHART FROM THE VIEW BY THE ID OF THE VIZFRAME
 			var tempLineChart = this.getView().byId("idLineGraph");
+					//REPEAT THIS FOT THE HUMIDITY LINE CHART - 1 GET ELEMENT FROM VIEW
+			var humLineChart = this.getView().byId("idLineGraph2");
 
 			//BIND THE CHART TO THE CORRESPONDING DATA TABLE OF THE SERVICE: IN THIS CASE THE TRACKING DATA
 			tempLineChart.bindElement({
 				path: "/TrackingView"
 			});
-
-			// APPLY THE FILTER THAT WAS CREATED EARLIER TO FILTER THE LIECHART BY PACKAGEID
-			oView.byId("idLineGraph").getDataset().getBinding("data").filter(ofilter);
-
-			//REPEAT THIS FOT THE HUMIDITY LINE CHART - 1 GET ELEMENT FROM VIEW
-			var humLineChart = this.getView().byId("idLineGraph2");
-
-			// BIND IT TO THE DATATABLE
+				// BIND IT TO THE DATATABLE
 			humLineChart.bindElement({
 				path: "/TrackingView"
 			});
 
+
+			// APPLY THE FILTER THAT WAS CREATED EARLIER TO FILTER THE LIECHART BY PACKAGEID
+			oView.byId("idLineGraph").getDataset().getBinding("data").filter(ofilter);
+
 			// APPLY THE FILTER
 			oView.byId("idLineGraph2").getDataset().getBinding("data").filter(ofilter);
+	
+	
+
+		
 
 		},
 

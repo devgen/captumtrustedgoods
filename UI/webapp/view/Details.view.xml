@@ -231,14 +231,14 @@
 														<viz.data:DimensionDefinition name="TimeStamp" value="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 													</viz.data:dimensions>
 													<viz.data:measures>
-														<viz.data:MeasureDefinition name="MinHumidity" value="{MinHumidity}"/>
-														<viz.data:MeasureDefinition name="MaxHumidity" value="{MaxHumidity}"/>
+														<viz.data:MeasureDefinition name="MinHum" value="{MinHum}"/>
+														<viz.data:MeasureDefinition name="MaxHum" value="{MaxHum}"/>
 													</viz.data:measures>
 												</viz.data:FlattenedDataset>
 											</viz:dataset>
 											<viz:feeds>
-												<viz.feeds:FeedItem id="valueAxisFeed4" uid="valueAxis" type="Measure" values="MinHumidity"/>
-												<viz.feeds:FeedItem id="valueAxisFeed3" uid="valueAxis" type="Measure" values="MaxHumidity"/>
+												<viz.feeds:FeedItem id="valueAxisFeed4" uid="valueAxis" type="Measure" values="MinHum"/>
+												<viz.feeds:FeedItem id="valueAxisFeed3" uid="valueAxis" type="Measure" values="MaxHum"/>
 												<viz.feeds:FeedItem id="categoryAxisFeed2" uid="categoryAxis" type="Dimension" values="TimeStamp"/>
 											</viz:feeds>
 										</viz:VizFrame>
