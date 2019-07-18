@@ -639,6 +639,72 @@
       },
       "$syntax": "projection"
     },
+    "RoseTrackerDataService.incidents": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_INCIDENTS",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.incidents"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "PackageID": {
+          "@cds.persistence.name": "PACKAGEID",
+          "key": true,
+          "type": "cds.String"
+        },
+        "TimeStamp": {
+          "@cds.persistence.name": "TIMESTAMP",
+          "key": true,
+          "type": "cds.DateTime"
+        },
+        "MinTemp": {
+          "@cds.persistence.name": "MINTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxTemp": {
+          "@cds.persistence.name": "MAXTEMP",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MinHum": {
+          "@cds.persistence.name": "MINHUM",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "MaxHum": {
+          "@cds.persistence.name": "MAXHUM",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLat": {
+          "@cds.persistence.name": "CURRENTLAT",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "CurrentLong": {
+          "@cds.persistence.name": "CURRENTLONG",
+          "type": "cds.Decimal",
+          "precision": 8,
+          "scale": 4
+        },
+        "Incident": {
+          "@cds.persistence.name": "INCIDENT",
+          "type": "cds.Boolean"
+        }
+      },
+      "$syntax": "projection"
+    },
     "RoseTrackerDataService.packOwner": {
       "kind": "entity",
       "@cds.persistence.name": "ROSETRACKERDATASERVICE_PACKOWNER",
@@ -2257,7 +2323,7 @@
       "query": {
         "SELECT": {
           "from": {
-            "join": "inner",
+            "join": "right",
             "args": [
               {
                 "ref": [

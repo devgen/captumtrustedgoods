@@ -17,6 +17,7 @@
         <EntitySet Name="Rose_owner" EntityType="RoseTrackerDataService.Rose_owner"/>
         <EntitySet Name="SensorInput" EntityType="RoseTrackerDataService.SensorInput"/>
         <EntitySet Name="TrackingView" EntityType="RoseTrackerDataService.TrackingView"/>
+        <EntitySet Name="incidents" EntityType="RoseTrackerDataService.incidents"/>
         <EntitySet Name="packOwner" EntityType="RoseTrackerDataService.packOwner"/>
         <EntitySet Name="packagewithinicdentstatus" EntityType="RoseTrackerDataService.packagewithinicdentstatus"/>
         <EntitySet Name="tracpack" EntityType="RoseTrackerDataService.tracpack"/>
@@ -159,6 +160,21 @@
         <Property Name="incident" Type="Edm.Boolean"/>
       </EntityType>
       <EntityType Name="TrackingView">
+        <Key>
+          <PropertyRef Name="PackageID"/>
+          <PropertyRef Name="TimeStamp"/>
+        </Key>
+        <Property Name="PackageID" Type="Edm.String" Nullable="false"/>
+        <Property Name="TimeStamp" Type="Edm.DateTimeOffset" Nullable="false"/>
+        <Property Name="MinTemp" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxTemp" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MinHum" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="MaxHum" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLat" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="CurrentLong" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="Incident" Type="Edm.Boolean"/>
+      </EntityType>
+      <EntityType Name="incidents">
         <Key>
           <PropertyRef Name="PackageID"/>
           <PropertyRef Name="TimeStamp"/>

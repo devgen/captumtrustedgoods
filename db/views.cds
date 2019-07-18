@@ -71,6 +71,18 @@ on paOW.id_rosetype = rose.id_rosetype {
 
 // --------------------------------- OrderDataView View START ---------------------------------
 
+view OrderDataViewAll as 
+select from packagewithinicdentstatus as pack{
+	
+	key pack.incident_status
+	
+	 
+	
+	
+	
+} group by pack.incident_status;
+
+// TOOD just one with id all (maybe) 
 view OrderDataView as 
 select from packagewithinicdentstatus {
 
@@ -134,7 +146,7 @@ TrackingView as trac {
 } where trac.Incident = TRUE;
 
 view tracpack as select from 
-incidents as trac join
+incidents as trac right outer join
 PackageDeliveryStatus as pack 
 on trac.PackageID = pack.id_package {
 

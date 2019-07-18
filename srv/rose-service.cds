@@ -13,6 +13,7 @@ service RoseTrackerDataService {
 	entity tracpack as projection on views.tracpack;
 	entity packagewithinicdentstatus as projection on views.packagewithinicdentstatus;
 	entity packOwner as projection on views.packOwner;
+	entity incidents as projection on views.incidents;
 	
 	
 	
