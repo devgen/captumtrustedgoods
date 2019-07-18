@@ -93,6 +93,24 @@ public class OwnerBCCustomHandler {
 			
 			// get BCOwnerChangeData based on the retreived IDs
 			List<BCOwnerChange> data = new LinkedList<BCOwnerChange>();
+			
+			ExpressionNode expNode = null;
+				
+			if(req.getQueryExpression() != null) {
+				expNode = req.getQueryExpression().getNodes().get(0);
+			}
+				
+			if(expNode != null && OwnerChangeExpressionConverter.CheckIfFilterIsSingle(expNode)) {
+				
+				pckIDs.clear();
+				
+				String foundPackage = OwnerChangeExpressionConverter.ExecuteSingleFilterID(expNode);
+				
+				WriteToConsole("Found Package Owner: " + foundPackage);
+				
+				pckIDs.add(foundPackage);
+				
+			} 
 	
 			for(String id : pckIDs) {
 				

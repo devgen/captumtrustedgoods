@@ -21,6 +21,86 @@ public class IncidentExpressionConverter {
 		
 	}
 	
+	public static Boolean CheckIfFilterIsSingle(ExpressionNode node) {
+	
+		if(node instanceof BinaryExpressionNode) {
+			
+			BinaryExpressionNode biNode = (BinaryExpressionNode) node;
+			
+			if(biNode.getOperator().equals(OPERATOR.EQ.toString())) {
+			
+				return true;
+			
+			}
+		}
+		
+		return false;
+	}
+	
+	public static String ExecuteSingleFilterID(ExpressionNode node) {
+		
+		if(node instanceof BinaryExpressionNode) {
+			
+			BinaryExpressionNode biNode = (BinaryExpressionNode) node;
+			
+			PropertyNode poNode = null;
+			LiteralNode liNode = null;;
+			
+			if(biNode.getFirstChild() instanceof PropertyNode) {
+				
+				//WriteToConsole(" First Child is a Property ! ");
+					
+				poNode = (PropertyNode) biNode.getFirstChild();
+				
+			} 
+			if(biNode.getSecondChild() instanceof PropertyNode) {
+				
+				//WriteToConsole(" Second Child is a Property ! ");
+					
+				poNode = (PropertyNode) biNode.getSecondChild();
+				
+			} 
+			if(biNode.getFirstChild() instanceof LiteralNode) {
+				
+				//WriteToConsole(" First Child is a Literal ! ");
+				
+				liNode = (LiteralNode) biNode.getFirstChild();
+				
+			} 
+			if(biNode.getSecondChild() instanceof LiteralNode) {
+				
+				//WriteToConsole(" Second Child is a Literal ! ");
+				
+				liNode = (LiteralNode) biNode.getSecondChild();
+				
+			} 
+			
+			if(poNode == null) {
+				
+				//WriteToConsole("Property Node was null.");
+				return null;
+				
+			}
+			
+			if(liNode == null) {
+				
+				//WriteToConsole("Literal Node was null.");
+				return null;
+				
+			}
+			
+			String property = poNode.getPath();
+			Object literal = liNode.getValue();
+			
+			//if(property == "PackageID") {
+				
+				return (String) literal;
+			//} 
+		}
+		return null;
+	}
+	
+	
 	public static List<BCIncident> executeExpressionNodeOnData(ExpressionNode node, List<BCIncident> dataToExecute) {
 		
 		WriteToConsole("---- Start Filter Expression ----");
@@ -105,22 +185,6 @@ public class IncidentExpressionConverter {
 	
 	private static List<BCIncident> executeAnd(List<BCIncident> firstList, List<BCIncident> secondList) {
 		
-		// WriteToConsole(" It's an AND ! ");
-		// WriteToConsole(" with first List count " + firstList.size());
-		// WriteToConsole(" elems of first List ");
-		// for(BCOwnerChange c : firstList) {
-		// 	WriteToConsole(" elem of 1.list " + c.PackageID);
-		// }
-		// WriteToConsole(" with second List count " + secondList.size());
-		// WriteToConsole(" elems of second List ");
-		// for(BCOwnerChange c : secondList) {
-		// 	WriteToConsole(" elem of 2.list " + c.PackageID);
-		// }
-		
-		// // both lists are correct!
-		
-		
-		// error here?
 		List<BCIncident> back = firstList.stream()
 								  .distinct()
 								  .filter(secondList::contains)

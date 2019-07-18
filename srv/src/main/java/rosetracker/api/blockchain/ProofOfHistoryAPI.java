@@ -28,8 +28,8 @@ public class ProofOfHistoryAPI {
 	private static final String AuthURL = "https://p2001348379trial.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials";
 
 	private static void WriteToConsole(String msg) {
-		System.out.print("---------------------------------------------------------\n" + "CUSTOM CODE   ----   ----    "
-				+ msg + "    ---    ----  \n" + "---------------------------------------------------------\n");
+		System.out.print("----------------------------\n" +  msg + 
+		"\n" + "----------------------------\n");
 	}
 
 	private static void UpdateAccessToken() {

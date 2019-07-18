@@ -55,9 +55,26 @@ public class IncidentBCCustomHandler {
 
 			List<String> pckIDs = DatabaseAPI.GetPackageIDsFromDB(h);
 			
-	
 			List<BCIncident> data = new LinkedList<BCIncident>();
-	
+				
+			ExpressionNode expNode = null;
+				
+			if(req.getQueryExpression() != null) {
+				expNode = req.getQueryExpression().getNodes().get(0);
+			}
+				
+			if(expNode != null && IncidentExpressionConverter.CheckIfFilterIsSingle(expNode)) {
+				
+				pckIDs.clear();
+				
+				String foundPackage = IncidentExpressionConverter.ExecuteSingleFilterID(expNode);
+				
+				WriteToConsole("Found Package Incident: " + foundPackage);
+				
+				pckIDs.add(foundPackage);
+				
+			} 
+		
 			for(String id : pckIDs) {
 	
 				String jsonString = ProofOfHistoryAPI.GetDataForPackage(id);
@@ -372,7 +389,7 @@ public class IncidentBCCustomHandler {
 		
 		String packageID = (String) data.get("PackageID");
 		BigDecimal currLatBD = (BigDecimal) data.get("CurrentLatitude");
-		BigDecimal currLonBD = (BigDecimal) data.get("CurrentLatitude");
+		BigDecimal currLonBD = (BigDecimal) data.get("CurrentLongitude");
 		BigDecimal mintempBD = (BigDecimal) data.get("MinTemperature");
 		BigDecimal maxtempBD = (BigDecimal) data.get("MaxTemperature");
 		BigDecimal minhumBD = (BigDecimal) data.get("MinHumidity");

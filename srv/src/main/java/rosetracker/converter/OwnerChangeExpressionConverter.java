@@ -21,6 +21,85 @@ public class OwnerChangeExpressionConverter {
 		
 	}
 	
+	public static Boolean CheckIfFilterIsSingle(ExpressionNode node) {
+	
+		if(node instanceof BinaryExpressionNode) {
+			
+			BinaryExpressionNode biNode = (BinaryExpressionNode) node;
+			
+			if(biNode.getOperator().equals(OPERATOR.EQ.toString())) {
+			
+				return true;
+			
+			}
+		}
+		
+		return false;
+	}
+	
+	public static String ExecuteSingleFilterID(ExpressionNode node) {
+		
+		if(node instanceof BinaryExpressionNode) {
+			
+			BinaryExpressionNode biNode = (BinaryExpressionNode) node;
+			
+			PropertyNode poNode = null;
+			LiteralNode liNode = null;;
+			
+			if(biNode.getFirstChild() instanceof PropertyNode) {
+				
+				//WriteToConsole(" First Child is a Property ! ");
+					
+				poNode = (PropertyNode) biNode.getFirstChild();
+				
+			} 
+			if(biNode.getSecondChild() instanceof PropertyNode) {
+				
+				//WriteToConsole(" Second Child is a Property ! ");
+					
+				poNode = (PropertyNode) biNode.getSecondChild();
+				
+			} 
+			if(biNode.getFirstChild() instanceof LiteralNode) {
+				
+				//WriteToConsole(" First Child is a Literal ! ");
+				
+				liNode = (LiteralNode) biNode.getFirstChild();
+				
+			} 
+			if(biNode.getSecondChild() instanceof LiteralNode) {
+				
+				//WriteToConsole(" Second Child is a Literal ! ");
+				
+				liNode = (LiteralNode) biNode.getSecondChild();
+				
+			} 
+			
+			if(poNode == null) {
+				
+				//WriteToConsole("Property Node was null.");
+				return null;
+				
+			}
+			
+			if(liNode == null) {
+				
+				//WriteToConsole("Literal Node was null.");
+				return null;
+				
+			}
+			
+			String property = poNode.getPath();
+			Object literal = liNode.getValue();
+			
+			//if(property == "PackageID") {
+				
+				return (String) literal;
+			//} 
+		}
+		return null;
+	}
+	
 	public static void dummy() {
 		
 		WriteToConsole("Operator eq : " + OPERATOR.EQ);
