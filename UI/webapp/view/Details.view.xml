@@ -130,8 +130,8 @@
 												items="{ path : '/IncidentBC' }">
 													<vbm:Spot 
 													id="incidents" 
-													labelType="Warning" 
-													position="{path: 'CurrentLongitude'};{path: 'CurrentLatitude'};0" 
+													labelType="Error" 
+													position="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0" 
 													tooltip="" 
 													labelText="Incident"
 													></vbm:Spot>
