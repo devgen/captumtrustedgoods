@@ -66,7 +66,7 @@ sap.ui.define([
 
 					// Fill In Form for PachageID from scanned pack to show info about the package	
 					// RETRIEVE RELEVANT INFO FOR THE SCANNED PACKAGE AND DISPLAY IT TO THE USER
-					var currentowner = that.getView().getModel().getObject("/PackageView('" + packageID + "')/CurrentOwnerID");
+					var currentowner = that.getView().getModel().getObject("/PackageView('" + packageID + "')/OwnerName");
 					var rosetype = that.getView().getModel().getObject("/PackageView('" + packageID + "')/RoseType");
 					var color = that.getView().getModel().getObject("/PackageView('" + packageID + "')/Color");
 
@@ -172,16 +172,16 @@ sap.ui.define([
 				// Update Current Owner in PackageData --> SAP Hana
 				// First define the values that you want to submit
 				var oData = {
-						PackageID: PackageIDInput,
-						CurrentOwnerID: OwnerInput,
-						OwnerLatitude: lat,
-						OwnerLongitude: long,
-						OwnerTimestamp: new Date()
+						id_package: PackageIDInput,
+						id_currentOwner: OwnerInput,
+						lastOwnerChangeLat: lat,
+						lastOwnerChangeLon: long,
+						lastOwnerChangeTime: new Date()
 					}
 					
 					
 					// Update the corresponding entry for the scanned PackageID in the PackageData Table
-							oModel.update("/PackageView('" + PackageIDInput + "')", oData, {
+							oModel.update("/Package('" + PackageIDInput + "')", oData, {
 								success: function () {
 									sap.m.MessageToast.show('Success: ' + PackageIDInput + ' was updated');
 								},

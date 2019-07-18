@@ -78,7 +78,7 @@ sap.ui.define([
 					});
 			
 			//Apply the filter to the
-			oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCust);
+		//	oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCust);
 
 			//*Optional: User Management
 			// only filter if logged in user is from type customer 
