@@ -2,14 +2,7 @@ ID: RoseTrackerV2
 _schema-version: "2.1"
 version: 0.0.1
 modules:
-  - name: RoseTrackerV2-db
-    type: hdb
-    path: db
-    parameters:
-      memory: 1024M
-      disk-quota: 1024M
-    requires:
-      - name: RoseTrackerV2-db-hdi-container
+  
   - name: RoseTrackerV2-srv
     type: java
     path: srv
@@ -39,6 +32,15 @@ modules:
      - name: uaa_RoseTrackerV2
      - name: dest_RoseTrackerV2
 
+  - name: db
+    type: hdb
+    path: db
+    parameters:
+       disk-quota: 1024M
+       memory: 1024M
+    requires:
+     - name: hdi_db_3
+
 resources:
   - name: RoseTrackerV2-db-hdi-container
     type: com.sap.xs.hdi-container
@@ -58,4 +60,9 @@ resources:
        service-plan: lite
        service: destination
     type: org.cloudfoundry.managed-service
+
+  - name: hdi_db_3
+    properties:
+       hdi-container-name_5: ${service-name}
+    type: com.sap.xs.hdi-container
 

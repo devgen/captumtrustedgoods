@@ -1360,6 +1360,46 @@
       },
       "$syntax": "view"
     },
+    "rosetracker.database.views.OrderDataViewAll": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_ORDERDATAVIEWALL",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.packagewithinicdentstatus"
+            ],
+            "as": "pack"
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "pack",
+                "incident_status"
+              ]
+            }
+          ],
+          "groupBy": [
+            {
+              "ref": [
+                "pack",
+                "incident_status"
+              ]
+            }
+          ]
+        }
+      },
+      "elements": {
+        "incident_status": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "INCIDENT_STATUS",
+          "key": true,
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "view"
+    },
     "rosetracker.database.views.PackageDeliveryStatus": {
       "kind": "entity",
       "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_PACKAGEDELIVERYSTATUS",
