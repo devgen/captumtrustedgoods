@@ -20,11 +20,11 @@ sap.ui.define([
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 
-			// enable routing - create the views based on the url/hash
+			// enable routing
 			this.getRouter().initialize();
 
 			// set the device model
-		//	this.setModel(models.createDeviceModel(), "device");
+			this.setModel(models.createDeviceModel(), "device");
 		}
 	});
 });

@@ -60,14 +60,14 @@ sap.ui.define([
 				group: true
 			});
 			currentPackages.bindItems({
-				path: "/PackageView",
+				path: "/PackageData",
 				template: currentPackages.getBindingInfo("items").template,
 				sorter: oSorter,
 				filters: [ofilterCurrent]
 			});
 			var pastPackages = oView.byId("pastPackages");
 			pastPackages.bindItems({
-				path: "/PackageView",
+				path: "/PackageData",
 				template: currentPackages.getBindingInfo("items").template,
 				sorter: oSorter,
 				filters: [ofilterPast]

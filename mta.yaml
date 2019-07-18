@@ -6,8 +6,8 @@ modules:
     type: hdb
     path: db
     parameters:
-      memory: 256M
-      disk-quota: 256M
+      memory: 1024M
+      disk-quota: 1024M
     requires:
       - name: RoseTrackerV2-db-hdi-container
   - name: RoseTrackerV2-srv
@@ -24,10 +24,12 @@ modules:
         properties:
           JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
             {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+  
 
-  - name: ui
+
+  - name: RoseTracker
     type: html5
-    path: ui
+    path: UI
     parameters:
        disk-quota: 256M
        memory: 256M

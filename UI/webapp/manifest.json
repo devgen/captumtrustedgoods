@@ -15,10 +15,10 @@
 		},
 		"dataSources": {
 			"RoseTrackerDataService": {
-				"uri": "/RoseTrackerOData/odata/v2/RoseTrackerDataService/",
+				"uri": "/RoseTrackerDummyDataV2/odata/v2/RoseTrackerDataService/",
 				"type": "OData",
 				"settings": {
-					"localUri": "localService/RoseTrackerDataService/metadata.xml"
+					"localUri": "localService/metadata.xml"
 				}
 			}
 		}

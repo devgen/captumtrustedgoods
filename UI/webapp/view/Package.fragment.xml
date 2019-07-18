@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<Panel expandable="false">
 		<!-- table current packages -->
-		<Table noDataText="No data" id="currentPackages" items="{ path : '/PackageView', sorter: { path: 'ActiveStatus', group: true } }">
+		<Table noDataText="No data" id="currentPackages" items="{ path : '/PackageData', sorter: { path: 'ActiveStatus', group: true } }">
 			<headerToolbar>
 				<Toolbar>
 					<Title text=""/>
