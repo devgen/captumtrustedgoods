@@ -73,7 +73,7 @@ sap.ui.define([
 
 			//BIND THE CHART TO THE CORRESPONDING DATA TABLE OF THE SERVICE: IN THIS CASE THE TRACKING DATA
 			tempLineChart.bindElement({
-				path: "/Tracking"
+				path: "/TrackingView"
 			});
 
 			// APPLY THE FILTER THAT WAS CREATED EARLIER TO FILTER THE LIECHART BY PACKAGEID
@@ -84,7 +84,7 @@ sap.ui.define([
 
 			// BIND IT TO THE DATATABLE
 			humLineChart.bindElement({
-				path: "/Tracking"
+				path: "/TrackingView"
 			});
 
 			// APPLY THE FILTER

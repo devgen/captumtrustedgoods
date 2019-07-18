@@ -40,7 +40,7 @@
 										<viz:VizFrame xmlns="sap.viz" id="idDonutChart" vizType="donut" width="100%" height="300px"
 											vizProperties="{plotArea: { colorPalette : ['red','green','orange' ] },title:{ text:' '}}">
 											<viz:dataset>
-												<vizData:FlattenedDataset data="{/OrderData}">
+												<vizData:FlattenedDataset data="{/OrderDataView}">
 													<vizData:dimensions>
 														<vizData:DimensionDefinition name="Status" value="{Status}"/>
 													</vizData:dimensions>
@@ -73,7 +73,7 @@
 										<viz:VizFrame xmlns="sap.viz" id="idDonutChart2" vizType="donut" width="100%" height="300px"
 											vizProperties="{plotArea: { colorPalette : ['green','orange','red' ] },title:{ text:' '}}">
 											<viz:dataset>
-												<vizData:FlattenedDataset data="{/OrderData}">
+												<vizData:FlattenedDataset data="{/OrderDataView}">
 													<vizData:dimensions>
 														<vizData:DimensionDefinition name="Status" value="{Status}"/>
 													</vizData:dimensions>

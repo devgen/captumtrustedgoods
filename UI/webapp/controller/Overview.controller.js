@@ -54,14 +54,14 @@ sap.ui.define([
 			var currentPackages = oView.byId("currentPackages");
 		
 			currentPackages.bindItems({
-				path: "/PackageData",
+				path: "/PackageView",
 				template: currentPackages.getBindingInfo("items").template,
 				sorter: oSorter,
 				filters: [ofilterCurrent]
 			});
 			var pastPackages = oView.byId("pastPackages");
 			pastPackages.bindItems({
-				path: "/PackageData",
+				path: "/PackageView",
 				template: currentPackages.getBindingInfo("items").template,
 				sorter: oSorter,
 				filters: [ofilterPast]
@@ -71,7 +71,7 @@ sap.ui.define([
 			//Make sure that the donut chart gets the values for all packages
 			var ofilterCust = new sap.ui.model.Filter({
 						//binding path
-						path: "CustomerID",
+						path: "recipentID",
 						//filter operation
 						operator: sap.ui.model.FilterOperator.EQ,
 						value1: 'all'

@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<Panel expandable="false">
 		<!-- table current packages -->
-		<Table noDataText="{i18n>nodata}" id="currentPackages" items="{ path : '/PackageData' }">
+		<Table noDataText="{i18n>nodata}" id="currentPackages" items="{ path : '/PackageView' }">
 			<headerToolbar>
 				<Toolbar>
 					<Title text=""/>
@@ -34,9 +34,9 @@
 						<ObjectStatus state="{IncidentStatus}" icon="{= ${IncidentStatus} === 'Success' ? 'sap-icon://sys-enter' : 'sap-icon://sys-cancel' }"
 							visible="true"/>
 						<Text text="{RoseType}"/>
-						<Text text="{CurrentOwnerID}"/>
-						<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>
-					<!--	<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/> -->
+						<Text text="{OwnerName}"/>
+				<!--		<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>  -->
+						<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>
 					</cells>
 				</ColumnListItem>
 			</items>

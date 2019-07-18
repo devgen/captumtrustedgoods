@@ -15,10 +15,10 @@
 		},
 		"dataSources": {
 			"RoseTrackerDataService": {
-				"uri": "/RoseTrackerDummyDataV2/odata/v2/RoseTrackerDataService/",
+				"uri": "/RoseTrackerDataServiceFinal/odata/v2/RoseTrackerDataService/",
 				"type": "OData",
 				"settings": {
-					"localUri": "localService/metadata.xml"
+					"localUri": "localService/RoseTrackerDataService/metadata.xml"
 				}
 			}
 		}
@@ -79,9 +79,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -97,20 +99,26 @@
 					"target": "NotFound"
 				}
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "Overview",
-				"target": ["Overview"]
-			}, {
-				"name": "formula",
-				"pattern": "formula",
-				"target": "formula"
-			}, {
-				"name": "details",
-				"pattern": "details/{packageID}",
-				"target": "details",
-				"titleTarget": ""
-			}],
+			"routes": [
+				{
+					"pattern": "",
+					"name": "Overview",
+					"target": [
+						"Overview"
+					]
+				},
+				{
+					"name": "formula",
+					"pattern": "formula",
+					"target": "formula"
+				},
+				{
+					"name": "details",
+					"pattern": "details/{packageID}",
+					"target": "details",
+					"titleTarget": ""
+				}
+			],
 			"targets": {
 				"Overview": {
 					"viewType": "XML",

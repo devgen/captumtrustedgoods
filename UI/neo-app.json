@@ -18,6 +18,22 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/RoseTrackerDataService",
+      "target": {
+        "type": "destination",
+        "name": "RoseTrackerDataService"
+      },
+      "description": "RoseTrackerData"
+    },
+    {
+      "path": "/RoseTrackerDataServiceFinal",
+      "target": {
+        "type": "destination",
+        "name": "RoseTrackerDataServiceFinal"
+      },
+      "description": "RoseTrackerDataServiceFinal"
     }
   ],
   "sendWelcomeFileRedirect": true

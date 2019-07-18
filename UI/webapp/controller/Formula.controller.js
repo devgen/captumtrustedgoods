@@ -66,9 +66,9 @@ sap.ui.define([
 
 					// Fill In Form for PachageID from scanned pack to show info about the package	
 					// RETRIEVE RELEVANT INFO FOR THE SCANNED PACKAGE AND DISPLAY IT TO THE USER
-					var currentowner = that.getView().getModel().getObject("/PackageData('" + packageID + "')/CurrentOwnerID");
-					var rosetype = that.getView().getModel().getObject("/PackageData('" + packageID + "')/RoseType");
-					var color = that.getView().getModel().getObject("/PackageData('" + packageID + "')/Color");
+					var currentowner = that.getView().getModel().getObject("/PackageView('" + packageID + "')/CurrentOwnerID");
+					var rosetype = that.getView().getModel().getObject("/PackageView('" + packageID + "')/RoseType");
+					var color = that.getView().getModel().getObject("/PackageView('" + packageID + "')/Color");
 
 					// SET THOSE VALUES INTO THE CORRESPONSING FIELDS IN THE VIEW
 					that.byId('CurrentOwnerIDForm').setText(currentowner);
@@ -181,7 +181,7 @@ sap.ui.define([
 					
 					
 					// Update the corresponding entry for the scanned PackageID in the PackageData Table
-							oModel.update("/PackageData('" + PackageIDInput + "')", oData, {
+							oModel.update("/PackageView('" + PackageIDInput + "')", oData, {
 								success: function () {
 									sap.m.MessageToast.show('Success: ' + PackageIDInput + ' was updated');
 								},
