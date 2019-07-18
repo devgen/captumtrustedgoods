@@ -8,24 +8,24 @@
 			<Page showHeader="true" title="Rose Tracker" showFooter="false" showNavButton="true" navButtonPress="onBack" navButtonTooltip="Overview">
 				<uxap:ObjectPageLayout showTitleInHeaderContent="false" useIconTabBar="true" isChildPage="yes" showHeaderContent="false"
 					showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
+						<!-- 2.1.1 START Page structure: copy above -->
+						<!-- 2.1.2 START Header: copy below -->
 					<uxap:headerTitle>
-						<uxap:ObjectPageHeader  objectTitle="Details" objectSubtitle="{ReceipientID}"
-							objectImageShape="Circle">
-							<uxap:actions>
-								<Link text="" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false"
-									subtle="false"/>
-							</uxap:actions>
+						<uxap:ObjectPageHeader  objectTitle="Details">
 							<uxap:navigationBar/>
 						</uxap:ObjectPageHeader>
 					</uxap:headerTitle>
+						<!-- 2.1.2 START Header: copy above -->
+						<!-- 2.1.1 START Page structure sections: copy below -->
 					<uxap:sections>
 						<!-- FIRST SECTION PACKAGE INFORMATION AND INCIDENT HISTORY -->
 						<uxap:ObjectPageSection showTitle="true" title="Package Details and Incidents" titleUppercase="true" visible="true">
 							<uxap:subSections>
 								<uxap:ObjectPageSubSection title="Packge Details" mode="Expanded">
+									<!-- 2.2. START	Package Details and Incidents section: Package Data Table-->
 									<uxap:blocks>
 										<!-- TABLE WITH MASTER DATA-->
-										<Table id="packagemaster" items="{ path : '/PackageData'}">
+										<Table id="packagemaster" items="{ path : '/PackageView'}">
 											<columns>
 												<Column >
 													<Text text="Rose Type"/>
@@ -58,9 +58,12 @@
 									</uxap:blocks>
 									<uxap:moreBlocks/>
 									<uxap:actions/>
+									<!-- 2.2. END	Package Details and Incidents section: Package Data Table-->
+										<!-- 2.1.1 START Page structure sections: copy below -->
 								</uxap:ObjectPageSubSection>
 								<!-- TABLE WITH INCIDENT HISTORY -->
 								<uxap:ObjectPageSubSection title="Incident History" mode="Expanded">
+									<!-- 2.2. START	Package Details and Incidents section: Incident Data Table-->
 									<Table id="incident" items="{path: '/IncidentBC'}">
 										<columns>
 											<Column >
@@ -70,10 +73,16 @@
 												<Text text="TimeStamp"/>
 											</Column>
 											<Column minScreenWidth="Desktop" demandPopin="true">
-												<Text text="Temperature"/>
+												<Text text="MinTemperature"/>
+												</Column>
+													<Column minScreenWidth="Desktop" demandPopin="true">
+												<Text text="MaxTemperature"/>
 											</Column>
 											<Column minScreenWidth="Desktop" demandPopin="true">
-												<Text text="Humidity"/>
+												<Text text="MinHumidity"/>
+												</Column>
+													<Column minScreenWidth="Desktop" demandPopin="true">
+												<Text text="MaxHumidity"/>
 											</Column>
 											<Column minScreenWidth="Desktop" demandPopin="true">
 												<Text text="Location"/>
@@ -83,24 +92,30 @@
 											<ColumnListItem>
 												<cells>
 													<Text text="{PackageID}"/>
-													<Text text="{TimeStamp}"/>
-													<Text text="{MaxTemperature}"/>
-													<Text text="{MaxHumidity}"/>
-													<Text text="
-										{path: 'CurrentLatitude'};
-										{path: 'CurrentLongitude'};0"/>
+													<Text text="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
+														<ObjectStatus state="{=  2.0000 > ${MinTemperature} ? 'Error' : 'Success'}" text="{MinTemperature}"		visible="true" />
+														<ObjectStatus state="{= ${MaxTemperature} >  8.0000 ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
+														<ObjectStatus state="{= 0.0000 >  ${MinHumidity} ? 'Error' : 'Success'}" text="{MinHumidity}"		visible="true" />
+														<ObjectStatus state="{= ${MaxHumidity} >  85.0000 ?'Error' : 'Success'}" text="{MaxHumidity}"		visible="true" />
+										<!--			<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> -->
+												<Text text="
+										{path: 'CurrentLongitude'};
+										{path: 'CurrentLatitude'};0"/>
 												</cells>
 											</ColumnListItem>
 										</items>
 									</Table>
+									<!-- 2.2. END	Package Details and Incidents section: Incident Data Table-->
 								</uxap:ObjectPageSubSection>
 							</uxap:subSections>
+								<!-- 2.1.1 START Page structure sections -->
 							<uxap:customAnchorBarButton/>
 						</uxap:ObjectPageSection>
 						<!-- SECOND SECTION PACKAGE JOUNEY INCLUDING A MAP AND THE OWNERSHIP HISTORY TABLE -->
 						<uxap:ObjectPageSection showTitle="true" title="Package journey" titleUppercase="true" visible="true">
 							<uxap:subSections>
 								<uxap:ObjectPageSubSection title="Package Journey" mode="Expanded">
+									<!-- 2.3. START	Package Journey section: Analytic Map-->
 									<uxap:blocks>
 										<!--   Analytical Map 	 -->
 										<vbm:AnalyticMap id="map" width="auto" height="400px" xmlns:l="sap.ui.layout">
@@ -115,31 +130,32 @@
 												items="{ path : '/IncidentBC' }">
 													<vbm:Spot 
 													id="incidents" 
-													position="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0" 
+													labelType="Warning" 
+													position="{path: 'CurrentLongitude'};{path: 'CurrentLatitude'};0" 
 													tooltip="" 
-													labelType="Error" 
-													labelText="{path: 'TimeStamp'}"
+													labelText="Incident"
 													></vbm:Spot>
 														</vbm:Spots>
 												<vbm:Spots id="ownerSpots"
 												items="{ path : '/OwnerBC' }">
 													<vbm:Spot 
 													id="ownerchanges" 
-													position="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0" 
+													position="{path: 'CurrentLongitude'};{path: 'CurrentLatitude'};0" 
 													tooltip="" 
 													labelType="Default" 
 													labelText="{path: 'OwnerID'}"
 													></vbm:Spot>
-
 												</vbm:Spots>
 											</vbm:vos>
 										</vbm:AnalyticMap>
 									</uxap:blocks>
 									<uxap:moreBlocks/>
 									<uxap:actions/>
+										<!-- 2.3. END	Package Journey section: Analytic Map-->
 								</uxap:ObjectPageSubSection>
+									<!-- 2.1.1 START Page structure  -->
 								<uxap:ObjectPageSubSection title="Ownership Table" mode="Expanded">
-									<!--OWNERSHIP TABLE-->
+									<!-- 2.3. START	Package Journey section: Ownership Table -->
 									<Table id="OwnershipTable" items="{ path : '/OwnerBC' }">
 										<columns>
 											<Column>
@@ -160,27 +176,29 @@
 												<cells>
 													<Text text="{PackageID}"/>
 													<Text text="{OwnerID}"/>
-													<Text text="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0"/>
+												<!--			<Text  text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> -->
+												<Text text="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0"/> 
 													<Text text="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 												</cells>
 											</ColumnListItem>
 										</items>
 									</Table>
+										<!-- 2.3. END	Package Journey section: Ownership Table -->
 								</uxap:ObjectPageSubSection>
 							</uxap:subSections>
 							<uxap:customAnchorBarButton/>
 						</uxap:ObjectPageSection>
-						
+							<!-- 2.1.1 START Page structure  -->
 						<!-- THIRD SECTION INCLUDING TWO LINE CHARTS FOR TEMPERATURE AND HUMIDITY TRACKING -->
 						<uxap:ObjectPageSection showTitle="true" title="Package KPI" titleUppercase="true" visible="true">
 							<uxap:subSections>
 								<uxap:ObjectPageSubSection title="Temperature Tracking" mode="Expanded">
 									<uxap:blocks>
-										<!-- TEMERATURE CHART -->
+										<!-- 2.3. START	Tracking section: TEMERATURE CHART -->
 										<viz:VizFrame id="idLineGraph" uiConfig="{applicationSet:'fiori'}" height="400px" width="100%" vizType="line"
 											vizProperties="{ title: {text : '', visible : true}}">
 											<viz:dataset>
-												<viz.data:FlattenedDataset data="{/Tracking}">
+												<viz.data:FlattenedDataset data="{/TrackingView}">
 													<viz.data:dimensions>
 														<viz.data:DimensionDefinition name="TimeStamp" value="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 													</viz.data:dimensions>
@@ -199,37 +217,42 @@
 									</uxap:blocks>
 									<uxap:moreBlocks/>
 									<uxap:actions/>
+										<!-- 2.3. END	Tracking section: TEMERATURE CHART -->
 								</uxap:ObjectPageSubSection>
+									<!-- 2.1.1 START Page structure  -->
 								<uxap:ObjectPageSubSection title="Humidity Tracking" mode="Expanded">
 									<uxap:blocks>
-										<!-- HUMIDITY CHART -->
+											<!-- 2.3. START	Tracking section: HUMIDITY CHART-->
 										<viz:VizFrame id="idLineGraph2" uiConfig="{applicationSet:'fiori'}" height="400px" width="100%" vizType="line"
 											vizProperties="{ title: {text : '', visible : true}}">
 											<viz:dataset>
-												<viz.data:FlattenedDataset data="{/Tracking}">
+												<viz.data:FlattenedDataset data="{/TrackingView}">
 													<viz.data:dimensions>
 														<viz.data:DimensionDefinition name="TimeStamp" value="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 													</viz.data:dimensions>
 													<viz.data:measures>
-														<viz.data:MeasureDefinition name="MinHumidity" value="{MinHumidity}"/>
-														<viz.data:MeasureDefinition name="MaxHumidity" value="{MaxHumidity}"/>
+														<viz.data:MeasureDefinition name="MinHum" value="{MinHum}"/>
+														<viz.data:MeasureDefinition name="MaxHum" value="{MaxHum}"/>
 													</viz.data:measures>
 												</viz.data:FlattenedDataset>
 											</viz:dataset>
 											<viz:feeds>
-												<viz.feeds:FeedItem id="valueAxisFeed4" uid="valueAxis" type="Measure" values="MinHumidity"/>
-												<viz.feeds:FeedItem id="valueAxisFeed3" uid="valueAxis" type="Measure" values="MaxHumidity"/>
+												<viz.feeds:FeedItem id="valueAxisFeed4" uid="valueAxis" type="Measure" values="MinHum"/>
+												<viz.feeds:FeedItem id="valueAxisFeed3" uid="valueAxis" type="Measure" values="MaxHum"/>
 												<viz.feeds:FeedItem id="categoryAxisFeed2" uid="categoryAxis" type="Dimension" values="TimeStamp"/>
 											</viz:feeds>
 										</viz:VizFrame>
 									</uxap:blocks>
 									<uxap:moreBlocks/>
 									<uxap:actions/>
+											<!-- 2.3. EN+	Tracking section: HUMIDITY CHART-->
 								</uxap:ObjectPageSubSection>
 							</uxap:subSections>
 							<uxap:customAnchorBarButton/>
 						</uxap:ObjectPageSection>
 					</uxap:sections>
+						<!-- 2.1.1 END Page structure sections: copy below -->
+							<!-- 2.1.1 END Page structure : copy below -->
 				</uxap:ObjectPageLayout>
 			</Page>
 		</pages>

@@ -107,6 +107,38 @@
       },
       "$syntax": "projection"
     },
+    "RoseTrackerDataService.OrderDataViewAll": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKERDATASERVICE_ORDERDATAVIEWALL",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.OrderDataViewAll"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "Status": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "STATUS",
+          "key": true,
+          "type": "cds.String"
+        },
+        "openCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "OPENCOUNT",
+          "type": "cds.Integer"
+        },
+        "closedCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "CLOSEDCOUNT",
+          "type": "cds.Integer"
+        }
+      },
+      "$syntax": "projection"
+    },
     "RoseTrackerDataService.Owner": {
       "kind": "entity",
       "@cds.persistence.name": "ROSETRACKERDATASERVICE_OWNER",
@@ -1341,6 +1373,161 @@
           "key": true,
           "type": "cds.String"
         },
+        "Status": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "STATUS",
+          "key": true,
+          "type": "cds.String"
+        },
+        "openCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "OPENCOUNT",
+          "type": "cds.Integer"
+        },
+        "closedCount": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "CLOSEDCOUNT",
+          "type": "cds.Integer"
+        }
+      },
+      "$syntax": "view"
+    },
+    "rosetracker.database.views.OrderDataViewAll": {
+      "kind": "entity",
+      "@cds.persistence.name": "ROSETRACKER_DATABASE_VIEWS_ORDERDATAVIEWALL",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "rosetracker.database.views.packagewithinicdentstatus"
+            ],
+            "as": "pack"
+          },
+          "columns": [
+            {
+              "key": true,
+              "ref": [
+                "pack",
+                "incident_status"
+              ],
+              "as": "Status"
+            },
+            {
+              "SELECT": {
+                "from": {
+                  "ref": [
+                    "rosetracker.database.views.packagewithinicdentstatus"
+                  ],
+                  "as": "innerpack"
+                },
+                "columns": [
+                  {
+                    "func": "count",
+                    "args": [
+                      {
+                        "ref": [
+                          "id_package"
+                        ]
+                      }
+                    ],
+                    "as": "count"
+                  }
+                ],
+                "where": [
+                  {
+                    "ref": [
+                      "pack",
+                      "incident_status"
+                    ]
+                  },
+                  "=",
+                  {
+                    "ref": [
+                      "innerpack",
+                      "incident_status"
+                    ]
+                  },
+                  "and",
+                  {
+                    "ref": [
+                      "delivery_active"
+                    ]
+                  },
+                  "=",
+                  {
+                    "val": true
+                  }
+                ]
+              },
+              "as": "openCount",
+              "cast": {
+                "type": "cds.Integer"
+              }
+            },
+            {
+              "SELECT": {
+                "from": {
+                  "ref": [
+                    "rosetracker.database.views.packagewithinicdentstatus"
+                  ],
+                  "as": "innerpack"
+                },
+                "columns": [
+                  {
+                    "func": "count",
+                    "args": [
+                      {
+                        "ref": [
+                          "id_package"
+                        ]
+                      }
+                    ],
+                    "as": "count"
+                  }
+                ],
+                "where": [
+                  {
+                    "ref": [
+                      "pack",
+                      "incident_status"
+                    ]
+                  },
+                  "=",
+                  {
+                    "ref": [
+                      "innerpack",
+                      "incident_status"
+                    ]
+                  },
+                  "and",
+                  {
+                    "ref": [
+                      "delivery_active"
+                    ]
+                  },
+                  "=",
+                  {
+                    "val": false
+                  }
+                ]
+              },
+              "as": "closedCount",
+              "cast": {
+                "type": "cds.Integer"
+              }
+            }
+          ],
+          "groupBy": [
+            {
+              "ref": [
+                "pack",
+                "incident_status"
+              ]
+            }
+          ]
+        }
+      },
+      "elements": {
         "Status": {
           "@Core.Computed": true,
           "@cds.persistence.name": "STATUS",

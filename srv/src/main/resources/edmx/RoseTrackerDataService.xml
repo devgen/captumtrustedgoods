@@ -8,6 +8,7 @@
       <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
         <EntitySet Name="IncidentBC" EntityType="RoseTrackerDataService.IncidentBC"/>
         <EntitySet Name="OrderDataView" EntityType="RoseTrackerDataService.OrderDataView"/>
+        <EntitySet Name="OrderDataViewAll" EntityType="RoseTrackerDataService.OrderDataViewAll"/>
         <EntitySet Name="Owner" EntityType="RoseTrackerDataService.Owner"/>
         <EntitySet Name="OwnerBC" EntityType="RoseTrackerDataService.OwnerBC"/>
         <EntitySet Name="Package" EntityType="RoseTrackerDataService.Package"/>
@@ -43,6 +44,14 @@
           <PropertyRef Name="Status"/>
         </Key>
         <Property Name="recipentID" Type="Edm.String" Nullable="false"/>
+        <Property Name="Status" Type="Edm.String" Nullable="false"/>
+        <Property Name="openCount" Type="Edm.Int32"/>
+        <Property Name="closedCount" Type="Edm.Int32"/>
+      </EntityType>
+      <EntityType Name="OrderDataViewAll">
+        <Key>
+          <PropertyRef Name="Status"/>
+        </Key>
         <Property Name="Status" Type="Edm.String" Nullable="false"/>
         <Property Name="openCount" Type="Edm.Int32"/>
         <Property Name="closedCount" Type="Edm.Int32"/>
@@ -239,6 +248,15 @@
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
       <Annotations Target="RoseTrackerDataService.OrderDataView/closedCount" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.OrderDataViewAll/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.OrderDataViewAll/openCount" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.OrderDataViewAll/closedCount" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
       <Annotations Target="RoseTrackerDataService.PackageDeliveryStatus/delivery_active" xmlns="http://docs.oasis-open.org/odata/ns/edm">

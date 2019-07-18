@@ -5,20 +5,23 @@
 		<pages>
 			<Page showHeader="true" title="{i18n>homePageTitle}" showFooter="true" showNavButton="false">
 				<content>
+					<!-- 1.1.1 START Page structure: copy above -->
+					<!-- 1.1.2 START Header: copy below -->
 					<OverflowToolbar width="auto" height="46px" design="Auto" visible="true" enabled="true">
 						<content> 
-							<Title text="Delivery Overview" titleStyle="H2" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+							<Title text="{i18n>OverviewTitle}" titleStyle="H2" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
 							<ToolbarSpacer width=""/>
 							<OverflowToolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
 								<content>
 									<ToolbarSpacer width=""/>
 									<OverflowToolbarButton text="give over package" type="Default" icon="sap-icon://collaborate" iconFirst="true" width="40px" enabled="true"
-										visible="true" tooltip="Add or give over package" iconDensityAware="false" press="onPressOwnership"/>
+										visible="true" tooltip="{i18n>tooltipoveriew}" iconDensityAware="false" press="onPressOwnership"/>
 								</content>
 							</OverflowToolbar>
 						</content>
 					</OverflowToolbar>
-					<!-- Icontabbar starts here -->
+					<!-- 1.1.2 END Header: copy below -->
+					<!-- 1.1.3 START Icontabbar  -->
 					<IconTabBar id="idTopLevelIconTabBar" selectedKey="db" class="sapUiResponsiveContentPadding">
 						<items>
 							<IconTabFilter id="current" text="{i18n>current}">
@@ -27,15 +30,17 @@
 									containerQuery="true" breakpointChanged="updateToggleButtonState">
 									<l:mainContent>
 										<Title text="{i18n>current}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
-										<!-- Table as Fragent -->
+										<!-- 1.2 START Table as Fragment  -->
 										<core:Fragment fragmentName="rosetracker.RoseTracker.view.Package" type="XML"/>
+											<!-- 1.2 END Table as Fragment  -->
 									</l:mainContent>
 									<l:sideContent>
-										<Title text="Status Summary Open Deliveries" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+												<!-- 1.3 START VizFrame Donut Chart current  -->
+										<Title text="{i18n>currentchart}" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
 										<viz:VizFrame xmlns="sap.viz" id="idDonutChart" vizType="donut" width="100%" height="300px"
-											vizProperties="{plotArea: { colorPalette : ['green','orange','red' ] },title:{ text:' '}}">
+											vizProperties="{plotArea: { colorPalette : ['red','green','orange' ] },title:{ text:' '}}">
 											<viz:dataset>
-												<vizData:FlattenedDataset data="{/OrderData}">
+												<vizData:FlattenedDataset data="{/OrderDataViewAll}">
 													<vizData:dimensions>
 														<vizData:DimensionDefinition name="Status" value="{Status}"/>
 													</vizData:dimensions>
@@ -49,6 +54,7 @@
 												<vizFeeds:FeedItem uid="color" type="Dimension" values="Status"/>
 											</viz:feeds>
 										</viz:VizFrame>
+											<!-- 1.3 END VizFrame Donut Chart current  -->
 									</l:sideContent>
 								</l:DynamicSideContent>
 							</IconTabFilter>
@@ -57,14 +63,17 @@
 									containerQuery="true" breakpointChanged="updateToggleButtonState">
 									<l:mainContent>
 										<Title text="{i18n>closed}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+											<!-- 1.2 START Table as Fragment  -->
 										<core:Fragment fragmentName="rosetracker.RoseTracker.view.PackagePast" type="XML"/>
+											<!-- 1.2 END Table as Fragment  -->
 									</l:mainContent>
 									<l:sideContent>
-										<Title text="Status Summary Closed Deliveries" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+											<!-- 1.3 START VizFrame Donut Chart closed  -->
+										<Title text="{i18n>closedchart}" titleStyle="H3" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
 										<viz:VizFrame xmlns="sap.viz" id="idDonutChart2" vizType="donut" width="100%" height="300px"
 											vizProperties="{plotArea: { colorPalette : ['green','orange','red' ] },title:{ text:' '}}">
 											<viz:dataset>
-												<vizData:FlattenedDataset data="{/OrderData}">
+												<vizData:FlattenedDataset data="{/OrderDataViewAll}">
 													<vizData:dimensions>
 														<vizData:DimensionDefinition name="Status" value="{Status}"/>
 													</vizData:dimensions>
@@ -78,11 +87,14 @@
 												<vizFeeds:FeedItem uid="color" type="Dimension" values="Status"/>
 											</viz:feeds>
 										</viz:VizFrame>
+											<!-- 1.3 START VizFrame Donut Chart closed  -->
 									</l:sideContent>
 								</l:DynamicSideContent>
 							</IconTabFilter>
 						</items>
 					</IconTabBar>
+						<!-- 1.1.3 END Icontabbar  -->	
+					<!-- 1.1.1 END Page Structure: copy below -->
 				</content>
 			</Page>
 		</pages>

@@ -7,6 +7,7 @@ service RoseTrackerDataService {
 	entity TrackingView as projection on views.TrackingView;
 	entity PackageView as projection on views.PackageView;
 	entity OrderDataView as projection on views.OrderDataView;
+	entity OrderDataViewAll as projection on views.OrderDataViewAll;
 	
 	
 	entity PackageDeliveryStatus as projection on views.PackageDeliveryStatus;

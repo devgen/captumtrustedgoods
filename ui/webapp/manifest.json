@@ -15,10 +15,10 @@
 		},
 		"dataSources": {
 			"RoseTrackerDataService": {
-				"uri": "/RoseTrackerDummyDataV2/odata/v2/RoseTrackerDataService/",
+				"uri": "/RoseTrackerOData/odata/v2/RoseTrackerDataService/",
 				"type": "OData",
 				"settings": {
-					"localUri": "localService/metadata.xml"
+					"localUri": "localService/RoseTrackerDataService/metadata.xml"
 				}
 			}
 		}
@@ -117,15 +117,6 @@
 					"pattern": "details/{packageID}",
 					"target": "details",
 					"titleTarget": ""
-				},
-				{
-					"name": "Login",
-					"pattern": "login",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"Login"
-					]
 				}
 			],
 			"targets": {
@@ -146,10 +137,6 @@
 					"viewType": "XML",
 					"viewName": "NotFound",
 					"transition": "show"
-				},
-				"Login": {
-					"viewType": "XML",
-					"viewName": "Login"
 				}
 			}
 		}

@@ -41,7 +41,7 @@
 				<Label text="PackageID" />
 				<Text id="PackageIDChange" text="" />
 				<Label text="OwnerID" required="true" />
-					<Input id="OwnerChange" onChange="validateOwner" value="" />
+					<Input id="OwnerChange" value="" />
 			<!--	<Text id="OwnerIDChange" text="" /> -->
 				<Label text="Location" />
 				<Text id="LocationChange"  text="" />

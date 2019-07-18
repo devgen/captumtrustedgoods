@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<Panel expandable="false">
 		<!-- table current packages -->
-		<Table noDataText="No data" id="currentPackages" items="{ path : '/PackageData', sorter: { path: 'ActiveStatus', group: true } }">
+		<Table noDataText="{i18n>nodata}" id="currentPackages" items="{ path : '/PackageView' }">
 			<headerToolbar>
 				<Toolbar>
 					<Title text=""/>
@@ -30,17 +30,13 @@
 				<ColumnListItem type="Navigation" press="handleListItemPress">
 					<cells>
 						<Text text="{PackageID}"/>
+							<!-- 1.2 Conditional icon will we displayed -->
 						<ObjectStatus state="{IncidentStatus}" icon="{= ${IncidentStatus} === 'Success' ? 'sap-icon://sys-enter' : 'sap-icon://sys-cancel' }"
 							visible="true"/>
-						<!-- 	 <Text text="{IncidentStatus}" />
-							<ObjectStatus text="{IncidentStatus}" state="{IncidentStatus}" icon="{ 
-							 path: 'IncidentStatus',
-							 formatter: '.formatter.statusText'}" 
-							 visible="true"/> 
-							 							-->
 						<Text text="{RoseType}"/>
-						<Text text="{OwnerNam}"/>
-						<Text text=" {path: 'CurrentLongitude'}, {path: 'CurrentLongitude'}"/>
+						<Text text="{OwnerName}"/>
+				<!--		<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>  -->
+						<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>
 					</cells>
 				</ColumnListItem>
 			</items>

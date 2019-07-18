@@ -72,17 +72,36 @@ on paOW.id_rosetype = rose.id_rosetype {
 // --------------------------------- OrderDataView View START ---------------------------------
 
 view OrderDataViewAll as 
-select from packagewithinicdentstatus as pack{
+select from packagewithinicdentstatus as pack {
+
+	key pack.incident_status as Status,
+	(
+		select from packagewithinicdentstatus as innerpack {
+		
+			count(id_package) as count
+		
+		} where pack.incident_status = innerpack.incident_status and
+				delivery_active = TRUE
 	
-	key pack.incident_status
+	) as openCount : Integer,
+	(
+		select from packagewithinicdentstatus as innerpack {
+		
+			count(id_package) as count
+		
+		} where pack.incident_status = innerpack.incident_status and
+				delivery_active = FALSE
 	
-	 
-	
-	
-	
+	) as closedCount : Integer 
 } group by pack.incident_status;
 
-// TOOD just one with id all (maybe) 
+view openCountsPerRec as 
+select from packagewithinicdentstatus {
+	key id_recipent,
+	count(*) as openCount
+};
+
+
 view OrderDataView as 
 select from packagewithinicdentstatus {
 
@@ -107,6 +126,7 @@ select from packagewithinicdentstatus {
 				delivery_active = FALSE
 	
 	) as closedCount : Integer 
+	
 } group by packagewithinicdentstatus.id_recipent,
 		   packagewithinicdentstatus.incident_status;
 		   

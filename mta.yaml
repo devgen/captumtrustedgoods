@@ -24,12 +24,9 @@ modules:
         properties:
           JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
             {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
-  
-
-
   - name: RoseTracker
     type: html5
-    path: UI
+    path: ui
     parameters:
        disk-quota: 256M
        memory: 256M
