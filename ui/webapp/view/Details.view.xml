@@ -25,7 +25,7 @@
 								<uxap:ObjectPageSubSection title="Packge Details" mode="Expanded">
 									<uxap:blocks>
 										<!-- TABLE WITH MASTER DATA-->
-										<Table id="packagemaster" items="{ path : '/PackageData'}">
+										<Table id="packagemaster" items="{ path : '/PackageView'}">
 											<columns>
 												<Column >
 													<Text text="Rose Type"/>
@@ -180,7 +180,7 @@
 										<viz:VizFrame id="idLineGraph" uiConfig="{applicationSet:'fiori'}" height="400px" width="100%" vizType="line"
 											vizProperties="{ title: {text : '', visible : true}}">
 											<viz:dataset>
-												<viz.data:FlattenedDataset data="{/Tracking}">
+												<viz.data:FlattenedDataset data="{/TrackingView}">
 													<viz.data:dimensions>
 														<viz.data:DimensionDefinition name="TimeStamp" value="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 													</viz.data:dimensions>
@@ -206,13 +206,13 @@
 										<viz:VizFrame id="idLineGraph2" uiConfig="{applicationSet:'fiori'}" height="400px" width="100%" vizType="line"
 											vizProperties="{ title: {text : '', visible : true}}">
 											<viz:dataset>
-												<viz.data:FlattenedDataset data="{/Tracking}">
+												<viz.data:FlattenedDataset data="{/TrackingView}">
 													<viz.data:dimensions>
 														<viz.data:DimensionDefinition name="TimeStamp" value="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 													</viz.data:dimensions>
 													<viz.data:measures>
-														<viz.data:MeasureDefinition name="MinHumidity" value="{MinHumidity}"/>
-														<viz.data:MeasureDefinition name="MaxHumidity" value="{MaxHumidity}"/>
+														<viz.data:MeasureDefinition name="MinHumidity" value="{MinHum}"/>
+														<viz.data:MeasureDefinition name="MaxHumidity" value="{MaxHum}"/>
 													</viz.data:measures>
 												</viz.data:FlattenedDataset>
 											</viz:dataset>

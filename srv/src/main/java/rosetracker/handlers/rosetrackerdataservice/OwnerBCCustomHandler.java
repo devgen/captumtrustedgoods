@@ -536,7 +536,7 @@ public class OwnerBCCustomHandler {
 		//GregorianCalendar timestamp = (GregorianCalendar) keys.get("TimeStamp");
 		String ownerID = (String) data.get("OwnerID");
 		BigDecimal currLatBD = (BigDecimal) data.get("CurrentLatitude");
-		BigDecimal currLonBD = (BigDecimal) data.get("CurrentLatitude");
+		BigDecimal currLonBD = (BigDecimal) data.get("CurrentLongitude");
 		
 		Double currLat = 0.0;
 		if(currLatBD != null) {

@@ -42,6 +42,14 @@
         "name": "RoseTrackerDummyDataV2"
       },
       "description": "RoseTrackerDummyDataV2"
+    },
+    {
+      "path": "/RoseTrackerOData",
+      "target": {
+        "type": "destination",
+        "name": "RoseTrackerOData"
+      },
+      "description": "RoseTrackerOData"
     }
   ],
   "sendWelcomeFileRedirect": true

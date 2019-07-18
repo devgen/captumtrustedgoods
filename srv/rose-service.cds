@@ -8,6 +8,14 @@ service RoseTrackerDataService {
 	entity PackageView as projection on views.PackageView;
 	entity OrderDataView as projection on views.OrderDataView;
 	
+	
+	entity PackageDeliveryStatus as projection on views.PackageDeliveryStatus;
+	entity tracpack as projection on views.tracpack;
+	entity packagewithinicdentstatus as projection on views.packagewithinicdentstatus;
+	entity packOwner as projection on views.packOwner;
+	
+	
+	
 	entity SensorInput as projection on entities.SensorInput;
 	//entity SensorPackage as projection on entities.SensorPackage;
 	entity Owner as projection on entities.Owner;

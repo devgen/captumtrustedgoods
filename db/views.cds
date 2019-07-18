@@ -27,7 +27,7 @@ entities.SensorInput as sinp {
 view packOwner as select from 
 packagewithinicdentstatus as pack join
 entities.Owner as owner 
-on pack.id_currentOwner = owner.ownername {
+on pack.id_currentOwner = owner.id_owner {
 	key pack.id_package,
 	pack.id_recipent,	
 	pack.id_rosetype,
@@ -114,17 +114,31 @@ entities.Package as pack {
 	pack.lastOwnerChangeLon,
 	pack.lastOwnerChangeTime,
 	case 
-		when id_recipent = id_currentOwner then true
-		else false
+		when id_recipent = id_currentOwner then false
+		else true
 	end as delivery_active : Boolean
 };
 
+view incidents as select from 
+TrackingView as trac {
+
+	key trac.PackageID,
+	key trac.TimeStamp,
+	trac.MinTemp,
+	trac.MaxTemp,
+	trac.MinHum,
+	trac.MaxHum,
+	trac.CurrentLat,
+	trac.CurrentLong,
+	trac.Incident
+} where trac.Incident = TRUE;
+
 view tracpack as select from 
-TrackingView as trac join
+incidents as trac join
 PackageDeliveryStatus as pack 
 on trac.PackageID = pack.id_package {
 
-	pack.id_package,
+	key pack.id_package,
 	pack.id_recipent,	
 	pack.id_rosetype,	
 	pack.id_currentOwner,
@@ -132,7 +146,7 @@ on trac.PackageID = pack.id_package {
 	pack.lastOwnerChangeLon,
 	pack.lastOwnerChangeTime,
 	pack.delivery_active,
-	count(trac.Incident) as incidentCount
+	count(trac.Incident) as incidentCount : Integer
 	
 } group by  pack.id_package,
 			pack.id_recipent,	
@@ -148,7 +162,7 @@ on trac.PackageID = pack.id_package {
 view packagewithinicdentstatus as select from 
 tracpack {
 	
-	id_package,
+	key id_package,
 	id_recipent,	
 	id_rosetype,
 	id_currentOwner,

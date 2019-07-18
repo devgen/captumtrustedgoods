@@ -11,11 +11,15 @@
         <EntitySet Name="Owner" EntityType="RoseTrackerDataService.Owner"/>
         <EntitySet Name="OwnerBC" EntityType="RoseTrackerDataService.OwnerBC"/>
         <EntitySet Name="Package" EntityType="RoseTrackerDataService.Package"/>
+        <EntitySet Name="PackageDeliveryStatus" EntityType="RoseTrackerDataService.PackageDeliveryStatus"/>
         <EntitySet Name="PackageView" EntityType="RoseTrackerDataService.PackageView"/>
         <EntitySet Name="Rose" EntityType="RoseTrackerDataService.Rose"/>
         <EntitySet Name="Rose_owner" EntityType="RoseTrackerDataService.Rose_owner"/>
         <EntitySet Name="SensorInput" EntityType="RoseTrackerDataService.SensorInput"/>
         <EntitySet Name="TrackingView" EntityType="RoseTrackerDataService.TrackingView"/>
+        <EntitySet Name="packOwner" EntityType="RoseTrackerDataService.packOwner"/>
+        <EntitySet Name="packagewithinicdentstatus" EntityType="RoseTrackerDataService.packagewithinicdentstatus"/>
+        <EntitySet Name="tracpack" EntityType="RoseTrackerDataService.tracpack"/>
       </EntityContainer>
       <EntityType Name="IncidentBC">
         <Key>
@@ -75,6 +79,19 @@
         <Property Name="lastOwnerChangeLat" Type="Edm.Decimal" Scale="4" Precision="8"/>
         <Property Name="lastOwnerChangeLon" Type="Edm.Decimal" Scale="4" Precision="8"/>
         <Property Name="lastOwnerChangeTime" Type="Edm.DateTimeOffset"/>
+      </EntityType>
+      <EntityType Name="PackageDeliveryStatus">
+        <Key>
+          <PropertyRef Name="id_package"/>
+        </Key>
+        <Property Name="id_package" Type="Edm.String" Nullable="false"/>
+        <Property Name="id_recipent" Type="Edm.String"/>
+        <Property Name="id_rosetype" Type="Edm.String"/>
+        <Property Name="id_currentOwner" Type="Edm.String"/>
+        <Property Name="lastOwnerChangeLat" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeLon" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="delivery_active" Type="Edm.Boolean"/>
       </EntityType>
       <EntityType Name="PackageView">
         <Key>
@@ -156,6 +173,49 @@
         <Property Name="CurrentLong" Type="Edm.Decimal" Scale="4" Precision="8"/>
         <Property Name="Incident" Type="Edm.Boolean"/>
       </EntityType>
+      <EntityType Name="packOwner">
+        <Key>
+          <PropertyRef Name="id_package"/>
+        </Key>
+        <Property Name="id_package" Type="Edm.String" Nullable="false"/>
+        <Property Name="id_recipent" Type="Edm.String"/>
+        <Property Name="id_rosetype" Type="Edm.String"/>
+        <Property Name="id_currentOwner" Type="Edm.String"/>
+        <Property Name="lastOwnerChangeLat" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeLon" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="delivery_active" Type="Edm.Boolean"/>
+        <Property Name="incident_status" Type="Edm.String"/>
+        <Property Name="ownername" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="packagewithinicdentstatus">
+        <Key>
+          <PropertyRef Name="id_package"/>
+        </Key>
+        <Property Name="id_package" Type="Edm.String" Nullable="false"/>
+        <Property Name="id_recipent" Type="Edm.String"/>
+        <Property Name="id_rosetype" Type="Edm.String"/>
+        <Property Name="id_currentOwner" Type="Edm.String"/>
+        <Property Name="lastOwnerChangeLat" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeLon" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="delivery_active" Type="Edm.Boolean"/>
+        <Property Name="incident_status" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="tracpack">
+        <Key>
+          <PropertyRef Name="id_package"/>
+        </Key>
+        <Property Name="id_package" Type="Edm.String" Nullable="false"/>
+        <Property Name="id_recipent" Type="Edm.String"/>
+        <Property Name="id_rosetype" Type="Edm.String"/>
+        <Property Name="id_currentOwner" Type="Edm.String"/>
+        <Property Name="lastOwnerChangeLat" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeLon" Type="Edm.Decimal" Scale="4" Precision="8"/>
+        <Property Name="lastOwnerChangeTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="delivery_active" Type="Edm.Boolean"/>
+        <Property Name="incidentCount" Type="Edm.Int32"/>
+      </EntityType>
       <Annotations Target="RoseTrackerDataService.OrderDataView/Status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
@@ -165,10 +225,31 @@
       <Annotations Target="RoseTrackerDataService.OrderDataView/closedCount" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
+      <Annotations Target="RoseTrackerDataService.PackageDeliveryStatus/delivery_active" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
       <Annotations Target="RoseTrackerDataService.PackageView/IncidentStatus" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
       <Annotations Target="RoseTrackerDataService.PackageView/ActiveStatus" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.packOwner/delivery_active" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.packOwner/incident_status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.packagewithinicdentstatus/delivery_active" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.packagewithinicdentstatus/incident_status" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.tracpack/delivery_active" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="RoseTrackerDataService.tracpack/incidentCount" xmlns="http://docs.oasis-open.org/odata/ns/edm">
         <Annotation Term="Core.Computed" Bool="true"/>
       </Annotations>
     </Schema>

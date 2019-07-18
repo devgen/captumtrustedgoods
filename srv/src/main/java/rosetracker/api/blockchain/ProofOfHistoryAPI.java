@@ -274,6 +274,16 @@ public class ProofOfHistoryAPI {
 				UpdateAccessToken();
 				return PostForPackage(PackageID);
 			}
+			
+			if ((responseCode == 500 || responseCode == 502) && APIcallCounter < maxAPIcalls) {
+				APIcallCounter++;
+				WriteToConsole("" + APIcallCounter);
+				return PostForPackage(PackageID);
+			} else {
+				APIcallCounter = 0;
+			}
+			
+			
 
 			return responseCode == 201;
 

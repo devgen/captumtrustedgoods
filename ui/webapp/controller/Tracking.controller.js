@@ -1,5 +1,5 @@
 sap.ui.define([
-"sap/m/MessageToast", "sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel"
+	"sap/m/MessageToast", "sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel"
 ], function (MessageToast, Controller, JSONModel) {
 	"use strict";
 
@@ -11,38 +11,37 @@ sap.ui.define([
 		 * @memberOf rosetracker.RoseTracker.view.Tracking
 		 */
 		onInit: function () {
-  var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-  oRouter.getRoute("Tracking").attachMatched(this._onRouteMatched, this);
-  
-  // set mock data
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.getRoute("Tracking").attachMatched(this._onRouteMatched, this);
+
+			// set mock data
 			//var sPath = jQuery.sap.getModulePath("rosetracker.RoseTracker", "model/SampleData.json");
-				var sampleDatajson = new sap.ui.model.json.JSONModel("model/SampleData.json");
+			var sampleDatajson = new sap.ui.model.json.JSONModel("model/SampleData.json");
 			//var oModel = new sap.ui.model.json.JSONModel(sPath);
 			this.getView().setModel(sampleDatajson);
-  
+
 		},
-		
-		
-		_onRouteMatched : function (oEvent) {
-  var oArgs, oView;
-  oArgs = oEvent.getParameter("arguments");
-  oView = this.getView();
-  oView.bindElement({
-    path : "/PackageID_1(" + oArgs.productId + ")",
-    events : {
-      dataRequested: function () {
-        oView.setBusy(true);
-      },
-      dataReceived: function () {
-        oView.setBusy(false);
-      }
-    }
-  });
-},
-handleNavButtonPress : function (evt) {
-  var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-  oRouter.navTo("formula");
-}
+
+		_onRouteMatched: function (oEvent) {
+			var oArgs, oView;
+			oArgs = oEvent.getParameter("arguments");
+			oView = this.getView();
+			oView.bindElement({
+				path: "/PackageID_1(" + oArgs.productId + ")",
+				events: {
+					dataRequested: function () {
+						oView.setBusy(true);
+					},
+					dataReceived: function () {
+						oView.setBusy(false);
+					}
+				}
+			});
+		},
+		handleNavButtonPress: function (evt) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("formula");
+		}
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
