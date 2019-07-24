@@ -7,6 +7,8 @@ import com.sap.cloud.sdk.service.prov.api.request.OrderByExpression;
 
 import rosetracker.dataclasses.BCOwnerChange;
 
+
+// class to help the implementation of order by of OwnerBC. 
 public class BCOwnerChangeComparator implements Comparator<BCOwnerChange> {
 	
 	private List<OrderByExpression> expressions = null;

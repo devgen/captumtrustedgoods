@@ -14,13 +14,8 @@ import com.sap.cloud.sdk.service.prov.api.filter.ExpressionOperatorTypes.OPERATO
 import rosetracker.dataclasses.BCOwnerChange;
 
 public class OwnerChangeExpressionConverter {
-
-	private static void WriteToConsole(String msg) {
-		
-		System.out.print(" ++++ " + msg + " ++++ ");
-		
-	}
 	
+	// checks if the given filter node is a single equals comparator
 	public static Boolean CheckIfFilterIsSingle(ExpressionNode node) {
 	
 		if(node instanceof BinaryExpressionNode) {
@@ -37,6 +32,7 @@ public class OwnerChangeExpressionConverter {
 		return false;
 	}
 	
+	// executes a single equlals comparator
 	public static String ExecuteSingleFilterID(ExpressionNode node) {
 		
 		if(node instanceof BinaryExpressionNode) {
@@ -48,28 +44,20 @@ public class OwnerChangeExpressionConverter {
 			
 			if(biNode.getFirstChild() instanceof PropertyNode) {
 				
-				//WriteToConsole(" First Child is a Property ! ");
-					
 				poNode = (PropertyNode) biNode.getFirstChild();
 				
 			} 
 			if(biNode.getSecondChild() instanceof PropertyNode) {
-				
-				//WriteToConsole(" Second Child is a Property ! ");
 					
 				poNode = (PropertyNode) biNode.getSecondChild();
 				
 			} 
 			if(biNode.getFirstChild() instanceof LiteralNode) {
 				
-				//WriteToConsole(" First Child is a Literal ! ");
-				
 				liNode = (LiteralNode) biNode.getFirstChild();
 				
 			} 
 			if(biNode.getSecondChild() instanceof LiteralNode) {
-				
-				//WriteToConsole(" Second Child is a Literal ! ");
 				
 				liNode = (LiteralNode) biNode.getSecondChild();
 				
@@ -77,53 +65,26 @@ public class OwnerChangeExpressionConverter {
 			
 			if(poNode == null) {
 				
-				//WriteToConsole("Property Node was null.");
 				return null;
 				
 			}
 			
 			if(liNode == null) {
 				
-				//WriteToConsole("Literal Node was null.");
 				return null;
 				
 			}
 			
-			String property = poNode.getPath();
 			Object literal = liNode.getValue();
 			
-			//if(property == "PackageID") {
-				
-				return (String) literal;
-			//} 
+			return (String) literal;
 		}
 		return null;
 	}
 	
-	public static void dummy() {
-		
-		WriteToConsole("Operator eq : " + OPERATOR.EQ);
-		
-		WriteToConsole("Operator eq to String: " + OPERATOR.EQ.toString());
-		
-		WriteToConsole("Operator eq name : " + OPERATOR.EQ.name());
-		
-		WriteToConsole("Operator eq value of: " + OPERATOR.valueOf(OPERATOR.EQ.name()));
-		
-		for(OPERATOR o : OPERATOR.values()) {
-			
-			WriteToConsole("Through the operators: " + o);
-			
-		}
-		
-	}
-	
-	
+	// applices a filter expression tree on a list of BC Incident data
+	// if futher filter expressions are added they must be added here. Currently just the two operators and the six comparators are supported.
 	public static List<BCOwnerChange> executeExpressionNodeOnData(ExpressionNode node, List<BCOwnerChange> dataToExecute) {
-		
-		WriteToConsole("---- Start Filter Expression ----");
-		
-		WriteToConsole("With node: " + node.toString());
 		
 		List<BCOwnerChange> data = new LinkedList<BCOwnerChange>();
 		data.addAll(dataToExecute);
@@ -135,16 +96,12 @@ public class OwnerChangeExpressionConverter {
 			// --- Operators --- 
 			if(biNode.getOperator().equals(OPERATOR.AND.toString())) {
 				
-				WriteToConsole(" Its an AND ! ");
-				
 				return executeAnd(
 					executeExpressionNodeOnData(biNode.getFirstChild(), data), 
 					executeExpressionNodeOnData(biNode.getSecondChild(), data)
 				);
 			}
 			if(biNode.getOperator().equals(OPERATOR.OR.toString())) {
-				
-				WriteToConsole(" Its an OR ! ");
 				
 				return executeOr(
 					executeExpressionNodeOnData(biNode.getFirstChild(), data), 
@@ -160,37 +117,7 @@ public class OwnerChangeExpressionConverter {
 				biNode.getOperator().equals(OPERATOR.GE.toString()) ||
 				biNode.getOperator().equals(OPERATOR.GT.toString())) {
 				
-				WriteToConsole(" Its a comparator ! ");
-				
-				
 				return executeComperator(biNode, data);
-				
-			}
-			
-		}
-		
-		// ---- contains ---- 
-		// --> how to test this? 
-		
-		if(node instanceof FunctionNode) {
-			
-			WriteToConsole(" node is function node ");
-			
-			FunctionNode fuNode = (FunctionNode) node;
-			
-			WriteToConsole(" node func name: " + fuNode.getFunctionName());
-			
-			if(fuNode.getFunctionName().equals("contains")) {
-				
-				WriteToConsole(" function node is contains ");
-				
-				List<ExpressionNode> params = fuNode.getParameters();
-				
-				for(ExpressionNode n : params) {
-					
-					WriteToConsole(" expression node in params: " + n);
-					
-				}
 				
 			}
 			
@@ -201,24 +128,10 @@ public class OwnerChangeExpressionConverter {
 	}
 	
 	
+	// executes the and operator on two lists. 
+	// returns items that are in both lists
 	private static List<BCOwnerChange> executeAnd(List<BCOwnerChange> firstList, List<BCOwnerChange> secondList) {
 		
-		// WriteToConsole(" It's an AND ! ");
-		// WriteToConsole(" with first List count " + firstList.size());
-		// WriteToConsole(" elems of first List ");
-		// for(BCOwnerChange c : firstList) {
-		// 	WriteToConsole(" elem of 1.list " + c.PackageID);
-		// }
-		// WriteToConsole(" with second List count " + secondList.size());
-		// WriteToConsole(" elems of second List ");
-		// for(BCOwnerChange c : secondList) {
-		// 	WriteToConsole(" elem of 2.list " + c.PackageID);
-		// }
-		
-		// // both lists are correct!
-		
-		
-		// error here?
 		List<BCOwnerChange> back = firstList.stream()
 								  .distinct()
 								  .filter(secondList::contains)
@@ -229,6 +142,8 @@ public class OwnerChangeExpressionConverter {
 	}
 	
 	
+	// executes the or operator on two lists.
+	// returns all elements of both lists
 	private static List<BCOwnerChange> executeOr(List<BCOwnerChange> firstList, List<BCOwnerChange> secondList) {
 		
 		firstList.addAll(secondList);
@@ -239,35 +154,30 @@ public class OwnerChangeExpressionConverter {
 	}
 	
 	
+	// executes the comparators on both lists
 	private static List<BCOwnerChange> executeComperator(BinaryExpressionNode biNode, List<BCOwnerChange> data) {
+		
+		// gets property and literal values	
 		
 		PropertyNode poNode = null;
 		LiteralNode liNode = null;;
 		
 		if(biNode.getFirstChild() instanceof PropertyNode) {
 			
-			//WriteToConsole(" First Child is a Property ! ");
-				
 			poNode = (PropertyNode) biNode.getFirstChild();
 			
 		} 
 		if(biNode.getSecondChild() instanceof PropertyNode) {
-			
-			//WriteToConsole(" Second Child is a Property ! ");
 				
 			poNode = (PropertyNode) biNode.getSecondChild();
 			
 		} 
 		if(biNode.getFirstChild() instanceof LiteralNode) {
 			
-			//WriteToConsole(" First Child is a Literal ! ");
-			
 			liNode = (LiteralNode) biNode.getFirstChild();
 			
 		} 
 		if(biNode.getSecondChild() instanceof LiteralNode) {
-			
-			//WriteToConsole(" Second Child is a Literal ! ");
 			
 			liNode = (LiteralNode) biNode.getSecondChild();
 			
@@ -275,38 +185,31 @@ public class OwnerChangeExpressionConverter {
 		
 		if(poNode == null) {
 			
-			//WriteToConsole("Property Node was null.");
 			return null;
 			
 		}
 		
 		if(liNode == null) {
 			
-			//WriteToConsole("Literal Node was null.");
 			return null;
 			
 		}
 		
+		// the name of the porperty
 		String property = poNode.getPath();
+		// the value of the porperty
 		Object literal = liNode.getValue();
-		
-		WriteToConsole(" property: " + property);
-		
-		WriteToConsole(" literal: " + literal);
 		
 		
 		
 		List<BCOwnerChange> back = new LinkedList<BCOwnerChange>();
 		
+		// maps the odata operators to java understanable operations (example EQ --> ==)
 		for(BCOwnerChange c : data) {
 			
 			if(biNode.getOperator().equals(OPERATOR.EQ.toString())) {
 			
-				//WriteToConsole(" Its a EQ ! ");
-				
 				if(c.attrCompareTo(literal, property) == 0) {
-					
-					//WriteToConsole(" Its a match with id " + c.PackageID);
 					
 					back.add(c);
 					
@@ -315,8 +218,6 @@ public class OwnerChangeExpressionConverter {
 			}
 			
 			if(biNode.getOperator().equals(OPERATOR.NE.toString())) {
-				
-				//WriteToConsole(" Its a NE ! ");
 				
 				if(c.attrCompareTo(literal, property) != 0) {
 					
@@ -327,8 +228,6 @@ public class OwnerChangeExpressionConverter {
 			}
 			
 			if(biNode.getOperator().equals(OPERATOR.LE.toString())) {
-				
-				//WriteToConsole(" Its a LE ! ");
 				
 				if(c.attrCompareTo(literal, property) <= 0) {
 					

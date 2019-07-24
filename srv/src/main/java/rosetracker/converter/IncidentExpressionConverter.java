@@ -14,13 +14,8 @@ import com.sap.cloud.sdk.service.prov.api.filter.ExpressionOperatorTypes.OPERATO
 import rosetracker.dataclasses.BCIncident;
 
 public class IncidentExpressionConverter {
-
-	private static void WriteToConsole(String msg) {
-		
-		System.out.print(" ++++ " + msg + " ++++ ");
-		
-	}
 	
+	// checks if the given filter node is a single equals comparator
 	public static Boolean CheckIfFilterIsSingle(ExpressionNode node) {
 	
 		if(node instanceof BinaryExpressionNode) {
@@ -37,6 +32,7 @@ public class IncidentExpressionConverter {
 		return false;
 	}
 	
+	// executes a single equlals comparator
 	public static String ExecuteSingleFilterID(ExpressionNode node) {
 		
 		if(node instanceof BinaryExpressionNode) {
@@ -47,29 +43,21 @@ public class IncidentExpressionConverter {
 			LiteralNode liNode = null;;
 			
 			if(biNode.getFirstChild() instanceof PropertyNode) {
-				
-				//WriteToConsole(" First Child is a Property ! ");
 					
 				poNode = (PropertyNode) biNode.getFirstChild();
 				
 			} 
 			if(biNode.getSecondChild() instanceof PropertyNode) {
-				
-				//WriteToConsole(" Second Child is a Property ! ");
 					
 				poNode = (PropertyNode) biNode.getSecondChild();
 				
 			} 
 			if(biNode.getFirstChild() instanceof LiteralNode) {
 				
-				//WriteToConsole(" First Child is a Literal ! ");
-				
 				liNode = (LiteralNode) biNode.getFirstChild();
 				
 			} 
 			if(biNode.getSecondChild() instanceof LiteralNode) {
-				
-				//WriteToConsole(" Second Child is a Literal ! ");
 				
 				liNode = (LiteralNode) biNode.getSecondChild();
 				
@@ -77,35 +65,26 @@ public class IncidentExpressionConverter {
 			
 			if(poNode == null) {
 				
-				//WriteToConsole("Property Node was null.");
 				return null;
 				
 			}
 			
 			if(liNode == null) {
 				
-				//WriteToConsole("Literal Node was null.");
 				return null;
 				
 			}
 			
-			String property = poNode.getPath();
 			Object literal = liNode.getValue();
-			
-			//if(property == "PackageID") {
 				
-				return (String) literal;
-			//} 
+			return (String) literal;
 		}
 		return null;
 	}
 	
-	
+	// applices a filter expression tree on a list of BC Incident data
+	// if futher filter expressions are added they must be added here. Currently just the two operators and the six comparators are supported.
 	public static List<BCIncident> executeExpressionNodeOnData(ExpressionNode node, List<BCIncident> dataToExecute) {
-		
-		WriteToConsole("---- Start Filter Expression ----");
-		
-		WriteToConsole("With node: " + node.toString());
 		
 		List<BCIncident> data = new LinkedList<BCIncident>();
 		data.addAll(dataToExecute);
@@ -117,16 +96,12 @@ public class IncidentExpressionConverter {
 			// --- Operators --- 
 			if(biNode.getOperator().equals(OPERATOR.AND.toString())) {
 				
-				WriteToConsole(" Its an AND ! ");
-				
 				return executeAnd(
 					executeExpressionNodeOnData(biNode.getFirstChild(), data), 
 					executeExpressionNodeOnData(biNode.getSecondChild(), data)
 				);
 			}
 			if(biNode.getOperator().equals(OPERATOR.OR.toString())) {
-				
-				WriteToConsole(" Its an OR ! ");
 				
 				return executeOr(
 					executeExpressionNodeOnData(biNode.getFirstChild(), data), 
@@ -142,37 +117,7 @@ public class IncidentExpressionConverter {
 				biNode.getOperator().equals(OPERATOR.GE.toString()) ||
 				biNode.getOperator().equals(OPERATOR.GT.toString())) {
 				
-				WriteToConsole(" Its a comparator ! ");
-				
-				
 				return executeComperator(biNode, data);
-				
-			}
-			
-		}
-		
-		// ---- contains ---- 
-		// --> how to test this? 
-		
-		if(node instanceof FunctionNode) {
-			
-			WriteToConsole(" node is function node ");
-			
-			FunctionNode fuNode = (FunctionNode) node;
-			
-			WriteToConsole(" node func name: " + fuNode.getFunctionName());
-			
-			if(fuNode.getFunctionName().equals("contains")) {
-				
-				WriteToConsole(" function node is contains ");
-				
-				List<ExpressionNode> params = fuNode.getParameters();
-				
-				for(ExpressionNode n : params) {
-					
-					WriteToConsole(" expression node in params: " + n);
-					
-				}
 				
 			}
 			
@@ -182,7 +127,8 @@ public class IncidentExpressionConverter {
 		
 	}
 	
-	
+	// executes the and operator on two lists. 
+	// returns items that are in both lists
 	private static List<BCIncident> executeAnd(List<BCIncident> firstList, List<BCIncident> secondList) {
 		
 		List<BCIncident> back = firstList.stream()
@@ -194,7 +140,8 @@ public class IncidentExpressionConverter {
 		
 	}
 	
-	
+	// executes the or operator on two lists.
+	// returns all elements of both lists
 	private static List<BCIncident> executeOr(List<BCIncident> firstList, List<BCIncident> secondList) {
 		
 		firstList.addAll(secondList);
@@ -205,35 +152,30 @@ public class IncidentExpressionConverter {
 	}
 	
 	
+	// executes the comparators on both lists
 	private static List<BCIncident> executeComperator(BinaryExpressionNode biNode, List<BCIncident> data) {
+		
+		// gets property and literal values	
 		
 		PropertyNode poNode = null;
 		LiteralNode liNode = null;;
 		
 		if(biNode.getFirstChild() instanceof PropertyNode) {
 			
-			//WriteToConsole(" First Child is a Property ! ");
-				
 			poNode = (PropertyNode) biNode.getFirstChild();
 			
 		} 
 		if(biNode.getSecondChild() instanceof PropertyNode) {
 			
-			//WriteToConsole(" Second Child is a Property ! ");
-				
 			poNode = (PropertyNode) biNode.getSecondChild();
 			
 		} 
 		if(biNode.getFirstChild() instanceof LiteralNode) {
 			
-			//WriteToConsole(" First Child is a Literal ! ");
-			
 			liNode = (LiteralNode) biNode.getFirstChild();
 			
 		} 
 		if(biNode.getSecondChild() instanceof LiteralNode) {
-			
-			//WriteToConsole(" Second Child is a Literal ! ");
 			
 			liNode = (LiteralNode) biNode.getSecondChild();
 			
@@ -241,38 +183,31 @@ public class IncidentExpressionConverter {
 		
 		if(poNode == null) {
 			
-			//WriteToConsole("Property Node was null.");
 			return null;
 			
 		}
 		
 		if(liNode == null) {
 			
-			//WriteToConsole("Literal Node was null.");
 			return null;
 			
 		}
 		
+		// the name of the porperty
 		String property = poNode.getPath();
+		// the value of the porperty
 		Object literal = liNode.getValue();
-		
-		WriteToConsole(" property: " + property);
-		
-		WriteToConsole(" literal: " + literal);
 		
 		
 		
 		List<BCIncident> back = new LinkedList<BCIncident>();
 		
+		// maps the odata operators to java understanable operations (example EQ --> ==)
 		for(BCIncident c : data) {
 			
 			if(biNode.getOperator().equals(OPERATOR.EQ.toString())) {
-			
-				//WriteToConsole(" Its a EQ ! ");
 				
 				if(c.attrCompareTo(literal, property) == 0) {
-					
-					//WriteToConsole(" Its a match with id " + c.PackageID);
 					
 					back.add(c);
 					
@@ -281,8 +216,6 @@ public class IncidentExpressionConverter {
 			}
 			
 			if(biNode.getOperator().equals(OPERATOR.NE.toString())) {
-				
-				//WriteToConsole(" Its a NE ! ");
 				
 				if(c.attrCompareTo(literal, property) != 0) {
 					
@@ -293,8 +226,6 @@ public class IncidentExpressionConverter {
 			}
 			
 			if(biNode.getOperator().equals(OPERATOR.LE.toString())) {
-				
-				//WriteToConsole(" Its a LE ! ");
 				
 				if(c.attrCompareTo(literal, property) <= 0) {
 					

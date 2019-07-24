@@ -13,6 +13,7 @@ import com.sap.cloud.sdk.service.prov.rt.cds.CDSHandler;
 
 public class DatabaseAPI {
 	
+	// used to get all PackageIDs that are currently stored in the database. 
 	public static List<String> GetPackageIDsFromDB(ExtensionHelper h) {
 		
 		List<String> pckIDs = new LinkedList<String>();
@@ -20,15 +21,11 @@ public class DatabaseAPI {
 		try {
 		
 			DataSourceHandler dshandler = h.getHandler();
-		
 			CDSHandler cdsHandler = (CDSHandler) dshandler;
-			
 			CDSQuery cdsQuery = new CDSSelectQueryBuilder("RoseTrackerDataService.Package")
 						                .selectColumns("id_package")
 						                .build();
-						                
 			CDSSelectQueryResult cdsSelectQueryResult = cdsHandler.executeQuery(cdsQuery);
-			
 			List<EntityData> result = cdsSelectQueryResult.getResult();
 			
 			for(EntityData ed : result) {

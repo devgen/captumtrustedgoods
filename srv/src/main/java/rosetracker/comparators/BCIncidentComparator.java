@@ -7,6 +7,7 @@ import com.sap.cloud.sdk.service.prov.api.request.OrderByExpression;
 
 import rosetracker.dataclasses.BCIncident;
 
+// class to help the implementation of order by of IncidentBC. 
 public class BCIncidentComparator implements Comparator<BCIncident>{
 
 	private List<OrderByExpression> expressions = null;

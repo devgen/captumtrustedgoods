@@ -24,6 +24,7 @@ public class BCIncident {
 		return this.PackageID;
 	}
 	
+	// converts the data object to a map. Necessary for the conversion to an EntityData.
 	public Map<String,Object> ToMap(){
 		
 		Map<String,Object> back = new HashMap<String,Object>();
@@ -41,6 +42,7 @@ public class BCIncident {
 		return back;
 	}
 	
+	// returns the properties of the data object. Necessary for the conversion to an EntityData.
 	public static List<String> GetKeys() {
 		
 		List<String> back = new LinkedList<String>();
@@ -59,6 +61,7 @@ public class BCIncident {
 		
 	}
 	
+	// override of equals. Necessary for the comparator 
 	public Boolean equals(BCIncident other) {
 		
 		return	PackageID.equals(other.PackageID) &&
@@ -73,6 +76,8 @@ public class BCIncident {
 		
 	}
 	
+	// compares a attribute of this elements with the given object. 
+	// used to implement the filter expression of the query function
 	public int attrCompareTo(Object toCompare, String attr) {
 		
 		if(attr.equals("PackageID")) {
@@ -184,6 +189,7 @@ public class BCIncident {
 		
 	}
 	
+	// compares to another BCIncident on a given attribute
 	public int compareTo(BCIncident toCompare, String attr) {
 		
 		if(attr.equals("PackageID")) {

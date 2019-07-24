@@ -18,6 +18,7 @@ public class BCOwnerChange {
 	public double CurrentLongitude = 0.0;
 	public String RouteToNextOwner = "";
 	
+	// converts the data object to a map. Necessary for the conversion to an EntityData.
 	public Map<String,Object> ToMap(){
 		
 		Map<String,Object> back = new HashMap<String,Object>();
@@ -32,6 +33,7 @@ public class BCOwnerChange {
 		return back;
 	}
 	
+	// returns the properties of the data object. Necessary for the conversion to an EntityData.
 	public static List<String> GetKeys() {
 		
 		List<String> back = new LinkedList<String>();
@@ -47,6 +49,7 @@ public class BCOwnerChange {
 		
 	}
 	
+	// override of equals. Necessary for the comparator 
 	public Boolean equals(BCOwnerChange other) {
 		
 		return	PackageID.equals(other.PackageID) &&
@@ -57,6 +60,8 @@ public class BCOwnerChange {
 		
 	}
 	
+	// compares a attribute of this elements with the given object. 
+	// used to implement the filter expression of the query function
 	public int attrCompareTo(Object toCompare, String attr) {
 		
 		if(attr.equals("PackageID")) {
@@ -106,6 +111,7 @@ public class BCOwnerChange {
 		return 0;
 	}
 	
+	// compares to another BCOwnerChange on a given attribute
 	public int compareTo(BCOwnerChange toCompare, String attr) {
 		
 		if(attr.equals("PackageID")) {

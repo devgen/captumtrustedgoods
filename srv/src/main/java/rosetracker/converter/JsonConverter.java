@@ -12,44 +12,11 @@ import rosetracker.dataclasses.BCOwnerChange;
 
 public class JsonConverter {
 	
+	// used to convert the strings from the PoH API to the dataclasses. Here for BCIncidents
 	public List<BCIncident> GetBCIncidentsFromJSONString(String jsonString) {
 
 		List<BCIncident> back = new LinkedList<BCIncident>();
 		
-	// {
-	// 	"key": "PackageID1",
-	// 	"value": {
-	// 		"timestamp": "2019-07-04T19:48:32Z",
-	// 		"update": {
-	// 			"OwnerID": "SecondID"
-	// 		}
-	// 	}
-	// }
-	// -----------------------------------------------------------------------------
-	// /histories
-	// {
-	// 	"id": "dev_PackageID1",
-	// 	"updates": [
-	// 		{
-	// 			"timestamp": "2019-07-04T17:53:31Z",
-	// 			"update": {
-	// 				"OwnerChange": {
-	// 					"OwnerID": "BC OWNER ID"
-	// 					attr
-	// 				}
-	// 			}
-	// 			"timestamp": "2019-07-04T17:53:31Z",
-	// 			"update": {
-	// 				"Incident": {
-	// 					"OwnerID": "BC OWNER ID"
-	// 					attr
-	// 				}
-	// 			}
-	// 		}
-	// 	]
-	// }
-	
-
 		try {
 
 			JSONObject jInput = new JSONObject(jsonString);
@@ -102,7 +69,7 @@ public class JsonConverter {
 
 	}
 	
-
+	// used to convert the strings from the PoH API to the dataclasses. Here for BCOwner
 	public List<BCOwnerChange> GetBCOwnerChangesFromJSONString(String jsonString) {
 
 		List<BCOwnerChange> back = new LinkedList<BCOwnerChange>();

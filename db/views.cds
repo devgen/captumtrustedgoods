@@ -95,40 +95,6 @@ select from packagewithinicdentstatus as pack {
 	) as closedCount : Integer 
 } group by pack.incident_status;
 
-view openCountsPerRec as 
-select from packagewithinicdentstatus {
-	key id_recipent,
-	count(*) as openCount
-};
-
-
-view OrderDataView as 
-select from packagewithinicdentstatus {
-
-	key id_recipent as recipentID,
-	key incident_status as Status,
-	
-	(
-		select from packagewithinicdentstatus innerpack{
-		
-			count(id_package) as count
-		
-		} where id_recipent = innerpack.id_recipent and
-				delivery_active = TRUE
-	
-	) as openCount : Integer,
-	(
-		select from packagewithinicdentstatus innerpack{
-		
-			count(id_package) as count
-		
-		} where id_recipent = innerpack.id_recipent and
-				delivery_active = FALSE
-	
-	) as closedCount : Integer 
-	
-} group by packagewithinicdentstatus.id_recipent,
-		   packagewithinicdentstatus.incident_status;
 		   
 // ---------------------------------- OrderDataView View END ----------------------------------
 
