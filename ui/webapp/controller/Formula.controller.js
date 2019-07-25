@@ -15,7 +15,6 @@ sap.ui.define([
 	return Controller.extend("rosetracker.RoseTracker.controller.Formula", {
 
 		onBeforeRendering: function () {
-
 		},
 
 		onInit: function () {},
@@ -23,7 +22,6 @@ sap.ui.define([
 		//3.1. OnGeoSuccess
 		//if geolocation is sucessfully loaded.
 		onGeoSuccess: function (position) {
-			// todo translate geocode 
 			location = (position.coords.latitude + ';' + position.coords.longitude) + ';0';
 			//round the coordinates in order to match them with the oData Tableformat
 			latitude = position.coords.latitude;
@@ -89,12 +87,11 @@ sap.ui.define([
 		onPressSubmit: function (oEvent) {
 
 			var PackageIDInput = this.getView().byId("PackageIDChange").getText();
-			console.log(PackageIDInput)
 			var OwnerInput = this.getView().byId("OwnerChange").getValue();
 			var LocationInput = this.getView().byId("LocationChange").getText();
 			var TimeStampInput = this.getView().byId("TimestampChange").getText();
 
-			console.log(PackageIDInput + '  ' + OwnerInput + ' ' + LocationInput + ' ' + TimeStampInput)
+		//	console.log(PackageIDInput + '  ' + OwnerInput + ' ' + LocationInput + ' ' + TimeStampInput)
 
 			var empty = false;
 			//CHECK IF VALUES ARE NOT FILLED AND SET A FLAG

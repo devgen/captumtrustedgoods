@@ -24,7 +24,7 @@
 				</Column>
 				<Column id="LocationPast" minScreenWidth="Desktop" demandPopin="true">
 					<Text text="Location"/>
-				</Column>
+				</Column> 
 			</columns>
 			<items>
 				<ColumnListItem type="Navigation" press="handleListItemPress">
@@ -34,8 +34,8 @@
 							visible="true"/>
 						<Text text="{RoseType}"/>
 						<Text text="{OwnerName}"/>
-					<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/> 
-							<!--		<Text text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> -->
+			<!--		<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>  -->
+									<Text text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> 
 					</cells>
 				</ColumnListItem>
 			</items>

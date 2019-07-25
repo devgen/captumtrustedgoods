@@ -6,9 +6,10 @@
 	<App>
 		<pages>
 			<Page showHeader="true" title="Rose Tracker" showFooter="false" showNavButton="true" navButtonPress="onBack" navButtonTooltip="Overview">
+				<!-- 2.1.1 START Page structure: copy above -->
 				<uxap:ObjectPageLayout showTitleInHeaderContent="false" useIconTabBar="true" isChildPage="yes" showHeaderContent="false"
 					showAnchorBar="true" showFooter="false" subSectionLayout="TitleOnTop">
-						<!-- 2.1.1 START Page structure: copy above -->
+					
 						<!-- 2.1.2 START Header: copy below -->
 					<uxap:headerTitle>
 						<uxap:ObjectPageHeader  objectTitle="Details">
@@ -21,7 +22,7 @@
 						<!-- FIRST SECTION PACKAGE INFORMATION AND INCIDENT HISTORY -->
 						<uxap:ObjectPageSection showTitle="true" title="Package Details and Incidents" titleUppercase="true" visible="true">
 							<uxap:subSections>
-								<uxap:ObjectPageSubSection title="Packge Details" mode="Expanded">
+								<uxap:ObjectPageSubSection title="Package Details" mode="Expanded">
 									<!-- 2.2. START	Package Details and Incidents section: Package Data Table-->
 									<uxap:blocks>
 										<!-- TABLE WITH MASTER DATA-->
@@ -97,10 +98,11 @@
 														<ObjectStatus state="{= ${MaxTemperature} >  8.0000 ? 'Error' : 'Success'}" text="{MaxTemperature}"		visible="true" />
 														<ObjectStatus state="{= 0.0000 >  ${MinHumidity} ? 'Error' : 'Success'}" text="{MinHumidity}"		visible="true" />
 														<ObjectStatus state="{= ${MaxHumidity} >  85.0000 ?'Error' : 'Success'}" text="{MaxHumidity}"		visible="true" />
-										<!--			<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> -->
-												<Text text="
+													<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> 
+												<!--alternatively show the geocoordinates  -->
+												<!--<Text text="
 										{path: 'CurrentLongitude'};
-										{path: 'CurrentLatitude'};0"/>
+										{path: 'CurrentLatitude'};0"/> -->
 												</cells>
 											</ColumnListItem>
 										</items>
@@ -130,8 +132,8 @@
 												items="{ path : '/IncidentBC' }">
 													<vbm:Spot 
 													id="incidents" 
-													labelType="Warning" 
-													position="{path: 'CurrentLongitude'};{path: 'CurrentLatitude'};0" 
+													labelType="Error" 
+													position="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0" 
 													tooltip="" 
 													labelText="Incident"
 													></vbm:Spot>
@@ -176,8 +178,9 @@
 												<cells>
 													<Text text="{PackageID}"/>
 													<Text text="{OwnerID}"/>
-												<!--			<Text  text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> -->
-												<Text text="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0"/> 
+														<Text  text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> 
+														<!-- alternatively coordinates without reverse geocoding --> 
+											<!--		<Text text="{path: 'CurrentLatitude'};{path: 'CurrentLongitude'};0"/>  -->
 													<Text text="{path : 'TimeStamp', type : 'sap.ui.model.type.DateTime', formatOptions: { style : 'medium'}}"/>
 												</cells>
 											</ColumnListItem>
@@ -245,15 +248,14 @@
 									</uxap:blocks>
 									<uxap:moreBlocks/>
 									<uxap:actions/>
-											<!-- 2.3. EN+	Tracking section: HUMIDITY CHART-->
+											<!-- 2.3. END	Tracking section: HUMIDITY CHART-->
 								</uxap:ObjectPageSubSection>
 							</uxap:subSections>
 							<uxap:customAnchorBarButton/>
 						</uxap:ObjectPageSection>
 					</uxap:sections>
-						<!-- 2.1.1 END Page structure sections: copy below -->
-							<!-- 2.1.1 END Page structure : copy below -->
 				</uxap:ObjectPageLayout>
+				<!-- 2.1.1 END Page structure : copy below -->
 			</Page>
 		</pages>
 	</App>

@@ -25,7 +25,7 @@
 					<IconTabBar id="idTopLevelIconTabBar" selectedKey="db" class="sapUiResponsiveContentPadding">
 						<items>
 							<IconTabFilter id="current" text="{i18n>current}">
-								<!-- left upper side-->
+								<!-- 1.1.4. Dynamic side content: left upper side-->
 								<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding" sideContentFallDown="BelowM"
 									containerQuery="true" breakpointChanged="updateToggleButtonState">
 									<l:mainContent>

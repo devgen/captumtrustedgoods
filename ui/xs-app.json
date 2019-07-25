@@ -6,13 +6,6 @@
   },
   "routes": [
     {
-      "source": "^/RoseTrackerOData/(.*)$",
-      "target": "$1",
-      "authenticationType": "none",
-      "destination": "RoseTrackerOData",
-      "csrfProtection": false
-    },
-    {
       "source": "^/RoseTrackerDataServiceFinal/(.*)$",
       "target": "$1",
       "authenticationType": "none",

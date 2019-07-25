@@ -14,7 +14,7 @@ sap.ui.define([
 
 		//1.1 onBeforeRendering
 		//LOAD AND FILTER DATA BEFORE RENDERING 
-		onBeforeRendering: function () {
+		onInit: function () {
 
 			//*Optional: User Management 
 			//implement user management and filter by customerID
@@ -78,9 +78,9 @@ sap.ui.define([
 					});
 			
 			//Apply the filter to the
-		//	oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCust);
+			//oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCust);
 
-			//*Optional: User Management
+			//1.1.5. *Optional: User Management
 			// only filter if logged in user is from type customer 
 			if (userrole === 'customer') {
 
@@ -136,31 +136,9 @@ sap.ui.define([
 			oView.byId("idDonutChart").getDataset().getBinding("data").filter(ofilterCustU);
 			}
 			
-	
-			
-			
 		},
-		
-		convertCoordinatesToAddress: function (latInput, lngInput) {
 
-			
-			return new Promise((resolve, reject) => {
-						resolve(reverseGeocoding.geocodeLatLng(latInput, lngInput));
-	
-			})
-
-		},
-			
-		
-		
-	
-		
-		
-		//1.2 OnInit
-		onInit: function () {
-
-		},
-		//1.3. OnFilterPackages
+		//1.2. OnFilterPackages
 		//for filtering the table by packageID using the searchfield
 		onFilterPackages: function (oEvent) {
 
@@ -203,7 +181,7 @@ sap.ui.define([
 			oBinding.filter(aFilter);
 		},
 
-		//1.4. HandleListItemPress
+		//1.3. HandleListItemPress
 		//Navigation to Details
 		handleListItemPress: function (oEvent) {
 			// get the router
@@ -216,22 +194,30 @@ sap.ui.define([
 			});
 		},
 
-		//1.5. onPressOwnership
+		//1.4. onPressOwnership
 		//Navigation to Formula-Page which includes the scanner for the ownership change
 		onPressOwnership: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("formula", true);
 		},
+		
+		//1.5. Reverse Geocoding
+		convertCoordinatesToAddress: function (latInput, lngInput) {
+
+			
+			return new Promise((resolve, reject) => {
+						resolve(reverseGeocoding.geocodeLatLng(latInput, lngInput));
+	
+			})
+
+		},
 
 		
-
+		/*
 		onAfterRendering: function () {},
 
-
-		onExit: function () {
-
-		}
-
+		onExit: function () {}
+	*/
 	});
 
 });

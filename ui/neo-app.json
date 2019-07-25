@@ -34,14 +34,6 @@
         "name": "RoseTrackerDataServiceFinal"
       },
       "description": "RoseTrackerDataServiceFinal"
-    },
-    {
-      "path": "/RoseTrackerOData",
-      "target": {
-        "type": "destination",
-        "name": "RoseTrackerOData"
-      },
-      "description": "RoseTrackerOData"
     }
   ],
   "sendWelcomeFileRedirect": true

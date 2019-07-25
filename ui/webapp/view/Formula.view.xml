@@ -4,7 +4,7 @@
 		<pages>
 			<Page showHeader="true" title="Rose Tracker" showFooter="false" showNavButton="true" navButtonPress="onBack" navButtonTooltip="Overview">
 				<content>
-					<!-- 3.1.1. START	Page Structre: copy above-->
+					<!-- 3.1.1. START	Page Structure: copy above-->
 					<!-- 3.1.2. START	Header: copy below-->
 					<OverflowToolbar width="auto" height="46px" design="Auto" visible="true" enabled="true">
 						<content>

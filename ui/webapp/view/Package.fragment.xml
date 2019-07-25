@@ -22,8 +22,8 @@
 				<Column id="CurrenOwner" minScreenWidth="Desktop" demandPopin="true">
 					<Text text="Owner"/>
 				</Column>
-				<Column id="Location" minScreenWidth="Desktop" demandPopin="true">
-					<Text text="Location"/>
+			<Column id="Location" minScreenWidth="Desktop" demandPopin="true">
+					<Text text="Location"/> 
 				</Column>
 			</columns>
 			<items>
@@ -35,8 +35,8 @@
 							visible="true"/>
 						<Text text="{RoseType}"/>
 						<Text text="{OwnerName}"/>
-				<!--		<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/>  -->
-						<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/>
+					<Text id='currentPackageGeo' text="{parts: ['CurrentLatitude','CurrentLongitude'], formatter: '.convertCoordinatesToAddress'}"/> 
+					<!--	<Text text=" {path: 'OwnerLatitude'}, {path: 'OwnerLongitude'}"/> -->
 					</cells>
 				</ColumnListItem>
 			</items>
